@@ -24,6 +24,7 @@ public class Robot extends IterativeRobot {
 	public static Drivetrain drivetrain;
 	public static CubeIntake cubeintake;
 	public static Climber climber;
+	public static Pneumatics pneumatics;
 
 	Command autonomousCommand;
 	
@@ -39,6 +40,7 @@ public class Robot extends IterativeRobot {
 		drivetrain = new Drivetrain();
 		cubeintake = new CubeIntake();
 		climber = new Climber();
+		pneumatics = new Pneumatics();
 		oi = new OI();
 		
 		

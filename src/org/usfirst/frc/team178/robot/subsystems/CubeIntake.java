@@ -1,5 +1,8 @@
 package org.usfirst.frc.team178.robot.subsystems;
 
+import org.usfirst.frc.team178.robot.RobotMap;
+import com.ctre.CANTalon;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -7,12 +10,29 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class CubeIntake extends Subsystem {
 
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
+    public static CANTalon left;
+    public static CANTalon right;
+    
+    public CubeIntake() {
+    	left = new CANTalon(RobotMap.INTAKEleft);
+    	right = new CANTalon(RobotMap.INTAKEright);
+    	
+    
+    }
+    
+    public void collectCube(double speed) {
+    	right.set(speed);
+    	left.set(-speed);
+    }
+    
+    public void dropCube(double speed) {
+    	right.set(-speed);
+    	left.set(speed);
+    	
+    }
 
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+    	
     }
 }
 

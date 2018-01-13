@@ -36,4 +36,7 @@ public class RobotMap {
 	public static int DRIVEencoderRB;
 	public static int DRIVEencoderLA;
 	public static int DRIVEencoderLB;
+	
+	public static int INTAKEleft;
+	public static int INTAKEright;
 }
