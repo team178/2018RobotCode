@@ -1,7 +1,7 @@
 package org.usfirst.frc.team178.robot.subsystems;
 
 import org.usfirst.frc.team178.robot.RobotMap;
-import com.ctre.CANTalon;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -10,12 +10,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class CubeIntake extends Subsystem {
 
-    public static CANTalon left;
-    public static CANTalon right;
+    public static TalonSRX left;
+    public static TalonSRX right;
     
     public CubeIntake() {
-    	left = new CANTalon(RobotMap.INTAKEleft);
-    	right = new CANTalon(RobotMap.INTAKEright);
+    	left = new TalonSRX(RobotMap.INTAKEleft);
+    	right = new TalonSRX(RobotMap.INTAKEright);
     	
     
     }
