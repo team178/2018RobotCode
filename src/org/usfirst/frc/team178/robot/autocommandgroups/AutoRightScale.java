@@ -1,13 +1,13 @@
-package org.usfirst.frc.team178.autocommandgroups;
+package org.usfirst.frc.team178.robot.autocommandgroups;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class AutoRightSwitchAndScale extends CommandGroup {
+public class AutoRightScale extends CommandGroup {
 
-    public AutoRightSwitchAndScale() {
+    public AutoRightScale() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

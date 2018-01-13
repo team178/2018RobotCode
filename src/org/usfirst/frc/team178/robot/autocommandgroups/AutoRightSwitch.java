@@ -1,13 +1,13 @@
-package org.usfirst.frc.team178.autocommandgroups;
+package org.usfirst.frc.team178.robot.autocommandgroups;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class AutoDoNothing extends CommandGroup {
+public class AutoRightSwitch extends CommandGroup {
 
-    public AutoDoNothing() {
+    public AutoRightSwitch() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
