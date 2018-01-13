@@ -33,9 +33,9 @@ public class OI {
 	public Button buttonX = new JoystickButton(xbox, 3);
 	public Button buttonY = new JoystickButton(xbox, 4);
 	public Button lBumper = new JoystickButton(xbox, 5);
-	public Button rBumper = new JoystickButtton(xbox, 6);
+	public Button rBumper = new JoystickButton(xbox, 6);
 	public Button backButton = new JoystickButton(xbox, 7);
-	public button startButton = new JoystickButton(xbox, 8);
+	public Button startButton = new JoystickButton(xbox, 8);
 	
 	public OI () {
 		
