@@ -29,7 +29,7 @@ public class Drivetrain extends Subsystem {
 	   right2 = new CANTalon(RobotMap.DMMIDDLEright);
 	   right3 = new CANTalon(RobotMap.DMBOTTOMright);
 	   right = new Encoder(RobotMap.DRIVEencoderRA,RobotMap.DRIVEencoderRB, false, Encoder.EncodingType.k4X);
-	   left = new Encoder(RobotMap.DRIVEencoderLA, RobottMap.DRIVEencoderLB, true, Encoder.EncodingType.k4X);
+	   left = new Encoder(RobotMap.DRIVEencoderLA, RobotMap.DRIVEencoderLB, true, Encoder.EncodingType.k4X);
 	   gyro = new GyroBase();
 	   
 	   
