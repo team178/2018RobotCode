@@ -6,6 +6,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.GyroBase;
+import com.ctre.phoenix.motorcontrol.ControlMode;
 /**
  *
  */
@@ -47,26 +48,26 @@ public class Drivetrain extends Subsystem {
    }
    
    public void rightDrive(double speed) {
-	   right1.set(speed);
-	   right2.set(speed);
-	   right3.set(speed);
+	   right1.set(ControlMode.PercentOutput, speed);
+	   right2.set(ControlMode.PercentOutput, speed);
+	   right3.set(ControlMode.PercentOutput, speed);
  
    }
    
    public void leftDrive(double speed) {
-	   left1.set(speed);
-	   left2.set(speed);
-	   left3.set(speed);
+	   left1.set(ControlMode.PercentOutput, speed);
+	   left2.set(ControlMode.PercentOutput,speed);
+	   left3.set(ControlMode.PercentOutput, speed);
 	   
    }
    
    public void drive(double leftMotors, double rightMotors) {
-	   left1.set(leftMotors);
-	   left2.set(leftMotors);
-	   left3.set(leftMotors);
-	   right1.set(rightMotors);
-	   right2.set(rightMotors);
-	   right3.set(rightMotors);
+	   left1.set(ControlMode.PercentOutput, leftMotors);
+	   left2.set(ControlMode.PercentOutput, leftMotors);
+	   left3.set(ControlMode.PercentOutput, leftMotors);
+	   right1.set(ControlMode.PercentOutput, rightMotors);
+	   right2.set(ControlMode.PercentOutput, rightMotors);
+	   right3.set(ControlMode.PercentOutput, rightMotors);
    }
    
    public double getLeftDistance() {
