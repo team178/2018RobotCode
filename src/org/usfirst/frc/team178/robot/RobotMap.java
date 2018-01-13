@@ -39,4 +39,7 @@ public class RobotMap {
 	
 	public static int INTAKEleft;
 	public static int INTAKEright;
+	
+	public static int JoystickPort;
+	public static int JoystickPortXBOX;
 }
