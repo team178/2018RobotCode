@@ -22,12 +22,12 @@ public class Drivetrain extends Subsystem {
    
    
    public DriveTrain() {
-	   left1 = new CANTalon(RobotMap.DMTOPleft);
-	   left2 = new CANTalon(RobotMap.DMMIDDLEleft);
-	   left3 = new CANTalon(RobotMap.DMBOTTOMleft);
-	   right1 = new CANTalon(RobotMap.DMTOPright);
-	   right2 = new CANTalon(RobotMap.DMMIDDLEright);
-	   right3 = new CANTalon(RobotMap.DMBOTTOMright);
+	   left1 = new CANTalon(RobotMap.DMTopLeft);
+	   left2 = new CANTalon(RobotMap.DMMiddleLeft);
+	   left3 = new CANTalon(RobotMap.DMBottomLeft);
+	   right1 = new CANTalon(RobotMap.DMTopRight);
+	   right2 = new CANTalon(RobotMap.DMMiddleRight);
+	   right3 = new CANTalon(RobotMap.DMBottomRight);
 	   right = new Encoder(RobotMap.DRIVEencoderRA,RobotMap.DRIVEencoderRB, false, Encoder.EncodingType.k4X);
 	   left = new Encoder(RobotMap.DRIVEencoderLA, RobottMap.DRIVEencoderLB, true, Encoder.EncodingType.k4X);
 	   gyro = new GyroBase();
