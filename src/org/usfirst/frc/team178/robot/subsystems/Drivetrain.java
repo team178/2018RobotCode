@@ -3,6 +3,7 @@ package org.usfirst.frc.team178.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.GyroBase;
 /**
  *
  */
@@ -16,6 +17,8 @@ public class Drivetrain extends Subsystem {
    public static Victor right3;
    public static java.beans.Encoder right;
    public static java.beans.Encoder left;
+   public static GyroBase gyro;
+   
    
    public DriveTrain() {
 	   left1 = new Victor(RobotMap.DMTOPleft);
@@ -26,9 +29,15 @@ public class Drivetrain extends Subsystem {
 	   right3 = new Victor(RobotMap.DMBOTTOMright);
 	   right = new Encoder(RobotMap.DRIVEencoderRA,RobotMap.DRIVEencoderRB, false, Encoder.EncodingType.k4X);
 	   left = new Encoder(RobotMap.DRIVEencoderLA, RobottMap.DRIVEencoderLB, true, Encoder.EncodingType.k4X);
+	   gyro = new GyroBase();
 	   
 	   
    }
+   
+   public double getAngle() {
+	   return gyro.pidGet();
+   }
+   
    public  void resetEncoders() {
 	   right.reset();
 	   left.reset();
