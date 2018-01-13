@@ -44,7 +44,7 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		
 		
-		chooser.addObjejct("AutoDoNothing", new AutoDoNothing());
+		chooser.addObject("AutoDoNothing", new AutoDoNothing());
 		chooser.addObject("AutoLeftScale", new AutoLeftScale());
 		chooser.addObject("AutoLeftSwitch", new AutoLeftSwitch());
 		chooser.addObject("AutoLeftSwitchAndScale", new AutoLeftSwitchAndScale());
