@@ -21,7 +21,7 @@ public class Drivetrain extends Subsystem {
    public static GyroBase gyro;
    
    
-   public DriveTrain() {
+   public Drivetrain() {
 	   left1 = new CANTalon(RobotMap.DMTOPleft);
 	   left2 = new CANTalon(RobotMap.DMMIDDLEleft);
 	   left3 = new CANTalon(RobotMap.DMBOTTOMleft);

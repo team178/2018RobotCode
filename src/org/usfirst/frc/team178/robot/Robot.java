@@ -6,9 +6,10 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc.team178.robot.autocommandgroups.*;
+import org.usfirst.frc.team178.robot.subsystems.*;
 
-import org.usfirst.frc.team178.robot.commands.ExampleCommand;
-import org.usfirst.frc.team178.robot.subsystems.ExampleSubsystem;
+import org.usfirst.frc.team178.robot.autocommandgroups.AutoDoNothing;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -20,10 +21,14 @@ import org.usfirst.frc.team178.robot.subsystems.ExampleSubsystem;
 public class Robot extends IterativeRobot {
 
 	public static OI oi;
-	public static DriveTrain drivetrain;
+	public static Drivetrain drivetrain;
+	public static CubeIntake cubeintake;
+	public static Climber climber;
 
-	//Command autonomousCommand;
-	//SendableChooser<Command> chooser = new SendableChooser<>();
+	Command autonomousCommand;
+	
+	SendableChooser<Command> chooser = new SendableChooser<>();
+	
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -31,9 +36,20 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+		drivetrain = new Drivetrain();
+		cubeintake = new CubeIntake();
+		climber = new Climber();
 		oi = new OI();
-		chooser.addDefault("Default Auto", new ExampleCommand());
-		// chooser.addObject("My Auto", new MyAutoCommand());
+		
+		
+		chooser.addObjejct("AutoDoNothing", new AutoDoNothing());
+		chooser.addObject("AutoLeftScale", new AutoLeftScale());
+		chooser.addObject("AutoLeftSwitch", new AutoLeftSwitch());
+		chooser.addObject("AutoLeftSwitchAndScale", new AutoLeftSwitchAndScale());
+		chooser.addObject("AutoMiddleSwitch", new AutoMiddleSwitch());
+		chooser.addObject("AutoRightScale", new AutoRightScale());
+		chooser.addObject("AutoRightSwitch", new AutoRightSwitch());
+		chooser.addObject("AutoRightSwitchAndScale", new AutoRightSwitchAndScale());
 		SmartDashboard.putData("Auto mode", chooser);
 	}
 
@@ -65,7 +81,10 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		autonomousCommand = chooser.getSelected();
+		autonomousCommand = (Command) chooser.getSelected();
+		
+		if(autonomousCommand != null)
+			autonomousCommand.start();
 
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -75,8 +94,7 @@ public class Robot extends IterativeRobot {
 		 */
 
 		// schedule the autonomous command (example)
-		if (autonomousCommand != null)
-			autonomousCommand.start();
+\
 	}
 
 	/**
@@ -93,8 +111,10 @@ public class Robot extends IterativeRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		if (autonomousCommand != null)
+		if(autonomousCommand != null)
 			autonomousCommand.cancel();
+		//add something else
+		
 	}
 
 	/**
@@ -102,7 +122,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		Scheduler.getInstance().run();
+		//add something
 	}
 
 	/**
