@@ -1,7 +1,7 @@
 package org.usfirst.frc.team178.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.Victor;
+import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.GyroBase;
 /**
@@ -9,24 +9,24 @@ import edu.wpi.first.wpilibj.GyroBase;
  */
 public class Drivetrain extends Subsystem {
 
-   public static Victor left1;
-   public static Victor left2;
-   public static Victor left3;
-   public static Victor right1;
-   public static Victor right2;
-   public static Victor right3;
-   public static java.beans.Encoder right;
-   public static java.beans.Encoder left;
+   public static CANTalon left1;
+   public static CANTalon left2;
+   public static CANTalon left3;
+   public static CANTalon right1;
+   public static CANTalon right2;
+   public static CANTalon right3;
+   public static Encoder right;
+   public static Encoder left;
    public static GyroBase gyro;
    
    
    public DriveTrain() {
-	   left1 = new Victor(RobotMap.DMTOPleft);
-	   left2 = new Victor(RobotMap.DMMIDDLEleft);
-	   left3 = new Victor(RobotMap.DMBOTTOMleft);
-	   right1 = new Victor(RobotMap.DMTOPright);
-	   right2 = new Victor(RobotMap.DMMIDDLEright);
-	   right3 = new Victor(RobotMap.DMBOTTOMright);
+	   left1 = new CANTalon(RobotMap.DMTOPleft);
+	   left2 = new CANTalon(RobotMap.DMMIDDLEleft);
+	   left3 = new CANTalon(RobotMap.DMBOTTOMleft);
+	   right1 = new CANTalon(RobotMap.DMTOPright);
+	   right2 = new CANTalon(RobotMap.DMMIDDLEright);
+	   right3 = new CANTalon(RobotMap.DMBOTTOMright);
 	   right = new Encoder(RobotMap.DRIVEencoderRA,RobotMap.DRIVEencoderRB, false, Encoder.EncodingType.k4X);
 	   left = new Encoder(RobotMap.DRIVEencoderLA, RobottMap.DRIVEencoderLB, true, Encoder.EncodingType.k4X);
 	   gyro = new GyroBase();
