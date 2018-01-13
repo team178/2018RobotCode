@@ -12,11 +12,11 @@ import edu.wpi.first.wpilibj.GyroBase;
 public class Drivetrain extends Subsystem {
 
    public static TalonSRX left1;
-   public static CANTalon left2;
-   public static CANTalon left3;
-   public static CANTalon right1;
-   public static CANTalon right2;
-   public static CANTalon right3;
+   public static TalonSRX left2;
+   public static TalonSRX left3;
+   public static TalonSRX right1;
+   public static TalonSRX right2;
+   public static TalonSRX right3;
    public static Encoder right;
    public static Encoder left;
    public static GyroBase gyro;
@@ -24,11 +24,11 @@ public class Drivetrain extends Subsystem {
    
    public Drivetrain() {
 	   left1 = new TalonSRX(RobotMap.DMTopLeft);
-	   left2 = new CANTalon(RobotMap.DMMiddleLeft);
-	   left3 = new CANTalon(RobotMap.DMBottomLeft);
-	   right1 = new CANTalon(RobotMap.DMTopRight);
-	   right2 = new CANTalon(RobotMap.DMMiddleRight);
-	   right3 = new CANTalon(RobotMap.DMBottomRight);
+	   left2 = new TalonSRX(RobotMap.DMMiddleLeft);
+	   left3 = new TalonSRX(RobotMap.DMBottomLeft);
+	   right1 = new TalonSRX(RobotMap.DMTopRight);
+	   right2 = new TalonSRX(RobotMap.DMMiddleRight);
+	   right3 = new TalonSRX(RobotMap.DMBottomRight);
 	   right = new Encoder(RobotMap.DRIVEencoderRA,RobotMap.DRIVEencoderRB, false, Encoder.EncodingType.k4X);
 	   left = new Encoder(RobotMap.DRIVEencoderLA, RobotMap.DRIVEencoderLB, true, Encoder.EncodingType.k4X);
 	   gyro = new GyroBase();
