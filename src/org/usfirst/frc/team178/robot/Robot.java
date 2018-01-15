@@ -1,5 +1,6 @@
 package org.usfirst.frc.team178.robot;
 
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -25,6 +26,7 @@ public class Robot extends IterativeRobot {
 	public static CubeIntake cubeintake;
 	public static Climber climber;
 	public static Pneumatics pneumatics;
+	public static AnalogGyro gyro;
 
 	Command autonomousCommand;
 	
