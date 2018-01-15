@@ -43,5 +43,7 @@ public class RobotMap {
 	
 	public static int JoystickPort;
 	public static int JoystickPortXBOX;
+	
+	public static int ClimberPort;
 */
 }
