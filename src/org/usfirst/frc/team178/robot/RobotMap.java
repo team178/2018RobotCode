@@ -32,7 +32,7 @@ public class RobotMap {
 	public static int DMMiddleRight = 2;
 	public static int DMBottomRight = 3;
 	
-	/*
+	
 	public static int DRIVEencoderRA;
 	public static int DRIVEencoderRB;
 	public static int DRIVEencoderLA;
@@ -45,5 +45,5 @@ public class RobotMap {
 	public static int JoystickPortXBOX;
 	
 	public static int ClimberPort;
-*/
+
 }
