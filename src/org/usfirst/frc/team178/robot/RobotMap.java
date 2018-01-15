@@ -25,13 +25,14 @@ public class RobotMap {
 	// public static int rangefinderModule = 1;
 	
 	//Drivetrain variables (Will assign values later)
-	public static int DMTopLeft;
-	public static int DMMiddleLeft;
-	public static int DMBottomLeft;
-	public static int DMTopRight;
-	public static int DMMiddleRight;
-	public static int DMBottomRight;
+	public static int DMTopLeft = 4;
+	public static int DMMiddleLeft = 5;
+	public static int DMBottomLeft = 6;
+	public static int DMTopRight = 1;
+	public static int DMMiddleRight = 2;
+	public static int DMBottomRight = 3;
 	
+	/*
 	public static int DRIVEencoderRA;
 	public static int DRIVEencoderRB;
 	public static int DRIVEencoderLA;
@@ -42,4 +43,5 @@ public class RobotMap {
 	
 	public static int JoystickPort;
 	public static int JoystickPortXBOX;
+*/
 }
