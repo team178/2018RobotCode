@@ -5,6 +5,7 @@ import org.usfirst.frc.team178.robot.commands.*;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.GyroBase;
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -21,7 +22,7 @@ public class Drivetrain extends Subsystem {
    public static TalonSRX right3;
    public static Encoder right;
    public static Encoder left;
-   public static GyroBase gyro;
+   public static AnalogGyro gyro;
    
    
    public Drivetrain() {
@@ -33,7 +34,7 @@ public class Drivetrain extends Subsystem {
 	   right3 = new TalonSRX(RobotMap.DMBottomRight);
 	   right = new Encoder(RobotMap.DRIVEencoderRA,RobotMap.DRIVEencoderRB, false, Encoder.EncodingType.k4X);
 	   left = new Encoder(RobotMap.DRIVEencoderLA, RobotMap.DRIVEencoderLB, true, Encoder.EncodingType.k4X);
-	   gyro = new GyroBase();
+	   gyro = new AnalogGyro(1);
 	   
 	   
    }
