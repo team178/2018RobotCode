@@ -29,11 +29,15 @@ public class DriveForward extends Command {
     	drivetrain = Robot.drivetrain;
     	adjustedSpeed = -robotSpeed;
     	//right motors are negative value because of how they are oriented on the robot
+    	drivetrain.resetEncoders();
     	drivetrain.drive(robotSpeed, -robotSpeed);
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	System.out.println("Right Distance" + drivetrain.getRightDistance());
+    	System.out.println("Left Distance" + drivetrain.getLeftDistance());
     	//Finds the difference between the speeds of both sides of the robot from the encoders (Ideally want it to be the same so it drives straight)
     	double diff = drivetrain.getLeftSpeed() - drivetrain.getRightSpeed();
     	//threshhold to consider what is a sizeable-enough difference in speeds that it needs to be adjusted
@@ -70,7 +74,7 @@ public class DriveForward extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (drivetrain.getLeftSpeed() >= distance)
+    	if (drivetrain.getLeftSpeed() >= drivetrain.getLeftDistance())
     	{
     		return true;
     	}
