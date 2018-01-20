@@ -8,11 +8,11 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class DropCube extends Command {
+public class ShootCube extends Command {
 	
 	CubeIntake cubeintake;
 
-    public DropCube() {
+    public ShootCube() {
     	requires(Robot.cubeintake);
     }
 
@@ -23,7 +23,7 @@ public class DropCube extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	cubeintake.dropCube(0.75);
+    	cubeintake.shootCube(0.75);
     }
 
     // Make this return true when this Command no longer needs to run execute()

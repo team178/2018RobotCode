@@ -38,8 +38,10 @@ public class RobotMap {
 	public static int DRIVEencoderLA=3;
 	public static int DRIVEencoderLB=4;
 	
-	public static int INTAKEleft;
-	public static int INTAKEright;
+	public static int INTAKEleft1;
+	public static int INTAKEleft2;
+	public static int INTAKEright1;
+	public static int INTAKEright2;
 	
 	public static int JoystickPort = 0;
 	public static int JoystickPortXBOX = 1;
