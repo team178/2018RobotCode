@@ -33,16 +33,16 @@ public class RobotMap {
 	public static int DMBottomRight = 3;
 	
 	
-	public static int DRIVEencoderRA;
-	public static int DRIVEencoderRB;
-	public static int DRIVEencoderLA;
-	public static int DRIVEencoderLB;
+	public static int DRIVEencoderRA= 1;
+	public static int DRIVEencoderRB = 2;
+	public static int DRIVEencoderLA=3;
+	public static int DRIVEencoderLB=4;
 	
 	public static int INTAKEleft;
 	public static int INTAKEright;
 	
-	public static int JoystickPort;
-	public static int JoystickPortXBOX;
+	public static int JoystickPort = 0;
+	public static int JoystickPortXBOX = 1;
 	
 	public static int ClimberPort;
 
