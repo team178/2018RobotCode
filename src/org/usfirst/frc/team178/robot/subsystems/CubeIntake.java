@@ -35,7 +35,7 @@ public class CubeIntake extends Subsystem {
     	doublesolenoid.set(DoubleSolenoid.Value.kReverse);
     }
     
-    public void shootCube(double speed) {
+    public void ejectCube(double speed) {
     	right1.set(ControlMode.PercentOutput, -speed);
     	right2.set(ControlMode.PercentOutput, -speed);
     	left1.set(ControlMode.PercentOutput, speed);
