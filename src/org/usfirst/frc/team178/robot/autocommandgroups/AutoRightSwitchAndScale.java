@@ -13,20 +13,21 @@ public class AutoRightSwitchAndScale extends CommandGroup {
 
     public AutoRightSwitchAndScale() {
 addSequential(new DriveForward(10.0, 1.0));  //placeholders
-    	
-    	if (/*our alliance color == the switch's color*/) {
+    	/*
+    	if (our alliance color == the switch's color) {
     		addSequential(new AutoTurn(-90.0, 1.0)); //placeholders
     		addSequential(new ShootCube());
     		
-    		if(/* our alliance color == the scale's color*/) {
+    		if( our alliance color == the scale's color) {
     			addSequential(new AutoTurn(90, 1.0)); //placeholders
         		addSequential(new DriveForward(10.0,1.0)); //placeholders
         		addSequential(new ShootCube());
     		}
-    	} else if (/* our alliance color == the scale's color*/) {
+    	} else if (our alliance color == the scale's color) {
     	addSequential(new DriveForward(10.0, 1.0)); //placeholders
     	addSequential(new AutoTurn(-90.0, 1.0)); //placeholders
     	addSequential(new ShootCube());
     	}
+    	*/
     }
 }

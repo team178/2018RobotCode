@@ -13,13 +13,13 @@ public class AutoLeftScale extends CommandGroup {
 
     public AutoLeftScale() {
     	addSequential(new DriveForward(20.0, 1.0));  //placeholders
-    	
-    	if (/*our alliance color == the scale's color*/) {
+    	/*
+    	if (our alliance color == the scale's color) {
     	addSequential(new AutoTurn(90.0, 1.0)); //placeholders
-    	addSequential(new ShootCube());
+    	addSequential(new ShootCube()); */
     	}
     	
     	
 
     }
-}
+

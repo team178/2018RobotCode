@@ -10,7 +10,7 @@ import org.usfirst.frc.team178.robot.commands.*;
 public class AutoMiddleSwitch extends CommandGroup {
 
     public AutoMiddleSwitch() {
-      if (/*Left switch color == our color  */) {
+    /*  if (Left switch color == our color  ) {
     	  addSequential(new DriveForward(5.0, 1.0)); //placeholders
     	  addSequential(new AutoTurn(-90.0, 1.0)); //placeholders
     	  addSequential(new DriveForward(5.0, 1.0)); //placeholders
@@ -19,7 +19,7 @@ public class AutoMiddleSwitch extends CommandGroup {
     	  addSequential(new AutoTurn(90.0, 1.0)); //placeholders
     	  addSequential(new ShootCube());
     	  
-      } else if (/* right switch color == our color */) {
+      } else if ( right switch color == our color ) {
     		  addSequential(new DriveForward(5.0, 1.0));
     		  addSequential(new AutoTurn(90.0, 1.0));
     		  addSequential(new DriveForward(5.0, 1.0));
@@ -27,6 +27,7 @@ public class AutoMiddleSwitch extends CommandGroup {
     		  addSequential(new DriveForward(5.0, 1.0));
     		  addSequential(new AutoTurn(-90.0, 1.0));
     		  addSequential(new ShootCube());
+    		  */
     	  }
       }
-    }
+    

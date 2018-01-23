@@ -37,6 +37,12 @@ public class Drivetrain extends Subsystem {
 	   left = new Encoder(RobotMap.DRIVEencoderLA, RobotMap.DRIVEencoderLB, true, Encoder.EncodingType.k4X);
 	   gyro = new AnalogGyro(1);
 	   
+	   double dpp = 3 * ((6 * Math.PI) / 1024); // distance per pulse
+		// gearRatio * (circumference/counts per revolution)
+right.setDistancePerPulse(dpp); // must be changed for both right and
+// left
+left.setDistancePerPulse(dpp);
+	   
 	   
    }
    
@@ -65,7 +71,7 @@ public class Drivetrain extends Subsystem {
    }
    
    public void drive(double leftMotors, double rightMotors) {
-	   System.out.println(leftMotors + ":" + rightMotors);
+	   
 	   left1.set( leftMotors);
 	   left2.set( leftMotors);
 	   left3.set( leftMotors);
