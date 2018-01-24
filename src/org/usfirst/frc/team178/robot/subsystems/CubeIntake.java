@@ -6,7 +6,6 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.TalonSRX;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 /**
@@ -15,33 +14,43 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 public class CubeIntake extends Subsystem {
 
     static TalonSRX left1;
-    static TalonSRX left2;
+    //static TalonSRX left2;
     static TalonSRX right1;
-    static TalonSRX right2;
-    DoubleSolenoid doublesolenoid;
+    //static TalonSRX right2;
+    DoubleSolenoid rightPiston;
+    DoubleSolenoid leftPiston;
     
     public CubeIntake() {
     	left1 = new TalonSRX(RobotMap.INTAKEleft1);
-    	left2 = new TalonSRX(RobotMap.INTAKEleft2);
+    	//left2 = new TalonSRX(RobotMap.INTAKEleft2);
     	right1 = new TalonSRX(RobotMap.INTAKEright1);
-    	right2 = new TalonSRX(RobotMap.INTAKEright2);    
+    	//right2 = new TalonSRX(RobotMap.INTAKEright2);  
+    	rightPiston = new DoubleSolenoid(RobotMap.PCM, RobotMap.INTAKErightin, RobotMap.INTAKErightout);
+    	leftPiston = new DoubleSolenoid(RobotMap.PCM, RobotMap.INTAKEleftin, RobotMap.INTAKEleftout);
     }
     
     public void collectCube(double speed) {
     	right1.set(ControlMode.PercentOutput, speed);
-    	right2.set(ControlMode.PercentOutput, speed);
+    	//right2.set(ControlMode.PercentOutput, speed);
     	left1.set(ControlMode.PercentOutput, -speed);
-    	left2.set(ControlMode.PercentOutput, -speed);
-    	doublesolenoid.set(DoubleSolenoid.Value.kReverse);
+    	//left2.set(ControlMode.PercentOutput, -speed);
+    	rightPiston.set(DoubleSolenoid.Value.kReverse); //kReverse subject to change
+    	leftPiston.set(DoubleSolenoid.Value.kReverse); 
     }
     
     public void ejectCube(double speed) {
     	right1.set(ControlMode.PercentOutput, -speed);
-    	right2.set(ControlMode.PercentOutput, -speed);
+    	//right2.set(ControlMode.PercentOutput, -speed);
     	left1.set(ControlMode.PercentOutput, speed);
-    	left2.set(ControlMode.PercentOutput, speed);
+    	//left2.set(ControlMode.PercentOutput, speed);
+    	rightPiston.set(DoubleSolenoid.Value.kReverse); //kReverse subject to change
+    	leftPiston.set(DoubleSolenoid.Value.kReverse); 
     }
 
+    public void foldIntake() {
+    	rightPiston.set(DoubleSolenoid.Value.kForward);
+    	leftPiston.set(DoubleSolenoid.Value.kForward);
+    }
     public void initDefaultCommand() {
     	
     }
