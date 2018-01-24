@@ -127,7 +127,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		//add something
+		SmartDashboard.putNumber("Pressure", pneumatics.getPressure());
 		Scheduler.getInstance().run();
 	}
 
