@@ -21,7 +21,7 @@ public class Pneumatics extends Subsystem {
 	public Pneumatics() {
 		pressureTransducer = new AnalogInput(RobotMap.PRESSURETRANSDUCER);
 		airCompressor = new Compressor();
-		airCompressor.setClosedLoopControl(true);
+		airCompressor.setClosedLoopControl(false);
 		/*airCompressor.setClosedLoopControl(false);
 		boolean enabled = airCompressor.enabled();
 		boolean pressureSwitch = airCompressor.getPressureSwitchValue();

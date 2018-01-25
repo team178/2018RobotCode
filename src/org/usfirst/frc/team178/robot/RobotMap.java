@@ -55,6 +55,6 @@ public class RobotMap {
 	
 	public static int ClimberPort;
 	
-	public static int PRESSURETRANSDUCER;
+	public static int PRESSURETRANSDUCER = 0;
 
 }
