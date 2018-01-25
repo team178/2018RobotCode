@@ -38,6 +38,8 @@ public class RobotMap {
 	public static int DRIVEencoderLA=3;
 	public static int DRIVEencoderLB=4;
 	
+	public static int DRIVEGyro = 1;
+	
 	public static int INTAKEleft1;
 	public static int INTAKEleft2;
 	public static int INTAKEright1;
