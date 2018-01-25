@@ -30,7 +30,7 @@ public class Pneumatics extends Subsystem {
 	}
 	//gets the average pressure from the pneumatics
 	public double getPressure() {
-		return(pressureTransducer.getAverageVoltage()-.854)*40.9276;
+		return pressureTransducer.getVoltage();
 		
 	}
 	//Put methods for controlling this subsystem here. Call these from Commands.
