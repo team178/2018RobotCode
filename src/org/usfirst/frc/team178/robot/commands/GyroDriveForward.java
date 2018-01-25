@@ -13,6 +13,26 @@ public class GyroDriveForward extends Command {
 	Drivetrain drivetrain;
 	OI oi;
 	double robotSpeed, distance; 
+	double P = .02, I = 0, D = 0;
+	double integral = 0;
+	double Setpoint, previousError;
+	double output;
+	
+	public void PID()
+	{
+		double error = Setpoint - drivetrain.getAngle();
+		integral += (error * .02);
+		double derivative = (error - previousError)/ .02;;
+		output = P * error + I * integral +  D * derivative;    //Will add Integral and derivative later
+		previousError = error;
+	}
+	
+	public void setSetpoint(int setpoint)
+	{
+		this.Setpoint = setpoint;
+	}
+	
+
 
     public GyroDriveForward(double dist, double speed) {
         // Use requires() here to declare subsystem dependencies
@@ -27,16 +47,16 @@ public class GyroDriveForward extends Command {
     	oi = Robot.oi;
     	drivetrain = Robot.drivetrain;
     	drivetrain.resetGyro();
-    	drivetrain.straightAdj.setSetpoint(0);
+    /*	drivetrain.straightAdj.setSetpoint(0);
     	drivetrain.straightAdj.setOutputRange(-1, 1);
-    	drivetrain.straightAdj.enable();
-    	
+    	drivetrain.straightAdj.enable();*/
     	drivetrain.drive(robotSpeed, -robotSpeed);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
+    	PID();
+    	drivetrain.drive((robotSpeed * (1-output)), -robotSpeed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
