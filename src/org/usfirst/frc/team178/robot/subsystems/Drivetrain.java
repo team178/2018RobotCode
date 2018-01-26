@@ -52,7 +52,7 @@ public class Drivetrain extends Subsystem {
 	   return gyro.pidGet();
    }
    
-   public double resetGyro();
+   public void resetGyro()
    {
 	  gyro.reset();
    }

@@ -1,6 +1,7 @@
 package org.usfirst.frc.team178.robot.autocommandgroups;
 
 import org.usfirst.frc.team178.robot.commands.DriveForward;
+import org.usfirst.frc.team178.robot.commands.GyroDriveForward;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -26,7 +27,7 @@ public class Testing extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	addSequential(new DriveForward(100, .1));
+    	addSequential(new GyroDriveForward(20, .2));
     	//addSequential(new DriveForward(200, .3));
     }
 }
