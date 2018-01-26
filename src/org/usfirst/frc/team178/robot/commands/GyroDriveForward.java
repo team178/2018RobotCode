@@ -13,23 +13,24 @@ public class GyroDriveForward extends Command {
 	Drivetrain drivetrain;
 	OI oi;
 	double robotSpeed, distance; 
-	double P = .02, I = 0, D = 0;
+	double P = .02, I = 0, D = 0; //These are all constants that need to be determined through testing and tuned
+	//I and D currently set to 0 as I want to implement one part at a time successfully
 	double integral = 0;
 	double Setpoint, previousError;
 	double output;
 	
-	public void PID()
+	public void PID() //Note to self, maybe change this to just straight up return the output and make it a double method
 	{
-		double error = Setpoint - drivetrain.getAngle();
-		integral += (error * .02);
-		double derivative = (error - previousError)/ .02;;
-		output = P * error + I * integral +  D * derivative;    //Will add Integral and derivative later
-		previousError = error;
+		double error = Setpoint - drivetrain.getAngle(); //calculates devation from intended angle
+		integral += (error * .02); //Integral is the sum of all the errors while running (* the iteration time which is 20 ms)
+		double derivative = (error - previousError)/ .02;; //change in error * iteration time (20 ms)
+		output = P * error + I * integral +  D * derivative;    //Uses the PID equation to get an output
+		previousError = error; //sets this last calculated error as the "previousError" for the next time the method is run
 	}
 	
 	public void setSetpoint(int setpoint)
 	{
-		this.Setpoint = setpoint;
+		this.Setpoint = setpoint; //sets the target value (which is the orientation of the robot in degrees)
 	}
 	
 
@@ -48,6 +49,7 @@ public class GyroDriveForward extends Command {
     	drivetrain = Robot.drivetrain;
     	drivetrain.resetGyro();
     	drivetrain.resetEncoders();
+    	setSetpoint(0);
     /*	drivetrain.straightAdj.setSetpoint(0);
     	drivetrain.straightAdj.setOutputRange(-1, 1);
     	drivetrain.straightAdj.enable();*/
