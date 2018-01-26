@@ -47,6 +47,7 @@ public class GyroDriveForward extends Command {
     	oi = Robot.oi;
     	drivetrain = Robot.drivetrain;
     	drivetrain.resetGyro();
+    	drivetrain.resetEncoders();
     /*	drivetrain.straightAdj.setSetpoint(0);
     	drivetrain.straightAdj.setOutputRange(-1, 1);
     	drivetrain.straightAdj.enable();*/
@@ -61,18 +62,23 @@ public class GyroDriveForward extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	
+    	if (drivetrain.getLeftDistance() >= distance)
+    	{
+    		return true;
+    	}
         return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	drivetrain.straightAdj.disable();
+    	//drivetrain.straightAdj.disable();
+    	drivetrain.drive(0,0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	drivetrain.straightAdj.disable();
+    	//drivetrain.straightAdj.disable();
+    	drivetrain.drive(0, 0);
     }
 }
