@@ -13,19 +13,19 @@ public class GyroDriveForward extends Command {
 	Drivetrain drivetrain;
 	OI oi;
 	double robotSpeed, distance; 
-	double P = .02, I = 0, D = 0; //These are all constants that need to be determined through testing and tuned
+	double P = .2, I = 0, D = 0; //These are all constants that need to be determined through testing and tuned
 	//I and D currently set to 0 as I want to implement one part at a time successfully
 	double integral = 0;
 	double Setpoint, previousError;
 	double output;
 	
-	public void PID() //Note to self, maybe change this to just straight up return the output and make it a double method
+	public double PID() //Note to self, maybe change this to just straight up return the output and make it a double method
 	{
-		double error = Setpoint - drivetrain.getAngle(); //calculates devation from intended angle
+		double error = drivetrain.getAngle() - Setpoint; //calculates devation from intended angle
 		integral += (error * .02); //Integral is the sum of all the errors while running (* the iteration time which is 20 ms)
 		double derivative = (error - previousError)/ .02;; //change in error * iteration time (20 ms)
-		output = P * error + I * integral +  D * derivative;    //Uses the PID equation to get an output
-		previousError = error; //sets this last calculated error as the "previousError" for the next time the method is run
+		return output = P * error + I * integral +  D * derivative;    //Uses the PID equation to get an output
+		//previousError = error; //sets this last calculated error as the "previousError" for the next time the method is run
 	}
 	
 	public void setSetpoint(int setpoint)
@@ -58,8 +58,16 @@ public class GyroDriveForward extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	PID();
-    	drivetrain.drive((robotSpeed * (1-output)), -robotSpeed);
+ System.out.println(drivetrain.getAngle());
+    	if(PID() < 0)
+    	{
+    drivetrain.drive(robotSpeed, -(robotSpeed*(1-Math.abs(PID()))));
+    		//drivetrain.drive(, rightMotors);
+    	}
+    	else
+    	{
+    		drivetrain.drive(robotSpeed * (1-PID()), -robotSpeed);
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
