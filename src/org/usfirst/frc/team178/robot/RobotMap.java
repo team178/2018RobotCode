@@ -48,8 +48,8 @@ public class RobotMap {
 	
 	public static int PCM = 7;
 	
-	public static int INTAKEleftout = 1;
-	public static int INTAKEleftin = 2;
+	public static int INTAKEleftout = 0;
+	public static int INTAKEleftin = 1;
 	public static int INTAKErightout = 3;
 	public static int INTAKErightin = 4;
 	

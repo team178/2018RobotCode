@@ -9,12 +9,12 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class EjectCube extends Command {
-	
-	CubeIntake cubeintake;
+public class LiftIntake extends Command {
 
-    public EjectCube() {
-    	requires(Robot.cubeintake);
+	CubeIntake cubeintake;
+	
+    public LiftIntake() {
+        requires(Robot.cubeintake);
     }
 
     // Called just before this Command runs the first time
@@ -24,7 +24,7 @@ public class EjectCube extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	cubeintake.ejectCube(/*0.75*/);
+    	cubeintake.foldIntake();
     }
 
     // Make this return true when this Command no longer needs to run execute()
