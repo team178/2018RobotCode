@@ -13,7 +13,7 @@ public class GyroDriveForward extends Command {
 	Drivetrain drivetrain;
 	OI oi;
 	double robotSpeed, distance; 
-	double P = .2, I = 0.2, D = 0; //These are all constants that need to be determined through testing and tuned
+	double P = 0.001, I = 0, D = 0; //These are all constants that need to be determined through testing and tuned
 	//I and D currently set to 0 as I want to implement one part at a time successfully
 	double integral = 0;
 	double Setpoint, previousError;
@@ -25,7 +25,7 @@ public class GyroDriveForward extends Command {
 		integral += (error * .02); //Integral is the sum of all the errors while running (* the iteration time which is 20 ms)
 		double derivative = (error - previousError)/ .02;; //change in error * iteration time (20 ms)
 		previousError = error; //sets this last calculated error as the "previousError" for the next time the method is run
-		return output = P * error + I * integral +  D * derivative;    //Uses the PID equation to get an output
+		return output =( P * error + I * integral +  D * derivative);    //Uses the PID equation to get an output
 	}
 	
 	public void setSetpoint(int setpoint)
