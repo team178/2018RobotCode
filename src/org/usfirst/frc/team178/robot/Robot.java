@@ -42,7 +42,7 @@ public class Robot extends IterativeRobot {
 		drivetrain = new Drivetrain();
 		cubeintake = new CubeIntake();
 		climber = new Climber();
-		pneumatics = new Pneumatics();
+		//pneumatics = new Pneumatics();
 		oi = new OI();
 		
 		
