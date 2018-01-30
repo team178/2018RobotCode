@@ -3,16 +3,17 @@ package org.usfirst.frc.team178.robot.commands;
 import org.usfirst.frc.team178.robot.Robot;
 import org.usfirst.frc.team178.robot.subsystems.CubeIntake;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class ShootCube extends Command {
+public class EjectCube extends Command {
 	
 	CubeIntake cubeintake;
 
-    public ShootCube() {
+    public EjectCube() {
     	requires(Robot.cubeintake);
     }
 
@@ -23,12 +24,18 @@ public class ShootCube extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	cubeintake.shootCube(0.75);
+    	cubeintake.ejectCube(/*0.75*/);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+    	if (cubeintake.getIntake() == DoubleSolenoid.Value.kReverse)
+    	{
+    		return true;
+    	}
+    	else {
+    		return false;
+    	}
     }
 
     // Called once after isFinished returns true
