@@ -2,6 +2,7 @@ package org.usfirst.frc.team178.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team178.robot.*;
+import org.usfirst.frc.team178.robot.subsystems.Climber;
 /**
  *
  */

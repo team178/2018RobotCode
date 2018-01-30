@@ -13,7 +13,7 @@ public class GyroDriveForward extends Command {
 	Drivetrain drivetrain;
 	OI oi;
 	double robotSpeed, distance; 
-	double P = 0.001, I = 0, D = 0; //These are all constants that need to be determined through testing and tuned
+	double P = 0.1, I = 0.1, D = 0; //These are all constants that need to be determined through testing and tuned
 	//I and D currently set to 0 as I want to implement one part at a time successfully
 	double integral = 0;
 	double Setpoint, previousError;
@@ -58,15 +58,16 @@ public class GyroDriveForward extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
- System.out.println(drivetrain.getAngle());
-    	if(PID() < 0)
+    	System.out.println(drivetrain.getAngle());
+    	double currentPID = PID();
+    	if(currentPID < 0)
     	{
-    drivetrain.drive(robotSpeed, -(robotSpeed*(1-Math.abs(PID()))));
+    		drivetrain.drive(robotSpeed, -(robotSpeed*(1-Math.abs(currentPID))));
     		//drivetrain.drive(, rightMotors);
     	}
     	else
     	{
-    		drivetrain.drive(robotSpeed * (1-PID()), -robotSpeed);
+    		drivetrain.drive(robotSpeed * (1-currentPID), -robotSpeed);
     	}
     }
 
