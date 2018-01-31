@@ -27,7 +27,14 @@ public class Testing extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
+<<<<<<< HEAD
     	addSequential(new GyroDriveForward(100, .5));
+=======
+//    	addSequential(new DriveForward(20, .1));
+    	
+    	addSequential(new DriveForward(100, .1));
+>>>>>>> cdf2baba79474b7e481c28113e6db2b9f34caa1c
     	//addSequential(new DriveForward(200, .3));
+
     }
 }

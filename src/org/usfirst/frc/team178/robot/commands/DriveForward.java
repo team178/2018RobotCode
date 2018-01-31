@@ -30,7 +30,9 @@ public class DriveForward extends Command {
     	adjustedSpeed = -robotSpeed;
     	drivetrain.resetEncoders();
     	//right motors are negative value because of how they are oriented on the robot
+    	drivetrain.resetEncoders();
     	drivetrain.drive(robotSpeed, -robotSpeed);
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -79,6 +81,7 @@ public class DriveForward extends Command {
     protected boolean isFinished() {
     	System.out.println(drivetrain.getLeftDistance());
     	if (drivetrain.getLeftDistance() >= distance)
+
     	{
     		return true;
     		

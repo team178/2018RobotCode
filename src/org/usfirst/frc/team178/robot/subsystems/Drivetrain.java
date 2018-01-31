@@ -8,9 +8,13 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.GyroBase;
+<<<<<<< HEAD
 import edu.wpi.first.wpilibj.PIDController;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+=======
+
+>>>>>>> cdf2baba79474b7e481c28113e6db2b9f34caa1c
 import edu.wpi.first.wpilibj.Talon;
 /**
  *

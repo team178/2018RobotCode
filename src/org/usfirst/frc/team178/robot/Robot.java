@@ -47,14 +47,8 @@ public class Robot extends IterativeRobot {
 		
 		
 		chooser.addObject("AutoDoNothing", new AutoDoNothing());
-		chooser.addObject("AutoLeftScale", new AutoLeftScale());
-		chooser.addObject("AutoLeftSwitch", new AutoLeftSwitch());
-		chooser.addObject("AutoLeftSwitchAndScale", new AutoLeftSwitchAndScale());
-		chooser.addObject("AutoMiddleSwitch", new AutoMiddleSwitch());
-		chooser.addObject("AutoRightScale", new AutoRightScale());
-		chooser.addObject("AutoRightSwitch", new AutoRightSwitch());
-		chooser.addObject("AutoRightSwitchAndScale", new AutoRightSwitchAndScale());
 		SmartDashboard.putData("Auto mode", chooser);
+		System.out.println("Hello");
 	}
 
 	/**
