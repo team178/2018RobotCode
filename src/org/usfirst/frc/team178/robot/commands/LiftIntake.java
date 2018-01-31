@@ -9,12 +9,12 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class CollectCube extends Command {
+public class LiftIntake extends Command {
 
 	CubeIntake cubeintake;
 	
-    public CollectCube() {
-    	requires(Robot.cubeintake);
+    public LiftIntake() {
+        requires(Robot.cubeintake);
     }
 
     // Called just before this Command runs the first time
@@ -24,7 +24,7 @@ public class CollectCube extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	cubeintake.collectCube(/*.75*/);
+    	cubeintake.foldIntake();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -40,7 +40,6 @@ public class CollectCube extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	/*cubeintake.foldIntake();*/
     }
 
     // Called when another command which requires one or more of the same

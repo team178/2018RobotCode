@@ -33,19 +33,28 @@ public class RobotMap {
 	public static int DMBottomRight = 3;
 	
 	
-	public static int DRIVEencoderRA= 1;
+	public static int DRIVEencoderRA = 1;
 	public static int DRIVEencoderRB = 2;
-	public static int DRIVEencoderLA=3;
-	public static int DRIVEencoderLB=4;
+	public static int DRIVEencoderLA = 3;
+	public static int DRIVEencoderLB = 4;
 	
-	public static int INTAKEleft1;
-	public static int INTAKEleft2;
-	public static int INTAKEright1;
-	public static int INTAKEright2;
+	public static int INTAKEleft1 = 1;
+	public static int INTAKEleft2 = 2;
+	public static int INTAKEright1 = 3;
+	public static int INTAKEright2 = 4;
 	
 	public static int JoystickPort = 0;
 	public static int JoystickPortXBOX = 1;
 	
+	public static int PCM = 7;
+	
+	public static int INTAKEleftout = 0;
+	public static int INTAKEleftin = 1;
+	public static int INTAKErightout = 3;
+	public static int INTAKErightin = 4;
+	
 	public static int ClimberPort;
+	
+	public static int PRESSURETRANSDUCER = 0;
 
 }

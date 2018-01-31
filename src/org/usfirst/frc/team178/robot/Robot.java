@@ -47,15 +47,6 @@ public class Robot extends IterativeRobot {
 		
 		
 		chooser.addObject("AutoDoNothing", new AutoDoNothing());
-		chooser.addObject("AutoLeftScale", new AutoLeftScale());
-		chooser.addObject("AutoLeftSwitch", new AutoLeftSwitch());
-		chooser.addObject("AutoLeftSwitchAndScale", new AutoLeftSwitchAndScale());
-		chooser.addObject("AutoMiddleSwitch", new AutoMiddleSwitch());
-		chooser.addObject("AutoRightScale", new AutoRightScale());
-		chooser.addObject("AutoRightSwitch", new AutoRightSwitch());
-		chooser.addObject("AutoRightSwitchAndScale", new AutoRightSwitchAndScale());
-		System.out.println("This kinda works");
-		chooser.addObject("Testing", new Testing());
 		SmartDashboard.putData("Auto mode", chooser);
 		System.out.println("Hello");
 	}
@@ -129,7 +120,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		//add something
+		SmartDashboard.putNumber("Pressure", pneumatics.getPressure());
 		Scheduler.getInstance().run();
 	}
 
