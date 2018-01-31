@@ -8,13 +8,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.GyroBase;
-<<<<<<< HEAD
-import edu.wpi.first.wpilibj.PIDController;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-=======
-
->>>>>>> cdf2baba79474b7e481c28113e6db2b9f34caa1c
 import edu.wpi.first.wpilibj.Talon;
 /**
  *
@@ -30,7 +24,6 @@ public class Drivetrain extends Subsystem {
    public static Encoder right;
    public static Encoder left;
    public static AnalogGyro gyro;
-   public static PIDController straightAdj;
    
    
    public Drivetrain() {
@@ -43,8 +36,7 @@ public class Drivetrain extends Subsystem {
 	   right = new Encoder(RobotMap.DRIVEencoderRA,RobotMap.DRIVEencoderRB, false, Encoder.EncodingType.k4X);
 	   left = new Encoder(RobotMap.DRIVEencoderLA, RobotMap.DRIVEencoderLB, true, Encoder.EncodingType.k4X);
 	   gyro = new AnalogGyro(RobotMap.DRIVEGyro);
-	  
-	   straightAdj = new PIDController(1,0,0, gyro , left1 );
+
 	   
 	   double dpp = 3 * ((6 * Math.PI) / 1024); // distance per pulse
 		// gearRatio * (circumference/counts per revolution)

@@ -39,7 +39,7 @@ public class OI {
 	
 	public OI () {
 		buttonA.whileHeld(new CollectCube());
-		buttonB.whileHeld(new LiftIntake());
+
 		//fill in as soon as we know what buttons will do what
 	}
 	
