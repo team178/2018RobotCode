@@ -29,8 +29,10 @@ public class Robot extends IterativeRobot {
 	public static AnalogGyro gyro;
 
 	Command autonomousCommand;
+	private Command Autonomous;
 	
-	SendableChooser<Command> chooser = new SendableChooser<>();
+	public static SendableChooser<Command> chooser = new SendableChooser<>();
+	public static SendableChooser<String> temp = new SendableChooser<>();
 	
 
 	/**
@@ -45,19 +47,16 @@ public class Robot extends IterativeRobot {
 		pneumatics = new Pneumatics();
 		oi = new OI();
 		
-		
 		chooser.addObject("AutoDoNothing", new AutoDoNothing());
-		chooser.addObject("AutoLeftScale", new AutoLeftScale());
-		chooser.addObject("AutoLeftSwitch", new AutoLeftSwitch());
-		chooser.addObject("AutoLeftSwitchAndScale", new AutoLeftSwitchAndScale());
-		chooser.addObject("AutoMiddleSwitch", new AutoMiddleSwitch());
-		chooser.addObject("AutoRightScale", new AutoRightScale());
-		chooser.addObject("AutoRightSwitch", new AutoRightSwitch());
-		chooser.addObject("AutoRightSwitchAndScale", new AutoRightSwitchAndScale());
-		System.out.println("This kinda works");
+		chooser.addObject("Autonomous", new Autonomous());
 		chooser.addObject("Testing", new Testing());
-		SmartDashboard.putData("Auto mode", chooser);
-		System.out.println("Hello");
+		SmartDashboard.putData("AutoCommand", chooser);
+		
+		temp.addObject("Left", "L");
+		temp.addObject("Middle", "M");
+		temp.addObject("Right", "R");
+		SmartDashboard.putData("AutoLocation", temp);
+
 	}
 
 	/**

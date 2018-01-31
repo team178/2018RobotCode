@@ -72,7 +72,7 @@ public class Drivetrain extends Subsystem {
 	}
 
 	public void drive(double leftMotors, double rightMotors) {
-		System.out.println(leftMotors + ":" + rightMotors);
+	//	System.out.println(leftMotors + ":" + rightMotors);
 		left1.set( leftMotors);
 		left2.set( leftMotors);
 		left3.set( leftMotors);
