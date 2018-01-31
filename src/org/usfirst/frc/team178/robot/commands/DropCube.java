@@ -9,11 +9,11 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class EjectCube extends Command {
+public class DropCube extends Command {
 	
 	CubeIntake cubeintake;
 
-    public EjectCube() {
+    public DropCube() {
     	requires(Robot.cubeintake);
     }
 
