@@ -19,7 +19,7 @@ public class GyroDriveForward extends Command {
 	double Setpoint, previousError;
 	double output;
 	
-	public double PID() //Note to self, maybe change this to just straight up return the output and make it a double method
+	public double straightPID() //Note to self, maybe change this to just straight up return the output and make it a double method
 	{
 		double error = drivetrain.getAngle() - Setpoint; //calculates devation from intended angle
 		integral += (error * .02); //Integral is the sum of all the errors while running (* the iteration time which is 20 ms)
@@ -28,7 +28,7 @@ public class GyroDriveForward extends Command {
 		return output =( P * error + I * integral +  D * derivative);    //Uses the PID equation to get an output
 	}
 	
-	public void setSetpoint(int setpoint)
+	public void setAngleSetpoint(int setpoint)
 	{
 		this.Setpoint = setpoint; //sets the target value (which is the orientation of the robot in degrees)
 	}
@@ -49,7 +49,7 @@ public class GyroDriveForward extends Command {
     	drivetrain = Robot.drivetrain;
     	drivetrain.resetGyro();
     	drivetrain.resetEncoders();
-    	setSetpoint(0);
+    	setAngleSetpoint(0);
     /*	drivetrain.straightAdj.setSetpoint(0);
     	drivetrain.straightAdj.setOutputRange(-1, 1);
     	drivetrain.straightAdj.enable();*/
@@ -59,7 +59,7 @@ public class GyroDriveForward extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	System.out.println(drivetrain.getAngle());
-    	double currentPID = PID();
+    	double currentPID = straightPID();
     	if(currentPID < 0)
     	{
     		drivetrain.drive(robotSpeed, -(robotSpeed*(1-Math.abs(currentPID))));
