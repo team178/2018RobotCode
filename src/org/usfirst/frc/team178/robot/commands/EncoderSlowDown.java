@@ -13,7 +13,8 @@ public class EncoderSlowDown extends Command {
 	Drivetrain drivetrain;
 	OI oi;
 	double robotSpeed, distance;
-	double distanceSetpoint, previousDistError, integralDist = 0, dP = 0.001, dI, dD; //Variables for distance PID
+	double distanceSetpoint, previousDistError, integralDist = 0, dP = 10.0, dI, dD, previousSpeed; //Variables for distance PID
+	//double decRate = robotSpeed/distance;
   
 	
 	
@@ -22,6 +23,7 @@ public class EncoderSlowDown extends Command {
         // eg. requires(chassis);
 		requires(Robot.drivetrain);
     	robotSpeed = speed;
+    	previousSpeed = speed;
     	distance = dist;
     }
 
@@ -42,11 +44,16 @@ public class EncoderSlowDown extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+    	if (drivetrain.getLeftDistance()>= distance)
+    	{
+    		return true;
+    	}
+        	return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	drivetrain.drive(0, 0);
     }
 
     // Called when another command which requires one or more of the same
@@ -57,21 +64,22 @@ public class EncoderSlowDown extends Command {
     
 	public double stopPID()
 	{
-		
 		double currentDist = (drivetrain.getRightDistance() + drivetrain.getLeftDistance())/2;		//average distance feedback from two encoders
 		//How far the Robot is from it's target distance
-		double fromTargetDist = distanceSetpoint - currentDist;  
+		double decError = distanceSetpoint - currentDist;  
 	//	double angleError = drivetrain.getAngle() - angleSetpoint;
-		integralDist += (fromTargetDist * .02);
-		double derivative = (fromTargetDist - previousDistError)/.02;
-		previousDistError = fromTargetDist;
-		double output = (dP * fromTargetDist + dI * integralDist + dD * derivative);
-		/*if (drivetrain.getLeftSpeed() > .3 && fromTargetDist < 50)
+		integralDist += (decError * .02);
+		double derivative = (decError - previousDistError)/.02;
+		previousDistError = decError;
+		double output = (dP * decError + dI * integralDist + dD * derivative);
+		/*if (drivetrain.getLeftSpeed() > .3 && decError < 50)
 		{
 			
 		}
 		*/
-		return (robotSpeed-output);
+		double newSpeed = previousSpeed * output;
+		previousSpeed = previousSpeed * output;
+		return newSpeed;
 	}
 	
 	public void setDistanceSetpoint(double target)
