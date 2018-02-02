@@ -52,6 +52,7 @@ public class CubeIntake extends Subsystem {
     	//leftPiston.set(DoubleSolenoid.Value.kForward);
     }
     
+   
   
     
     public void initDefaultCommand() {
