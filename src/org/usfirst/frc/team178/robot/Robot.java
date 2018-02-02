@@ -31,11 +31,6 @@ public class Robot extends IterativeRobot {
 
 	Command autonomousCommand;
 	private Command Autonomous;
-<<<<<<< HEAD
-	
-	public static SendableChooser<Command> chooser = new SendableChooser<>();
-	public static SendableChooser<String> temp = new SendableChooser<>();
-=======
 	
 	public static SendableChooser<String> temp = new SendableChooser<>();
 	public static SendableChooser<String> switchChooser = new SendableChooser<>();
@@ -44,7 +39,6 @@ public class Robot extends IterativeRobot {
 	public static SendableChooser<String> pickUpSecondBlock = new SendableChooser<>();
 	public static SendableChooser<String> vault = new SendableChooser<>();
 	
->>>>>>> master
 	
 
 	/**
