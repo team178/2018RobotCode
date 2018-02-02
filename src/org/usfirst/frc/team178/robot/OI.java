@@ -38,7 +38,8 @@ public class OI {
 	public Button startButton = new JoystickButton(xbox, 8);
 	
 	public OI () {
-		
+		buttonA.whileHeld(new CollectCube());
+
 		//fill in as soon as we know what buttons will do what
 	}
 	

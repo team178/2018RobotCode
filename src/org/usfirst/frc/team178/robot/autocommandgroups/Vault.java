@@ -1,6 +1,7 @@
 package org.usfirst.frc.team178.robot.autocommandgroups;
 
-import org.usfirst.frc.team178.robot.commands.DriveForward;
+import org.usfirst.frc.team178.robot.commands.AutoTurn;
+import org.usfirst.frc.team178.robot.commands.DropCube;
 import org.usfirst.frc.team178.robot.commands.GyroDriveForward;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -8,9 +9,14 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class Testing extends CommandGroup {
+public class Vault extends CommandGroup {
 
-    public Testing() {
+    public Vault() {
+    	
+    	addSequential(new GyroDriveForward(126,0.5));
+    	addSequential(new AutoTurn(180, 0.5));
+    	addSequential(new GyroDriveForward(126,0.5));
+    	addSequential(new DropCube());
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -27,7 +33,5 @@ public class Testing extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	addSequential(new GyroDriveForward(100, .5));
-
     }
 }

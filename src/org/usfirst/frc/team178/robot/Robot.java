@@ -1,6 +1,7 @@
 package org.usfirst.frc.team178.robot;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -30,9 +31,20 @@ public class Robot extends IterativeRobot {
 
 	Command autonomousCommand;
 	private Command Autonomous;
+<<<<<<< HEAD
 	
 	public static SendableChooser<Command> chooser = new SendableChooser<>();
 	public static SendableChooser<String> temp = new SendableChooser<>();
+=======
+	
+	public static SendableChooser<String> temp = new SendableChooser<>();
+	public static SendableChooser<String> switchChooser = new SendableChooser<>();
+	public static SendableChooser<String> scaleChooser = new SendableChooser<>();
+	public static SendableChooser<String> goForward = new SendableChooser<>();
+	public static SendableChooser<String> pickUpSecondBlock = new SendableChooser<>();
+	public static SendableChooser<String> vault = new SendableChooser<>();
+	
+>>>>>>> master
 	
 
 	/**
@@ -40,6 +52,8 @@ public class Robot extends IterativeRobot {
 	 * used for any initialization code.
 	 */
 	@Override
+	
+	
 	public void robotInit() {
 		drivetrain = new Drivetrain();
 		cubeintake = new CubeIntake();
@@ -47,18 +61,34 @@ public class Robot extends IterativeRobot {
 		pneumatics = new Pneumatics();
 		oi = new OI();
 		
-		chooser.addObject("AutoDoNothing", new AutoDoNothing());
-		chooser.addObject("Autonomous", new Autonomous());
-		chooser.addObject("Testing", new Testing());
-		SmartDashboard.putData("AutoCommand", chooser);
-		
 		temp.addObject("Left", "L");
 		temp.addObject("Middle", "M");
 		temp.addObject("Right", "R");
 		SmartDashboard.putData("AutoLocation", temp);
 
+		
+		switchChooser.addObject("Never", "Never");
+		switchChooser.addObject("Always", "Always");
+		switchChooser.addObject("In Front", "In Front");
+		
+		scaleChooser.addObject("Never", "Never");
+		scaleChooser.addObject("Always", "Always");
+		scaleChooser.addObject("In Front", "In Front");
+		
+		goForward.addObject("Never", "Never");
+		goForward.addObject("Always", "Always");
+		
+		pickUpSecondBlock.addObject("Never", "Never");
+		pickUpSecondBlock.addObject("Always", "Always");
+
+		vault.addObject("Never", "Never");
+		vault.addObject("Always", "Always");
 	}
 
+	public static String returnSelection() {
+		return temp.getSelected();
+		
+	}
 	/**
 	 * This function is called once each time the robot enters Disabled mode.
 	 * You can use it to reset any subsystem information you want to clear when
@@ -87,7 +117,13 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		autonomousCommand = (Command) chooser.getSelected();
+		String gameData;
+        gameData = DriverStation.getInstance().getGameSpecificMessage();
+        char switchSide = gameData.charAt(0);
+        char scaleSide = gameData.charAt(1);
+    	String position = Robot.returnSelection();
+	
+    	autonomousCommand = null; //change asap
 		
 		if(autonomousCommand != null)
 			autonomousCommand.start();
@@ -100,7 +136,7 @@ public class Robot extends IterativeRobot {
 		 */
 
 		// schedule the autonomous command (example)
-
+		
 	}
 
 	/**

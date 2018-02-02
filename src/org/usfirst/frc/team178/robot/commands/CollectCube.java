@@ -3,6 +3,7 @@ package org.usfirst.frc.team178.robot.commands;
 import org.usfirst.frc.team178.robot.Robot;
 import org.usfirst.frc.team178.robot.subsystems.CubeIntake;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -23,16 +24,23 @@ public class CollectCube extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	cubeintake.collectCube(.75);
+    	cubeintake.collectCube(/*.75*/);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+    	if (cubeintake.getIntake() == DoubleSolenoid.Value.kReverse)
+    	{
+    		return true;
+    	}
+    	else {
+    		return false;
+    	}
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	/*cubeintake.foldIntake();*/
     }
 
     // Called when another command which requires one or more of the same
