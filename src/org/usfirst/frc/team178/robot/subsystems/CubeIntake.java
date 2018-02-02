@@ -18,7 +18,7 @@ public class CubeIntake extends Subsystem {
     static TalonSRX right1;
     //static TalonSRX right2;
     // DoubleSolenoid rightPiston;
-    DoubleSolenoid leftPiston;
+//    DoubleSolenoid leftPiston;
     
     public CubeIntake() {
     	left1 = new TalonSRX(RobotMap.INTAKEleft1);
@@ -26,7 +26,7 @@ public class CubeIntake extends Subsystem {
     	right1 = new TalonSRX(RobotMap.INTAKEright1);
     	//right2 = new TalonSRX(RobotMap.INTAKEright2);  
     	// rightPiston = new DoubleSolenoid(RobotMap.PCM, RobotMap.INTAKErightin, RobotMap.INTAKErightout);
-    	leftPiston = new DoubleSolenoid(RobotMap.PCM, RobotMap.INTAKEleftout, RobotMap.INTAKEleftin);
+  //  	leftPiston = new DoubleSolenoid(RobotMap.PCM, RobotMap.INTAKEleftout, RobotMap.INTAKEleftin);
     }
     
     public void collectCube(/*double speed*/) {
@@ -35,7 +35,7 @@ public class CubeIntake extends Subsystem {
     	//left1.set(ControlMode.PercentOutput, -speed);
     	//left2.set(ControlMode.PercentOutput, -speed);
     	// rightPiston.set(DoubleSolenoid.Value.kReverse); //kReverse subject to change
-    	leftPiston.set(DoubleSolenoid.Value.kReverse); 
+    //	leftPiston.set(DoubleSolenoid.Value.kReverse); 
     }
     
     public void ejectCube(/*double speed*/) {
@@ -44,17 +44,15 @@ public class CubeIntake extends Subsystem {
     	//left1.set(ControlMode.PercentOutput, speed);
     	//left2.set(ControlMode.PercentOutput, speed);
     	// rightPiston.set(DoubleSolenoid.Value.kReverse); //kReverse subject to change
-    	leftPiston.set(DoubleSolenoid.Value.kReverse); 
+    	//leftPiston.set(DoubleSolenoid.Value.kReverse); 
     }
 
     public void foldIntake() {
     	// rightPiston.set(DoubleSolenoid.Value.kForward);
-    	leftPiston.set(DoubleSolenoid.Value.kForward);
+    	//leftPiston.set(DoubleSolenoid.Value.kForward);
     }
     
-    public DoubleSolenoid.Value getIntake(){
-    	return leftPiston.get();
-    }
+  
     
     public void initDefaultCommand() {
     	

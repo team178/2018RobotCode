@@ -13,7 +13,7 @@ public class EncoderSlowDown extends Command {
 	Drivetrain drivetrain;
 	OI oi;
 	double robotSpeed, distance;
-	double distanceSetpoint, previousDistError, integralDist = 0, dP = 10.0, dI, dD, previousSpeed; //Variables for distance PID
+	double distanceSetpoint, previousDistError, integralDist = 0, dP = 1, dI, dD, previousSpeed; //Variables for distance PID
 	//double decRate = robotSpeed/distance;
   
 	
@@ -59,6 +59,7 @@ public class EncoderSlowDown extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	drivetrain.drive(0, 0);
     }
     
     
@@ -66,19 +67,19 @@ public class EncoderSlowDown extends Command {
 	{
 		double currentDist = (drivetrain.getRightDistance() + drivetrain.getLeftDistance())/2;		//average distance feedback from two encoders
 		//How far the Robot is from it's target distance
-		double decError = distanceSetpoint - currentDist;  
+		double decError = (distanceSetpoint - currentDist);  //inverse of difference between current distance and target distance 
 	//	double angleError = drivetrain.getAngle() - angleSetpoint;
 		integralDist += (decError * .02);
 		double derivative = (decError - previousDistError)/.02;
 		previousDistError = decError;
-		double output = (dP * decError + dI * integralDist + dD * derivative);
+		double output = 1/ (dP * decError + dI * integralDist + dD * derivative); //inverse of output
 		/*if (drivetrain.getLeftSpeed() > .3 && decError < 50)
 		{
 			
 		}
 		*/
-		double newSpeed = previousSpeed * output;
-		previousSpeed = previousSpeed * output;
+		double newSpeed = previousSpeed * (1-output);
+		previousSpeed = previousSpeed * (1-output);
 		return newSpeed;
 	}
 	
