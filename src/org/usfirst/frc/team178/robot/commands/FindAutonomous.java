@@ -8,8 +8,8 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class FindAutonomous extends Command {
-	char ScaleSide = (Robot.gameData).charAt(1);
-	char RobotPosition = (Robot.position).charAt(0);
+	char ScaleSide;
+	char RobotPosition;
 	
     public FindAutonomous() {
     	
@@ -17,10 +17,14 @@ public class FindAutonomous extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+
+		ScaleSide = (Robot.gameData).charAt(1);
+		RobotPosition = (Robot.position).charAt(0);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	System.out.println("We got this far");
     	if(!Robot.goForwardChoice) {
 			System.out.println("No Autonomous will be run.");
 		} else if (Robot.goForwardChoice) {

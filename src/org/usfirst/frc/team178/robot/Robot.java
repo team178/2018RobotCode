@@ -31,7 +31,7 @@ public class Robot extends IterativeRobot {
 	public static Autonomous autonomous;
 
 	Command autonomousCommand;
-	private Command Autonomous;
+	//private Command Autonomous; delete meeee
 	
 	public static SendableChooser<String> temp = new SendableChooser<>();
 	public static SendableChooser<String> switchChooser = new SendableChooser<>();
@@ -60,6 +60,7 @@ public class Robot extends IterativeRobot {
 	
 	
 	public void robotInit() {
+		autonomous = new Autonomous();
 		drivetrain = new Drivetrain();
 		cubeintake = new CubeIntake();
 		climber = new Climber();
@@ -125,6 +126,14 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+	    //    gameData = DriverStation.getInstance().getGameSpecificMessage();\
+			gameData = "RLR"; //for testing purposes
+	        switchSide = gameData.charAt(0);
+	        scaleSide = gameData.charAt(1);
+	    	position = Robot.returnSelection();
+	    	
+    	autonomousCommand = autonomous;
+		
 		if((goForward.getSelected()).equals("Yes"))
 			goForwardChoice = true;
 		else
@@ -159,14 +168,6 @@ public class Robot extends IterativeRobot {
 			isOnSide = false;
 		else
 			isOnSide = true;
-		
-    //    gameData = DriverStation.getInstance().getGameSpecificMessage();\
-		gameData = "RLR"; //for testing purposes
-        switchSide = gameData.charAt(0);
-        scaleSide = gameData.charAt(1);
-    	position = Robot.returnSelection();
-	
-    	autonomousCommand = autonomous;
 		
 		if(autonomousCommand != null)
 			autonomousCommand.start();

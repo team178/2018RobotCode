@@ -13,6 +13,7 @@ public class Autonomous extends CommandGroup {
 
 	
     public Autonomous() {
+    	System.out.println("Ok, so we got this far");
     	addSequential(new FindAutonomous());
     }
     	
