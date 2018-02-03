@@ -13,12 +13,12 @@ public class EncoderSlowDown extends Command {
 	Drivetrain drivetrain;
 	OI oi;
 	double robotSpeed, distance;
-	double distanceSetpoint, previousDistError, integralDist = 0, dP = 1, dI, dD, previousSpeed; //Variables for distance PID
+	double distanceSetpoint, previousDistError, integralDist = 0, dP = 2.5, dI, dD, previousSpeed; //Variables for distance PID
 	//double decRate = robotSpeed/distance;
   
 	
 	
-	public EncoderSlowDown(double speed, double dist) {
+	public EncoderSlowDown(double dist, double speed) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
 		requires(Robot.drivetrain);
@@ -39,6 +39,7 @@ public class EncoderSlowDown extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	System.out.println(stopPID());
     	drivetrain.drive(stopPID(), -stopPID());
     }
 
