@@ -1,36 +1,43 @@
 package org.usfirst.frc.team178.robot.commands;
 
 import org.usfirst.frc.team178.robot.Robot;
-import org.usfirst.frc.team178.robot.subsystems.CubeIntake;
+import org.usfirst.frc.team178.robot.subsystems.Ramp;
+import org.usfirst.frc.team178.robot.subsystems.Ultrasonic;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class DropCube extends Command {
-	
-	CubeIntake cubeintake;
-
-    public DropCube() {
-    	requires(Robot.cubeintake);
+public class ShootScale extends Command {
+	Ramp ramp;
+	Ultrasonic ultrasonic;
+	double time;
+    public ShootScale() {
+    	time = 100000000;
+    	requires(Robot.ramp);
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	cubeintake = Robot.cubeintake;
+    	ramp = Robot.ramp;
+    	ultrasonic = Robot.ultrasonic;
     }
-
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	cubeintake.ejectCube(/*0.75*/);
+    	ramp.bringCubeIn(.75);
+    	if (ultrasonic.getDistance() <= 5) {
+    		ramp.shootCube(1);
+    		ramp.punchCube();
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (cubeintake.getIntake() == DoubleSolenoid.Value.kReverse)
-    	{
+    	double passedTime = timeSinceInitialized();
+    	if (passedTime >= time) {
     		return true;
     	}
     	else {
@@ -40,6 +47,9 @@ public class DropCube extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	ramp.stopLoading();
+    	ramp.stopShooting();
+    	ramp.resetPiston();
     }
 
     // Called when another command which requires one or more of the same

@@ -7,48 +7,39 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Talon;
 
 /**
  *
  */
 public class CubeIntake extends Subsystem {
 
-    static TalonSRX left1;
-    //static TalonSRX left2;
-    static TalonSRX right1;
-    //static TalonSRX right2;
-    // DoubleSolenoid rightPiston;
+    static Talon left;
+    static Talon right;
+    DoubleSolenoid rightPiston;
     DoubleSolenoid leftPiston;
     
     public CubeIntake() {
-    	left1 = new TalonSRX(RobotMap.INTAKEleft1);
-    	//left2 = new TalonSRX(RobotMap.INTAKEleft2);
-    	right1 = new TalonSRX(RobotMap.INTAKEright1);
-    	//right2 = new TalonSRX(RobotMap.INTAKEright2);  
-    	// rightPiston = new DoubleSolenoid(RobotMap.PCM, RobotMap.INTAKErightin, RobotMap.INTAKErightout);
+    	left = new Talon(RobotMap.INTAKEleft);
+    	right = new Talon(RobotMap.INTAKEright); 
+    	rightPiston = new DoubleSolenoid(RobotMap.PCM, RobotMap.INTAKErightin, RobotMap.INTAKErightout);
     	leftPiston = new DoubleSolenoid(RobotMap.PCM, RobotMap.INTAKEleftout, RobotMap.INTAKEleftin);
     }
     
-    public void collectCube(/*double speed*/) {
-    	//right1.set(ControlMode.PercentOutput, speed);
-    	//right2.set(ControlMode.PercentOutput, speed);
-    	//left1.set(ControlMode.PercentOutput, -speed);
-    	//left2.set(ControlMode.PercentOutput, -speed);
-    	// rightPiston.set(DoubleSolenoid.Value.kReverse); //kReverse subject to change
+    public void dropIntake(){
+    	rightPiston.set(DoubleSolenoid.Value.kReverse); //kReverse subject to change
     	leftPiston.set(DoubleSolenoid.Value.kReverse); 
     }
     
-    public void ejectCube(/*double speed*/) {
-    	//right1.set(ControlMode.PercentOutput, -speed);
-    	//right2.set(ControlMode.PercentOutput, -speed);
-    	//left1.set(ControlMode.PercentOutput, speed);
-    	//left2.set(ControlMode.PercentOutput, speed);
-    	// rightPiston.set(DoubleSolenoid.Value.kReverse); //kReverse subject to change
-    	leftPiston.set(DoubleSolenoid.Value.kReverse); 
+    public void collectCube(double speed) {
+    	right.set(speed);
+    	left.set(speed);
     }
+    
+ 
 
     public void foldIntake() {
-    	// rightPiston.set(DoubleSolenoid.Value.kForward);
+    	rightPiston.set(DoubleSolenoid.Value.kForward);
     	leftPiston.set(DoubleSolenoid.Value.kForward);
     }
     

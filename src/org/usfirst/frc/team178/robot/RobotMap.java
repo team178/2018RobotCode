@@ -25,38 +25,47 @@ public class RobotMap {
 	// public static int rangefinderModule = 1;
 	
 	//Drivetrain variables (Will assign values later)
-	public static int DMTopLeft = 4;
-	public static int DMMiddleLeft = 5;
-	public static int DMBottomLeft = 6;
-	public static int DMTopRight = 1;
-	public static int DMMiddleRight = 2;
-	public static int DMBottomRight = 3;
 	
+	public static int DMTopRight = 1; // PWM
+	public static int DMMiddleRight = 2; // PWM
+	public static int DMBottomRight = 3; // PWM
+	public static int DMTopLeft = 4; // PWM
+	public static int DMMiddleLeft = 5; // PWM
+	public static int DMBottomLeft = 6; // PWM
 	
-	public static int DRIVEencoderRA = 1;
-	public static int DRIVEencoderRB = 2;
-	public static int DRIVEencoderLA = 3;
-	public static int DRIVEencoderLB = 4;
+	public static int RAMPleft1 = 7; // PWM
+	public static int RAMPleft2 = 8; // PWM
+	public static int RAMPright1 = 9; // PWM
+	public static int RAMPright2 = 10; // PWM
 	
-	public static int DRIVEGyro = 1;
+	public static int DRIVEencoderRA = 1; // DIO
+	public static int DRIVEencoderRB = 2; // DIO
+	public static int DRIVEencoderLA = 3; // DIO
+	public static int DRIVEencoderLB = 4; // DIO
 	
-	public static int INTAKEleft1 = 1;
-	public static int INTAKEleft2 = 2;
-	public static int INTAKEright1 = 3;
-	public static int INTAKEright2 = 4;
+	public static int DRIVEGyro = 1; // Analog
 	
-	public static int JoystickPort = 0;
-	public static int JoystickPortXBOX = 1;
+	public static int INTAKEleft = 11; // PWM
+	public static int INTAKEright = 12; // PWM
 	
-	public static int PCM = 7;
+	public static int JoystickPort = 0; // computer
+	public static int JoystickPortXBOX = 1; // computer
 	
-	public static int INTAKEleftout = 0;
-	public static int INTAKEleftin = 1;
-	public static int INTAKErightout = 3;
-	public static int INTAKErightin = 4;
+	public static int PCM = 7; // CAN
 	
-	public static int ClimberPort;
+	public static int INTAKEleftout = 0; // PCM
+	public static int INTAKEleftin = 1; // PCM
+	public static int INTAKErightout = 2; // PCM
+	public static int INTAKErightin = 3; // PCM
+
+	public static int shootingPistonOUT = 4; // PCM
+	public static int shootingPistonIN = 5; // PCM
 	
-	public static int PRESSURETRANSDUCER = 0;
+	public static int WINCH1 = 13; // PWM
+	public static int WINCH2 = 14; // PWM
+	public static int CLIMBER = 15; // PWM
+	
+	public static int PRESSURETRANSDUCER = 0; // Analog
+	public static int ULTRASONICINPUT = 1; // Analog
 
 }

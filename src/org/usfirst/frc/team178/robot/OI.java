@@ -38,9 +38,14 @@ public class OI {
 	public Button startButton = new JoystickButton(xbox, 8);
 	
 	public OI () {
-		buttonA.whileHeld(new CollectCube());
+		buttonA.whenPressed(new DropIntake());
+		buttonB.whenPressed(new FoldIntake());
 
 		//fill in as soon as we know what buttons will do what
+	}
+	
+	public double getXBoxY() {
+		return xbox.getRawAxis(5);
 	}
 	
 	public double getX () {

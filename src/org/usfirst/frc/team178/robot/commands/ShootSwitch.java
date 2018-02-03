@@ -1,41 +1,38 @@
 package org.usfirst.frc.team178.robot.commands;
 
-import org.usfirst.frc.team178.robot.OI;
 import org.usfirst.frc.team178.robot.Robot;
-import org.usfirst.frc.team178.robot.subsystems.CubeIntake;
+import org.usfirst.frc.team178.robot.subsystems.Ramp;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class CollectCube extends Command {
-
-	CubeIntake cubeintake;
-	OI oi;
-	double yVal;
-	
-    public CollectCube() {
-    	requires(Robot.cubeintake);
+public class ShootSwitch extends Command {
+	Ramp ramp;
+	double time;
+    public ShootSwitch() {
+    	time = 100000000;
+    	requires (Robot.ramp);
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	oi = Robot.oi;
-    	cubeintake = Robot.cubeintake;
+    	ramp = Robot.ramp;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	yVal = oi.getXBoxY();
-    	cubeintake.collectCube(yVal);
+    	ramp.bringCubeIn(.25);
+    	ramp.shootCube(.25);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (cubeintake.getIntake() == DoubleSolenoid.Value.kReverse)
-    	{
+    	double passedTime = timeSinceInitialized();
+    	if (passedTime >= time) {
     		return true;
     	}
     	else {
@@ -45,7 +42,8 @@ public class CollectCube extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	/*cubeintake.foldIntake();*/
+    	ramp.stopLoading();
+    	ramp.stopShooting();
     }
 
     // Called when another command which requires one or more of the same
