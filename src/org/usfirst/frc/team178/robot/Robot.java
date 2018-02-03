@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team178.robot.autocommandgroups.*;
 import org.usfirst.frc.team178.robot.subsystems.*;
 
-import org.usfirst.frc.team178.robot.autocommandgroups.AutoDoNothing;
+import org.usfirst.frc.team178.robot.autocommandgroups.Autonomous;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -28,6 +28,7 @@ public class Robot extends IterativeRobot {
 	public static Climber climber;
 	public static Pneumatics pneumatics;
 	public static AnalogGyro gyro;
+	public static Autonomous autonomous;
 
 	Command autonomousCommand;
 	private Command Autonomous;
@@ -39,7 +40,17 @@ public class Robot extends IterativeRobot {
 	public static SendableChooser<String> pickUpSecondBlock = new SendableChooser<>();
 	public static SendableChooser<String> vault = new SendableChooser<>();
 	
+	public static boolean goForwardChoice;
+	public static boolean vaultChooser;
+	public static boolean switchChoice;
+	public static boolean scaleChoice;
+	public static boolean secondBlock;
+	public static boolean isOnSide;
 	
+	public static String gameData;
+	public static char switchSide;
+	public static char scaleSide;
+	public static String position;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -55,29 +66,33 @@ public class Robot extends IterativeRobot {
 		pneumatics = new Pneumatics();
 		oi = new OI();
 		
-		temp.addObject("Left", "L");
-		temp.addObject("Middle", "M");
-		temp.addObject("Right", "R");
+		temp.addObject("Left", "Left");
+		temp.addObject("Middle", "Middle");
+		temp.addObject("Right", "Right");
 		SmartDashboard.putData("AutoLocation", temp);
 
 		
-		switchChooser.addObject("Never", "Never");
-		switchChooser.addObject("Always", "Always");
-		switchChooser.addObject("In Front", "In Front");
-		
-		scaleChooser.addObject("Never", "Never");
-		scaleChooser.addObject("Always", "Always");
-		scaleChooser.addObject("In Front", "In Front");
-		
-		goForward.addObject("Never", "Never");
-		goForward.addObject("Always", "Always");
-		
-		pickUpSecondBlock.addObject("Never", "Never");
-		pickUpSecondBlock.addObject("Always", "Always");
+		switchChooser.addObject("Yes", "Yes");
+		switchChooser.addObject("No", "No");
 
-		vault.addObject("Never", "Never");
-		vault.addObject("Always", "Always");
-	}
+		scaleChooser.addObject("Yes", "Yes");
+		scaleChooser.addObject("No", "No");
+		
+		goForward.addObject("Yes", "Yes");
+		goForward.addObject("No", "No");
+		SmartDashboard.putData("Drive Forward?", goForward);
+		
+		pickUpSecondBlock.addObject("Yes", "Yes");
+		pickUpSecondBlock.addObject("No", "No");
+
+		vault.addObject("Yes", "Yes");
+		vault.addObject("No", "No");
+
+		SmartDashboard.putData("Go for vault?", vault);
+		SmartDashboard.putData("Go for switch?", switchChooser);
+		SmartDashboard.putData("Go for scale?", scaleChooser);
+		SmartDashboard.putData("Second block?", pickUpSecondBlock);
+	}	
 
 	public static String returnSelection() {
 		return temp.getSelected();
@@ -90,8 +105,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void disabledInit() {
-
-	}
+			}
 
 	@Override
 	public void disabledPeriodic() {
@@ -111,13 +125,48 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		String gameData;
-        gameData = DriverStation.getInstance().getGameSpecificMessage();
-        char switchSide = gameData.charAt(0);
-        char scaleSide = gameData.charAt(1);
-    	String position = Robot.returnSelection();
+		if((goForward.getSelected()).equals("Yes"))
+			goForwardChoice = true;
+		else
+			goForwardChoice = false;
+		
+		
+		if((vault.getSelected()).equals("Yes"))
+			vaultChooser = true;
+		else
+			vaultChooser = false;
+		
+		
+		if((switchChooser.getSelected()).equals("Yes"))
+			switchChoice = true;
+		else
+			switchChoice = false;
+		
+		
+		if((scaleChooser.getSelected()).equals("Yes"))
+			scaleChoice = true;
+		else
+			scaleChoice = false;
+		
+		
+		if((pickUpSecondBlock.getSelected()).equals("Yes"))
+			secondBlock = true;
+		else
+			secondBlock = false;
+		
+		
+		if((temp.getSelected()).equals("Middle"))
+			isOnSide = false;
+		else
+			isOnSide = true;
+		
+    //    gameData = DriverStation.getInstance().getGameSpecificMessage();\
+		gameData = "RLR"; //for testing purposes
+        switchSide = gameData.charAt(0);
+        scaleSide = gameData.charAt(1);
+    	position = Robot.returnSelection();
 	
-    	autonomousCommand = null; //change asap
+    	autonomousCommand = autonomous;
 		
 		if(autonomousCommand != null)
 			autonomousCommand.start();

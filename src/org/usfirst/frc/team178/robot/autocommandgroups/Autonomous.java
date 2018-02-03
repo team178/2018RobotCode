@@ -1,13 +1,24 @@
 package org.usfirst.frc.team178.robot.autocommandgroups;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import org.usfirst.frc.team178.robot.*;
+import org.usfirst.frc.team178.robot.commands.FindAutonomous;
+
 
 /**
  *
  */
 public class Autonomous extends CommandGroup {
 
+
+	
     public Autonomous() {
+    	addSequential(new FindAutonomous());
+    }
+    	
+    	
+    	
+    	
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -25,4 +36,4 @@ public class Autonomous extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     }
-}
+
