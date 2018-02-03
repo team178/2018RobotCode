@@ -16,11 +16,11 @@ public class DriveForwardDoublePID extends Command {
 	
 	//Variables for angle adjustment
 	double aP = 0.1, aI = 0.1, aD = 0, aIntegral = 0; //These are all constants that need to be determined through testing and tuned
-	//I and D currently set to 0 as I want to implement one part at a time successfully
+	//I and D curren ly set to 0 as I want to implement one part at a time successfully
 	double angleSetpoint, previousAngleError;
 
 	//Variables for slowing down
-	double  dIntegral = 0, dP = 2.3, dI = 0.0, dD = 0.0; //Variables for distance PID
+	double  dIntegral = 0, dP = .9, dI = 0.0, dD = 0.0; //Variables for distance PID
 	double previousSpeedL,previousSpeedR ,distanceSetpoint, previousDistError;
 
 	public DriveForwardDoublePID(double dist, double speed) {
@@ -28,8 +28,6 @@ public class DriveForwardDoublePID extends Command {
         // eg. requires(chassis);
     	requires(Robot.drivetrain);
     	robotSpeed = speed;
-    	previousSpeedL = speed;
-    	previousSpeedR = speed;
     	distance = dist;
     }
 
@@ -37,6 +35,8 @@ public class DriveForwardDoublePID extends Command {
     protected void initialize() {
     	oi = Robot.oi;
     	drivetrain = Robot.drivetrain;
+    	previousSpeedL = robotSpeed;
+    	previousSpeedR = robotSpeed;
     	drivetrain.resetGyro();
     	drivetrain.resetEncoders();
     	setAngleSetpoint(0);
@@ -46,7 +46,7 @@ public class DriveForwardDoublePID extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	System.out.println(drivetrain.getAngle());
+    	System.out.println(drivetrain.getLeftSpeed() + "   " + drivetrain.getAngle());
     	double currentPID = straightPID();
     	double fromDist = distance - drivetrain.getLeftDistance();
     	if(fromDist <= 100)
