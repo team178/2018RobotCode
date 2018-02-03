@@ -21,14 +21,15 @@ public class DriveForwardDoublePID extends Command {
 
 	//Variables for slowing down
 	double  dIntegral = 0, dP, dI, dD; //Variables for distance PID
-	double previousSpeed, distanceSetpoint, previousDistError;
+	double previousSpeedL,previousSpeedR ,distanceSetpoint, previousDistError;
 
 	public DriveForwardDoublePID(double dist, double speed) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.drivetrain);
     	robotSpeed = speed;
-    	previousSpeed = speed;
+    	previousSpeedL = speed;
+    	previousSpeedR = speed;
     	distance = dist;
     }
 
@@ -40,21 +41,39 @@ public class DriveForwardDoublePID extends Command {
     	drivetrain.resetEncoders();
     	setAngleSetpoint(0);
     	setDistanceSetpoint(distance);
-    	drivetrain.drive(robotSpeed, -robotSpeed);
+    	drivetrain.drive(previousSpeedL, -previousSpeedR);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	System.out.println(drivetrain.getAngle());
     	double currentPID = straightPID();
-    	if(currentPID < 0)
+    	double fromDist = distance - drivetrain.getLeftDistance();
+    	if(fromDist <= 100)
     	{
-    		drivetrain.drive(robotSpeed, -(robotSpeed*(1-Math.abs(currentPID))));
-    		//drivetrain.drive(, rightMotors);
+    		if(currentPID < 0)
+    		{
+    			drivetrain.drive((previousSpeedL*stopPID()), -((previousSpeedR*(1-Math.abs(currentPID)))*stopPID() ));
+    			previousSpeedL = previousSpeedL*stopPID();
+    			previousSpeedR = previousSpeedR* stopPID();
+    		}
+    		else
+    		{
+    			drivetrain.drive((previousSpeedL * (1-currentPID)) * stopPID(), -(previousSpeedR * stopPID()));
+    			previousSpeedL = previousSpeedL  * stopPID();
+    			previousSpeedR = previousSpeedR * stopPID();
+    		}
     	}
     	else
     	{
-    		drivetrain.drive(robotSpeed * (1-currentPID), -robotSpeed);
+    		if(currentPID < 0)
+    		{
+    			drivetrain.drive(previousSpeedL, -(previousSpeedR*(1-Math.abs(currentPID))));
+    		}
+    		else
+    		{
+    			drivetrain.drive(previousSpeedL * (1-currentPID), -previousSpeedR);
+    		}
     	}
     }
 
@@ -90,15 +109,15 @@ public class DriveForwardDoublePID extends Command {
 		dIntegral += (decError * .02);
 		double derivative = (decError - previousDistError)/.02;
 		previousDistError = decError;
-		double output = 1/ (dP * decError + dI * dIntegral + dD * derivative); //inverse of output
+		double output = 1-(1/ (dP * decError + dI * dIntegral + dD * derivative)); //inverse of output
 		/*if (drivetrain.getLeftSpeed() > .3 && decError < 50)
 		{
 			
 		}
 		*/
-		double newSpeed = previousSpeed * (1-output);
-		previousSpeed = previousSpeed * (1-output);
-		return newSpeed;
+		//double newSpeed = previousSpeed * (1-output);
+		//previousSpeed = previousSpeed * (1-output);
+		return output;
 	}
 	
 	
