@@ -13,7 +13,7 @@ public class EncoderSlowDown extends Command {
 	Drivetrain drivetrain;
 	OI oi;
 	double robotSpeed, distance;
-	double distanceSetpoint, previousDistError, integralDist = 0, dP = 2.5, dI, dD, previousSpeed; //Variables for distance PID
+	double distanceSetpoint, previousDistError, integralDist = 0, dP = 1.4, dI, dD, previousSpeed; //Variables for distance PID
 	//double decRate = robotSpeed/distance;
   
 	

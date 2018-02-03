@@ -1,6 +1,7 @@
 package org.usfirst.frc.team178.robot.autocommandgroups;
 
 import org.usfirst.frc.team178.robot.commands.DriveForward;
+import org.usfirst.frc.team178.robot.commands.DriveForwardDoublePID;
 import org.usfirst.frc.team178.robot.commands.EncoderSlowDown;
 import org.usfirst.frc.team178.robot.commands.GyroDriveForward;
 
@@ -29,7 +30,8 @@ public class Testing extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	//addSequential(new GyroDriveForward(50, .4));
-    	addSequential(new EncoderSlowDown(100, .6));
+    	//addSequential(new EncoderSlowDown(100, 1));
+    	addSequential(new DriveForwardDoublePID(100, .5));
 
     }
 }

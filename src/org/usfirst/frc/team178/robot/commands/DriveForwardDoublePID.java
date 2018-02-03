@@ -20,7 +20,7 @@ public class DriveForwardDoublePID extends Command {
 	double angleSetpoint, previousAngleError;
 
 	//Variables for slowing down
-	double  dIntegral = 0, dP, dI, dD; //Variables for distance PID
+	double  dIntegral = 0, dP = 2.3, dI = 0.0, dD = 0.0; //Variables for distance PID
 	double previousSpeedL,previousSpeedR ,distanceSetpoint, previousDistError;
 
 	public DriveForwardDoublePID(double dist, double speed) {
