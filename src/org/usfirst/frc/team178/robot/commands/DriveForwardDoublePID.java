@@ -49,7 +49,7 @@ public class DriveForwardDoublePID extends Command {
     	System.out.println(drivetrain.getLeftSpeed() + "   " + drivetrain.getAngle());
     	double currentPID = straightPID();
     	double fromDist = distance - drivetrain.getLeftDistance();
-    	if(fromDist <= 100)
+    	if(fromDist <= 120)
     	{
     		if(currentPID < 0)
     		{
