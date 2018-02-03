@@ -104,17 +104,11 @@ public class DriveForwardDoublePID extends Command {
 	{
 		double currentDist = (drivetrain.getRightDistance() + drivetrain.getLeftDistance())/2;		//average distance feedback from two encoders
 		//How far the Robot is from it's target distance
-		double decError = (distanceSetpoint - currentDist);  //inverse of difference between current distance and target distance 
-	//	double angleError = drivetrain.getAngle() - angleSetpoint;
-		dIntegral += (decError * .02);
-		double derivative = (decError - previousDistError)/.02;
-		previousDistError = decError;
-		double output = 1-(1/ (dP * decError + dI * dIntegral + dD * derivative)); //inverse of output
-		/*if (drivetrain.getLeftSpeed() > .3 && decError < 50)
-		{
-			
-		}
-		*/
+		double distError = (distanceSetpoint - currentDist);  //inverse of difference between current distance and target distance 
+		dIntegral += (distError * .02);
+		double derivative = (distError - previousDistError)/.02;
+		previousDistError = distError;
+		double output = 1-(1/ (dP * distError + dI * dIntegral + dD * derivative)); //inverse of output
 		//double newSpeed = previousSpeed * (1-output);
 		//previousSpeed = previousSpeed * (1-output);
 		return output;
