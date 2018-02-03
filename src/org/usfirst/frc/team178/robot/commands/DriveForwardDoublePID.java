@@ -13,14 +13,73 @@ public class DriveForwardDoublePID extends Command {
 	Drivetrain drivetrain;
 	OI oi;
 	double robotSpeed, distance; 
+	
 	//Variables for angle adjustment
 	double aP = 0.1, aI = 0.1, aD = 0, aIntegral = 0; //These are all constants that need to be determined through testing and tuned
 	//I and D currently set to 0 as I want to implement one part at a time successfully
 	double angleSetpoint, previousAngleError;
+
 	//Variables for slowing down
 	double  dIntegral = 0, dP, dI, dD; //Variables for distance PID
 	double previousSpeed, distanceSetpoint, previousDistError;
 
+	public DriveForwardDoublePID(double dist, double speed) {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    	requires(Robot.drivetrain);
+    	robotSpeed = speed;
+    	previousSpeed = speed;
+    	distance = dist;
+    }
+
+    // Called just before this Command runs the first time
+    protected void initialize() {
+    	oi = Robot.oi;
+    	drivetrain = Robot.drivetrain;
+    	drivetrain.resetGyro();
+    	drivetrain.resetEncoders();
+    	setAngleSetpoint(0);
+    	setDistanceSetpoint(distance);
+    	drivetrain.drive(robotSpeed, -robotSpeed);
+    }
+
+    // Called repeatedly when this Command is scheduled to run
+    protected void execute() {
+    	System.out.println(drivetrain.getAngle());
+    	double currentPID = straightPID();
+    	if(currentPID < 0)
+    	{
+    		drivetrain.drive(robotSpeed, -(robotSpeed*(1-Math.abs(currentPID))));
+    		//drivetrain.drive(, rightMotors);
+    	}
+    	else
+    	{
+    		drivetrain.drive(robotSpeed * (1-currentPID), -robotSpeed);
+    	}
+    }
+
+    // Make this return true when this Command no longer needs to run execute()
+    protected boolean isFinished() {
+    	if (drivetrain.getLeftDistance() >= distance)
+    	{
+    		return true;
+    	}
+        return false;
+    }
+
+    // Called once after isFinished returns true
+    protected void end() {
+    	//drivetrain.straightAdj.disable();
+    	drivetrain.drive(0,0);
+    }
+
+    // Called when another command which requires one or more of the same
+    // subsystems is scheduled to run
+    protected void interrupted() {
+    	//drivetrain.straightAdj.disable();
+    	drivetrain.drive(0, 0);
+    }
+	
 	
 	public double stopPID()
 	{
@@ -65,61 +124,5 @@ public class DriveForwardDoublePID extends Command {
 	
 
 
-    public DriveForwardDoublePID(double dist, double speed) {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	requires(Robot.drivetrain);
-    	robotSpeed = speed;
-    	distance = dist;
-    }
-
-    // Called just before this Command runs the first time
-    protected void initialize() {
-    	oi = Robot.oi;
-    	drivetrain = Robot.drivetrain;
-    	drivetrain.resetGyro();
-    	drivetrain.resetEncoders();
-    	setAngleSetpoint(0);
-    /*	drivetrain.straightAdj.setSetpoint(0);
-    	drivetrain.straightAdj.setOutputRange(-1, 1);
-    	drivetrain.straightAdj.enable();*/
-    	drivetrain.drive(robotSpeed, -robotSpeed);
-    }
-
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-    	System.out.println(drivetrain.getAngle());
-    	double currentPID = straightPID();
-    	if(currentPID < 0)
-    	{
-    		drivetrain.drive(robotSpeed, -(robotSpeed*(1-Math.abs(currentPID))));
-    		//drivetrain.drive(, rightMotors);
-    	}
-    	else
-    	{
-    		drivetrain.drive(robotSpeed * (1-currentPID), -robotSpeed);
-    	}
-    }
-
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-    	if (drivetrain.getLeftDistance() >= distance)
-    	{
-    		return true;
-    	}
-        return false;
-    }
-
-    // Called once after isFinished returns true
-    protected void end() {
-    	//drivetrain.straightAdj.disable();
-    	drivetrain.drive(0,0);
-    }
-
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() {
-    	//drivetrain.straightAdj.disable();
-    	drivetrain.drive(0, 0);
-    }
+    
 }
