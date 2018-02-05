@@ -15,7 +15,6 @@ import org.usfirst.frc.team178.robot.subsystems.Drivetrain;
 public class AutoTurn extends Command {
 	OI oi;
 	Drivetrain drivetrain;
-	AnalogGyro gyro;
 	double lspeed, rspeed, targetAngle, actualAngle;
 	
 	
@@ -32,14 +31,14 @@ public class AutoTurn extends Command {
     protected void initialize() {
     	oi = Robot.oi;
     	drivetrain = Robot.drivetrain;
-    	gyro = Robot.gyro;
-    	gyro.reset();
+    	drivetrain.resetGyro();
     	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	actualAngle = gyro.getAngle();
+    	System.out.println(drivetrain.getAngle());
+    	actualAngle = drivetrain.getAngle();
     	double speedChange = ((targetAngle - actualAngle)/ targetAngle);
     	
     	if (Math.abs(actualAngle) >= .8 * Math.abs(targetAngle))
