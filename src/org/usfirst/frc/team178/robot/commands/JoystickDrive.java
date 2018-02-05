@@ -31,7 +31,7 @@ public class JoystickDrive extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	yVal = oi.getY();
-		twistVal = 0.5*(oi.getTwist());
+		twistVal = 0.3*(oi.getTwist());
 		//System.out.println("Y Val: " + yVal);
 		//System.out.println("Twist Val: " + twistVal);
 		//System.out.println("X Val: " + oi.getX());

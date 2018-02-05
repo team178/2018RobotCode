@@ -34,7 +34,7 @@ public class CollectCube extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (cubeintake.getIntake() == DoubleSolenoid.Value.kReverse)
+    	if (true)//cubeintake.getIntake() == DoubleSolenoid.Value.kReverse)
     	{
     		return true;
     	}

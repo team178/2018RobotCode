@@ -1,6 +1,8 @@
 package org.usfirst.frc.team178.robot;
 
+import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.AnalogGyro;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -49,8 +51,12 @@ public class Robot extends IterativeRobot {
 		//pneumatics = new Pneumatics();
 		oi = new OI();
 		
+		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture(0);
+		camera.setResolution(320, 240);
+		camera.setFPS(25);
 		
 		chooser.addObject("AutoDoNothing", new AutoDoNothing());
+		chooser.addObject("Testing", new Testing());
 		SmartDashboard.putData("Auto mode", chooser);
 		System.out.println("Hello");
 	}
@@ -124,7 +130,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		SmartDashboard.putNumber("Pressure", pneumatics.getPressure());
+		//SmartDashboard.putNumber("Pressure", pneumatics.getPressure());
 		Scheduler.getInstance().run();
 	}
 
