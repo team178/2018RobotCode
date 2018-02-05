@@ -36,16 +36,25 @@ public class CubeIntake extends Subsystem {
     	left.set(speed);
     }
     
+    public void ejectCube(/*double speed*/) {
+    	//right1.set(ControlMode.PercentOutput, -speed);
+    	//right2.set(ControlMode.PercentOutput, -speed);
+    	//left1.set(ControlMode.PercentOutput, speed);
+    	//left2.set(ControlMode.PercentOutput, speed);
+    	// rightPiston.set(DoubleSolenoid.Value.kReverse); //kReverse subject to change
+    	//leftPiston.set(DoubleSolenoid.Value.kReverse); 
+    }
+    
  
 
     public void foldIntake() {
     	rightPiston.set(DoubleSolenoid.Value.kForward);
     	leftPiston.set(DoubleSolenoid.Value.kForward);
+
     }
     
-    public DoubleSolenoid.Value getIntake(){
-    	return leftPiston.get();
-    }
+   
+  
     
     public void initDefaultCommand() {
     	
