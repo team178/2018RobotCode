@@ -32,9 +32,12 @@ public class FindAutonomous extends Command {
 				if(!Robot.switchChoice) {
 					if (!Robot.scaleChoice) {
 						System.out.println("The robot will cross the line");
+						new GyroDriveForward(125, 0.75);
 					} else if (Robot.scaleChoice) {
 						if(!Robot.secondBlock) {
 							System.out.println("Will run scale code regardless of side");
+							new GyroDriveForward(125, 0.75);
+							// needs more crap
 						} else if (Robot.secondBlock) {
 							System.out.println("Will run scale + 2nd block code regardless of side");
 						}
