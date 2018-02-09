@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class FindAutonomous extends Command {
+	char SwitchSide;
 	char ScaleSide;
 	char RobotPosition;
 	
@@ -17,7 +18,7 @@ public class FindAutonomous extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-
+		SwitchSide = (Robot.gameData).charAt(0);
 		ScaleSide = (Robot.gameData).charAt(1);
 		RobotPosition = (Robot.position).charAt(0);
     }
