@@ -60,7 +60,6 @@ public class Robot extends IterativeRobot {
 	
 	
 	public void robotInit() {
-		autonomous = new Autonomous();
 		drivetrain = new Drivetrain();
 		cubeintake = new CubeIntake();
 		climber = new Climber();
@@ -131,7 +130,7 @@ public class Robot extends IterativeRobot {
 	        switchSide = gameData.charAt(0);
 	        scaleSide = gameData.charAt(1);
 	    	position = Robot.returnSelection();
-	    	
+	    autonomous = new Autonomous();
     	autonomousCommand = autonomous;
 		
 		if((goForward.getSelected()).equals("Yes"))
