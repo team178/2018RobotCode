@@ -35,7 +35,7 @@ public class FoldIntake extends Command {
         	}
         	else {
             return false;
-        	}
+        	} 
         }
 
         // Called once after isFinished returns true

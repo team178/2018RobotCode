@@ -66,6 +66,6 @@ public class RobotMap {
 	public static int CLIMBER = 15; // PWM
 	
 	public static int PRESSURETRANSDUCER = 0; // Analog
-	public static int ULTRASONICINPUT = 1; // Analog
+	public static int ULTRASONICINPUT = 2; // Analog
 
 }

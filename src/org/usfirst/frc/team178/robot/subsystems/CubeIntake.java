@@ -7,6 +7,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.Talon;
 
 /**
@@ -29,6 +30,11 @@ public class CubeIntake extends Subsystem {
     public void dropIntake(){
     	rightPiston.set(DoubleSolenoid.Value.kReverse); //kReverse subject to change
     	leftPiston.set(DoubleSolenoid.Value.kReverse); 
+    }
+    
+    public DoubleSolenoid.Value getIntake()
+    {
+    	return leftPiston.get();
     }
     
     public void collectCube(double speed) {
