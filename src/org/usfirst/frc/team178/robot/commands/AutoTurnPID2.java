@@ -13,7 +13,7 @@ public class AutoTurnPID2 extends Command {
 	OI oi;
 	Drivetrain drivetrain;
 	double lspeed, rspeed, targetAngle, actualAngle;
-	double angleSetpoint, angleIntegral, previousAngle, angleDerivative, aP= .0001, aI= 0.0, aD = 0.0;
+	double angleSetpoint, angleIntegral, previousAngle, angleDerivative, aP= .3, aI= 0.0, aD = 0.0;
 	final double minSpeed = .1;
 	int counter = 0;
 	
@@ -41,27 +41,27 @@ public class AutoTurnPID2 extends Command {
     	actualAngle = drivetrain.getAngle();
     	setAngleSetpoint(targetAngle);
     	double valuePID = turnPID();
-    	if (valuePID >=0) {
+    	if (drivetrain.getAngle() < targetAngle)
+    	{
+    		drivetrain.drive(lspeed * turnPID(), minSpeed);
+    	}
+    	else
+    	{
+    		drivetrain.drive(0, 0);
+    	}
+    /*	if (valuePID >=0) {
     		drivetrain.drive((lspeed * (1-valuePID)), minSpeed);
     	} else if (valuePID < 0){
     		drivetrain.drive(-minSpeed, rspeed * (1-valuePID));
     	}
-    	double threshold=Math.abs(drivetrain.getAngle() - targetAngle);
-    	if (threshold > 0.0 && threshold < .03)
-		{
-			counter++;
-		}
-    	else
-    	{
-    		counter=0;
-    	}
+    	*/
     	
     }
     
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (counter > 5) {
+    	if (Math.abs(drivetrain.getAngle() - targetAngle) < .1) {
     		return true;
     	}
     	else {
@@ -90,7 +90,7 @@ public class AutoTurnPID2 extends Command {
 		angleIntegral += (angleError * .02);
 		double angleDerivative = (angleError - previousAngle)/.02;
 		previousAngle = angleError;
-		double output = (aP * angleError + aI * angleIntegral + aD * angleDerivative); //inverse of output
+		double output = 1- 1/(aP * angleError + aI * angleIntegral + aD * angleDerivative); //inverse of output
 	
 		/*
 		double newSpeed = previousAngle * (1-output);

@@ -13,7 +13,7 @@ public class AutoTurnPID extends Command {
 	OI oi;
 	Drivetrain drivetrain;
 	double lspeed, rspeed, targetAngle, actualAngle;
-	double angleSetpoint, angleIntegral, previousAngle, angleDerivative, aP= .001, aI= 0.0, aD = 0.0;
+	double angleSetpoint, angleIntegral, previousAngle, angleDerivative, aP= .1, aI= 0.0, aD = 0.0;
 	final double minSpeed = .1;
 	int counter = 0;
 	
@@ -47,7 +47,7 @@ public class AutoTurnPID extends Command {
     		drivetrain.drive(-minSpeed, -(rspeed * (1-valuePID)));
     	}
     	double threshold=Math.abs(drivetrain.getAngle() - targetAngle);
-    	if (threshold > 0.0 && threshold < .2)
+    	if ( threshold < .5)
 		{
 			counter++;
 		}
@@ -61,7 +61,7 @@ public class AutoTurnPID extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (counter > 5) {
+    	if (counter > 3) {
     		return true;
     	}
     	else {
