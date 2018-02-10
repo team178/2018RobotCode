@@ -9,16 +9,16 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class AutoTurnPID extends Command {
+public class AutoTurnPID2 extends Command {
 	OI oi;
 	Drivetrain drivetrain;
 	double lspeed, rspeed, targetAngle, actualAngle;
-	double angleSetpoint, angleIntegral, previousAngle, angleDerivative, aP= .001, aI= 0.0, aD = 0.0;
+	double angleSetpoint, angleIntegral, previousAngle, angleDerivative, aP= .0001, aI= 0.0, aD = 0.0;
 	final double minSpeed = .1;
 	int counter = 0;
 	
 	
-    public AutoTurnPID(double tAngle, double speed) {
+    public AutoTurnPID2(double tAngle, double speed) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     requires(Robot.drivetrain);
@@ -44,10 +44,10 @@ public class AutoTurnPID extends Command {
     	if (valuePID >=0) {
     		drivetrain.drive((lspeed * (1-valuePID)), minSpeed);
     	} else if (valuePID < 0){
-    		drivetrain.drive(-minSpeed, -(rspeed * (1-valuePID)));
+    		drivetrain.drive(-minSpeed, rspeed * (1-valuePID));
     	}
     	double threshold=Math.abs(drivetrain.getAngle() - targetAngle);
-    	if (threshold > 0.0 && threshold < .2)
+    	if (threshold > 0.0 && threshold < .03)
 		{
 			counter++;
 		}
