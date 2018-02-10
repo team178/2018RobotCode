@@ -25,6 +25,52 @@ public class RemodeledAutonomous extends Command {
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	if(!Robot.goForwardChoice) {
+    		System.out.println("Elizabeth's hotspot, and this autonomous, are turned off");
+    	} else {
+    		if (RobotPosition == 'M') {
+    			if (Robot.vaultChooser) {
+    				new GyroDriveForward(125, 0.75);
+    				new AutoTurn(180, 0.75);
+    				new GyroDriveForward(125,0.75);
+    				//new AutoDropCube();
+    			} else {
+    				new GyroDriveForward(125,0.75);
+    			}
+    		} else {
+    			if(!Robot.scaleChoice) {
+    				if (!Robot.switchChoice) {
+    					new GyroDriveForward(125, 0.75);
+    				} else {
+    					if(RobotPosition == SwitchSide) {
+    						if(RobotPosition == 'L') {
+    							new GyroDriveForward(320, 0.75);
+    							new AutoTurn(45, 0.75);
+    						} else {
+    							new GyroDriveForward(320, 0.75);
+    							new AutoTurn(-45, 0.75);
+    						}
+    						
+    					} else {
+    						new GyroDriveForward(125,0.75);
+    					}
+    				}
+    			} else {
+    				if(RobotPosition == ScaleSide) {
+    					if(RobotPosition == 'L') {
+    						new GyroDriveForward(125, 0.75);
+    						new AutoTurn(45,0.75);
+    					} else {
+    						new GyroDriveForward(125, 0.75);
+    						new AutoTurn(-45, 0.75);
+    					}
+    				} else {
+    					new GyroDriveForward(125, 0.75);
+    				}
+    			}
+    		}
+    		
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()

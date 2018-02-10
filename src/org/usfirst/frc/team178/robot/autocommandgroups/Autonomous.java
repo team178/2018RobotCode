@@ -3,6 +3,7 @@ package org.usfirst.frc.team178.robot.autocommandgroups;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import org.usfirst.frc.team178.robot.*;
 import org.usfirst.frc.team178.robot.commands.FindAutonomous;
+import org.usfirst.frc.team178.robot.commands.RemodeledAutonomous;
 
 
 /**
@@ -14,7 +15,7 @@ public class Autonomous extends CommandGroup {
 	
     public Autonomous() {
     	System.out.println("Ok, so we got this far");
-    	addSequential(new FindAutonomous());
+    	addSequential(new RemodeledAutonomous());
     }
     	
     	
