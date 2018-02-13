@@ -33,7 +33,7 @@ public class Robot extends IterativeRobot {
 	Command autonomousCommand;
 	//private Command Autonomous; delete meeee
 	
-	public static SendableChooser<String> temp = new SendableChooser<>();
+	public static SendableChooser<String> botLocation = new SendableChooser<>();
 	public static SendableChooser<String> switchChooser = new SendableChooser<>();
 	public static SendableChooser<String> scaleChooser = new SendableChooser<>();
 	public static SendableChooser<String> goForward = new SendableChooser<>();
@@ -66,10 +66,10 @@ public class Robot extends IterativeRobot {
 		pneumatics = new Pneumatics();
 		oi = new OI();
 		
-		temp.addObject("Left", "Left");
-		temp.addObject("Middle", "Middle");
-		temp.addObject("Right", "Right");
-		SmartDashboard.putData("AutoLocation", temp);
+		botLocation.addObject("Left", "Left");
+		botLocation.addObject("Middle", "Middle");
+		botLocation.addObject("Right", "Right");
+		SmartDashboard.putData("AutoLocation", botLocation);
 
 		
 		switchChooser.addObject("Yes", "Yes");
@@ -95,7 +95,7 @@ public class Robot extends IterativeRobot {
 	}	
 
 	public static String returnSelection() {
-		return temp.getSelected();
+		return botLocation.getSelected();
 		
 	}
 	/**
@@ -163,7 +163,7 @@ public class Robot extends IterativeRobot {
 			secondBlock = false;
 		
 		
-		if((temp.getSelected()).equals("Middle"))
+		if((botLocation.getSelected()).equals("Middle"))
 			isOnSide = false;
 		else
 			isOnSide = true;
