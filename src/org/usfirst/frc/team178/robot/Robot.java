@@ -68,24 +68,30 @@ public class Robot extends IterativeRobot {
 		botLocation.addObject("Left", "Left");
 		botLocation.addObject("Middle", "Middle");
 		botLocation.addObject("Right", "Right");
+		
 		SmartDashboard.putData("AutoLocation", botLocation);
 
 		
 		switchChooser.addObject("Yes", "Yes");
 		switchChooser.addObject("No", "No");
+		switchChooser.addDefault("No", "No");
 
 		scaleChooser.addObject("Yes", "Yes");
 		scaleChooser.addObject("No", "No");
+		scaleChooser.addDefault("No", "No");
 		
 		goForward.addObject("Yes", "Yes");
 		goForward.addObject("No", "No");
+		goForward.addDefault("No", "No");
 		SmartDashboard.putData("Drive Forward?", goForward);
 		
 		pickUpSecondBlock.addObject("Yes", "Yes");
 		pickUpSecondBlock.addObject("No", "No");
+		pickUpSecondBlock.addDefault("No", "No");
 
 		vault.addObject("Yes", "Yes");
 		vault.addObject("No", "No");
+		vault.addDefault("No", "No");
 
 		SmartDashboard.putData("Go for vault?", vault);
 		SmartDashboard.putData("Go for switch?", switchChooser);
