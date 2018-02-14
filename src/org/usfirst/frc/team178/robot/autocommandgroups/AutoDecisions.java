@@ -1,5 +1,7 @@
 package org.usfirst.frc.team178.robot.autocommandgroups;
 
+import org.usfirst.frc.team178.robot.commands.DriveForward;
+
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -16,9 +18,11 @@ public class AutoDecisions extends CommandGroup {
     		{
     			if(userChoice[1])
     			{
-    				addSequential(new PutInVault());
+    				//addSequential(new PutInVault());
+    				addSequential(new DriveForward(50, .1));
+    				
     			}
-    			addSequential(new CrossLine());
+    		//	addSequential(new CrossLine());
 
     		}
     		else

@@ -90,7 +90,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Go for vault?", vault);
 		SmartDashboard.putData("Go for switch?", switchChooser);
 		SmartDashboard.putData("Go for scale?", scaleChooser);
-	//	SmartDashboard.putData("Second block?", pickUpSecondBlock);
+		SmartDashboard.putData("Second block?", pickUpSecondBlock);
 	}	
 
 	public static String returnSelection() {
