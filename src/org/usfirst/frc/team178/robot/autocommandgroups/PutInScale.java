@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class PutInScale extends CommandGroup {
 
-    public PutInScale(boolean isRight) {
+    public PutInScale() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -30,6 +30,7 @@ public class PutInScale extends CommandGroup {
     	addSequential(new DriveForward(624, 0.7));
     	
     	//turn to face thing
+    	/*
     	if (isRight) {
     		addSequential(new AutoTurn(-90, 0.5));
     		//addSequential (insert shoot command)
@@ -37,6 +38,7 @@ public class PutInScale extends CommandGroup {
     		addSequential(new AutoTurn(90, 0.5));
     		//addSequential (insert shoot command)
     	}
+    	*/
     	
     	
     }

@@ -1,5 +1,6 @@
 package org.usfirst.frc.team178.robot.autocommandgroups;
 
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -25,7 +26,7 @@ public class AutoDecisions extends CommandGroup {
     			//not middle
     			boolean sameAsSwitch = (fieldConfig[0] == fieldConfig[2]);
     			boolean sameAsScale = (fieldConfig[1] == fieldConfig[2]);
-    			Command selection;
+    			Command selection = null; //Make a doNothing command
     			if (sameAsSwitch && userChoice[2]) {
     				selection = new PutInSwitch();
     			}
