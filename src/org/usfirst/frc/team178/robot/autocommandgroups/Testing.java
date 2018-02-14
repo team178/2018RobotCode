@@ -33,7 +33,6 @@ public class Testing extends CommandGroup {
     	//addSequential(new GyroDriveForward(50, .4));
     	//addSequential(new EncoderSlowDown(100, .5));
     	//addSequential(new DriveForwardDoublePID(150, .5));
-    	addSequential(new AutoTurn(90, .5));
-
+    	addSequential(new DriveForwardDoublePID(150, .5));
     }
 }
