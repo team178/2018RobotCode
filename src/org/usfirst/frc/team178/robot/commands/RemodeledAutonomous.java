@@ -24,7 +24,7 @@ public class RemodeledAutonomous extends Command {
     	RobotPosition = (Robot.position).charAt(0);
     }
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
+    protected void execute() { 
     	System.out.println("Hi");
     	if(!Robot.goForwardChoice) {
     		System.out.println("Elizabeth's hotspot, and this autonomous, are turned off");
