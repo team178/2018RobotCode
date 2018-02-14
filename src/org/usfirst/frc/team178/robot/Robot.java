@@ -43,6 +43,7 @@ public class Robot extends IterativeRobot {
 	public static SendableChooser<String> goForward = new SendableChooser<>();
 	public static SendableChooser<String> pickUpSecondBlock = new SendableChooser<>();
 	public static SendableChooser<String> vault = new SendableChooser<>();
+	public static SendableChooser<Command> autoChooser = new SendableChooser<>();
 	
 	public static boolean goForwardChoice;
 	public static boolean vaultChooser;
@@ -75,7 +76,9 @@ public class Robot extends IterativeRobot {
 		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture(0);
 		camera.setResolution(320, 240);
 		camera.setFPS(25);
-		
+	
+		autoChooser.addObject("Testing", new Testing());
+		SmartDashboard.putData(autoChooser);
 		
 		botLocation.addObject("Left", "Left");
 		botLocation.addObject("Middle", "Middle");
