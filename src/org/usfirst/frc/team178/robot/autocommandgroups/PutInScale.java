@@ -1,13 +1,16 @@
 package org.usfirst.frc.team178.robot.autocommandgroups;
 
+import org.usfirst.frc.team178.robot.commands.AutoTurn;
+import org.usfirst.frc.team178.robot.commands.DriveForward;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class AutoDoNothing extends CommandGroup {
+public class PutInScale extends CommandGroup {
 
-    public AutoDoNothing() {
+    public PutInScale() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -24,5 +27,19 @@ public class AutoDoNothing extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
+    	addSequential(new DriveForward(624, 0.7));
+    	
+    	//turn to face thing
+    	/*
+    	if (isRight) {
+    		addSequential(new AutoTurn(-90, 0.5));
+    		//addSequential (insert shoot command)
+    	} else {
+    		addSequential(new AutoTurn(90, 0.5));
+    		//addSequential (insert shoot command)
+    	}
+    	*/
+    	
+    	
     }
 }
