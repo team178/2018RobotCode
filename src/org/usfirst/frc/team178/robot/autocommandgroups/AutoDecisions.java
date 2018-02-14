@@ -19,7 +19,7 @@ public class AutoDecisions extends CommandGroup {
     			if(userChoice[1])
     			{
     				//addSequential(new PutInVault());
-    				addSequential(new DriveForward(50, .1));
+    				addSequential(new DriveForward(50, .5));
     				
     			}
     		//	addSequential(new CrossLine());
