@@ -31,7 +31,6 @@ public class Robot extends IterativeRobot {
 	public static Autonomous autonomous;
 
 	Command autonomousCommand;
-	//private Command Autonomous; delete meeee
 	
 	public static SendableChooser<String> botLocation = new SendableChooser<>();
 	public static SendableChooser<String> switchChooser = new SendableChooser<>();
@@ -91,7 +90,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Go for vault?", vault);
 		SmartDashboard.putData("Go for switch?", switchChooser);
 		SmartDashboard.putData("Go for scale?", scaleChooser);
-		SmartDashboard.putData("Second block?", pickUpSecondBlock);
+	//	SmartDashboard.putData("Second block?", pickUpSecondBlock);
 	}	
 
 	public static String returnSelection() {
@@ -111,7 +110,28 @@ public class Robot extends IterativeRobot {
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
 	}
+	
+	boolean[] userChoice = new boolean[5];
+	char[] fieldConfig = new char[3];
+	
+	public void getAutoSelections() {
+		//gameData = DriverStation.getInstance().getGameSpecificMessage();\
+		gameData = "RLR"; //for testing purposes
+		
+		//Array of the choices driver can make before auto
+		userChoice[0] = (goForward.getSelected()).equals("Yes");
+		userChoice[1] = (vault.getSelected()).equals("Yes");
+		userChoice[2] = ((switchChooser.getSelected()).equals("Yes"));
+		userChoice[3] = (scaleChooser.getSelected()).equals("Yes");
+		userChoice[4] = (pickUpSecondBlock.getSelected()).equals("Yes");
+		
+		//Predetermined field positions/aspects
+		fieldConfig[0] = gameData.charAt(0); //this is switch 
+		fieldConfig[1] = gameData.charAt(1);  //this is scale
+    	fieldConfig[2] = returnSelection().charAt(0); //starting position
 
+		
+	}
 	/**
 	 * This autonomous (along with the chooser code above) shows how to select
 	 * between different autonomous modes using the dashboard. The sendable
@@ -125,58 +145,17 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-	    //    gameData = DriverStation.getInstance().getGameSpecificMessage();\
-			gameData = "RLR"; //for testing purposes
-	        switchSide = gameData.charAt(0);
-	        scaleSide = gameData.charAt(1);
-	    	position = Robot.returnSelection();
-	    autonomous = new Autonomous();
-    	autonomousCommand = autonomous;
-		
-		if((goForward.getSelected()).equals("Yes"))
-			goForwardChoice = true;
-		else
-			goForwardChoice = false;
-		
-		
-		if((vault.getSelected()).equals("Yes"))
-			vaultChooser = true;
-		else
-			vaultChooser = false;
-		
-		
-		if((switchChooser.getSelected()).equals("Yes"))
-			switchChoice = true;
-		else
-			switchChoice = false;
-		
-		
-		if((scaleChooser.getSelected()).equals("Yes"))
-			scaleChoice = true;
-		else
-			scaleChoice = false;
-		
-		
-		if((pickUpSecondBlock.getSelected()).equals("Yes"))
-			secondBlock = true;
-		else
-			secondBlock = false;
-		
-		
-		if((botLocation.getSelected()).equals("Middle"))
-			isOnSide = false;
-		else
-			isOnSide = true;
-		
-		if(autonomousCommand != null)
-			autonomousCommand.start();
-
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
 		 * = new MyAutoCommand(); break; case "Default Auto": default:
 		 * autonomousCommand = new ExampleCommand(); break; }
 		 */
+		getAutoSelections();
+		autonomousCommand = new AutoDecisions(userChoice, fieldConfig);
+		
+		if (autonomousCommand != null)
+			autonomousCommand.start();
 
 		// schedule the autonomous command (example)
 		
