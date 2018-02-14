@@ -38,17 +38,18 @@ public class AutoTurnPID2 extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	System.out.println(drivetrain.getAngle());
+    	
     	actualAngle = drivetrain.getAngle();
+    	
     	setAngleSetpoint(targetAngle);
+    	
     	double valuePID = turnPID();
-    	if (drivetrain.getAngle() < targetAngle)
-    	{
+    	
+    	if (drivetrain.getAngle() < targetAngle) {
     		drivetrain.drive(lspeed * turnPID(), minSpeed);
-    	}
-    	else
-    	{
-    		drivetrain.drive(0, 0);
-    	}
+    	} //else {
+    		//drivetrain.drive(0, 0);
+    	//}
     /*	if (valuePID >=0) {
     		drivetrain.drive((lspeed * (1-valuePID)), minSpeed);
     	} else if (valuePID < 0){
