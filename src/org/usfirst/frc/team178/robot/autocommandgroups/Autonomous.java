@@ -3,9 +3,8 @@ package org.usfirst.frc.team178.robot.autocommandgroups;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import org.usfirst.frc.team178.robot.*;
 import org.usfirst.frc.team178.robot.commands.AutoTurn;
-import org.usfirst.frc.team178.robot.commands.FindAutonomous;
+
 import org.usfirst.frc.team178.robot.commands.GyroDriveForward;
-import org.usfirst.frc.team178.robot.commands.RemodeledAutonomous;
 
 
 /**

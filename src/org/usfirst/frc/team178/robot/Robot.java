@@ -2,11 +2,8 @@ package org.usfirst.frc.team178.robot;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.AnalogGyro;
-<<<<<<< HEAD
 import edu.wpi.first.wpilibj.CameraServer;
-=======
 import edu.wpi.first.wpilibj.DriverStation;
->>>>>>> DebugMerge
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -34,11 +31,9 @@ public class Robot extends IterativeRobot {
 	public static Climber climber;
 	public static Pneumatics pneumatics;
 	public static AnalogGyro gyro;
-<<<<<<< HEAD
+
 	public static Ultrasonic ultrasonic;
-=======
 	public static Autonomous autonomous;
->>>>>>> DebugMerge
 
 	Command autonomousCommand;
 	
@@ -73,30 +68,20 @@ public class Robot extends IterativeRobot {
 		cubeintake = new CubeIntake();
 		ramp = new Ramp();
 		climber = new Climber();
-<<<<<<< HEAD
 		ultrasonic = new Ultrasonic();
-		//pneumatics = new Pneumatics();
+		pneumatics = new Pneumatics();
 		oi = new OI();
 		
 		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture(0);
 		camera.setResolution(320, 240);
 		camera.setFPS(25);
 		
-		chooser.addObject("AutoDoNothing", new AutoDoNothing());
-		chooser.addObject("Testing", new Testing());
-		SmartDashboard.putData("Auto mode", chooser);
-		System.out.println("Hello");
-	}
-=======
-		pneumatics = new Pneumatics();
-		oi = new OI();
 		
 		botLocation.addObject("Left", "Left");
 		botLocation.addObject("Middle", "Middle");
 		botLocation.addObject("Right", "Right");
 		
 		SmartDashboard.putData("AutoLocation", botLocation);
->>>>>>> DebugMerge
 
 		
 		switchChooser.addObject("Yes", "Yes");
@@ -219,11 +204,6 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-<<<<<<< HEAD
-		//SmartDashboard.putNumber("Pressure", pneumatics.getPressure());
-=======
-		//add something
->>>>>>> DebugMerge
 		Scheduler.getInstance().run();
 	}
 
