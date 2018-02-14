@@ -37,7 +37,7 @@ public class AutoDecisions extends CommandGroup {
     			addSequential(selection);
     			
     		}
-    	}
+    	} // I was thinking that maybe we could use Switch selection instead of if statements? That way we wouldn't have so many brackets and our code would be more organized -- Robbie
     	
     	/*if(fieldConfig[2] == 'L')
     	{
