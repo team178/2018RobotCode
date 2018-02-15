@@ -1,9 +1,10 @@
 package org.usfirst.frc.team178.robot.autocommandgroups;
 
 import org.usfirst.frc.team178.robot.commands.DriveForward;
-
+import org.usfirst.frc.team178.robot.commands.AutoTurn;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import org.usfirst.frc.team178.robot.commands.DropCube;
 
 /**
  *
@@ -19,7 +20,10 @@ public class AutoDecisions extends CommandGroup {
     			if(userChoice[1])
     			{
     				//addSequential(new PutInVault());
-    				addSequential(new DriveForward(50, .1));
+    				addSequential(new DriveForward(120, .25));
+    				addSequential(new AutoTurn(180,.25));
+    				addSequential(new DriveForward(120,.25));
+    				addSequential(new DropCube());
     				
     			}
     		//	addSequential(new CrossLine());
@@ -41,6 +45,8 @@ public class AutoDecisions extends CommandGroup {
     			}
     			addSequential(selection);
     			
+    			
+    			
     		}
     	} // I was thinking that maybe we could use Switch selection instead of if statements? That way we wouldn't have so many brackets and our code would be more organized -- Robbie
     	
@@ -51,7 +57,7 @@ public class AutoDecisions extends CommandGroup {
     		{
     			
     		}
-    		else // if scale is on oppostite side
+    		else // if scale is on opposite side
     		{
     			
     		}

@@ -1,13 +1,26 @@
 package org.usfirst.frc.team178.robot.autocommandgroups;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-
+import org.usfirst.frc.team178.robot.*;
 /**
  *
  */
 public class PutInSwitch extends CommandGroup {
 
     public PutInSwitch() {
+    	if (Robot.fieldConfig[0] == 'L') {
+    		if (Robot.fieldConfig[2] == 'L') {
+    			
+    		} else if (Robot.fieldConfig[2] == 'R') {
+    			
+    		}
+    	} else if (Robot.fieldConfig[0] == 'R') {
+    			if (Robot.fieldConfig[2] == 'L') {
+    			
+    		} else if (Robot.fieldConfig[2] == 'R') {
+    			
+    		}
+    	}
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

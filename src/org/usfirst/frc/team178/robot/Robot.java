@@ -117,8 +117,8 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 	}
 	
-	boolean[] userChoice = new boolean[5];
-	char[] fieldConfig = new char[3];
+	public static boolean[] userChoice = new boolean[5];
+	public static char[] fieldConfig = new char[3];
 	
 	public void getAutoSelections() {
 		//gameData = DriverStation.getInstance().getGameSpecificMessage();\
