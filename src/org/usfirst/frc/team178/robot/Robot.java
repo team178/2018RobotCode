@@ -37,6 +37,7 @@ public class Robot extends IterativeRobot {
 
 	Command autonomousCommand;
 	
+<<<<<<< HEAD
 	public static SendableChooser<String> botLocation = new SendableChooser<>();
 	public static SendableChooser<String> switchChooser = new SendableChooser<>();
 	public static SendableChooser<String> scaleChooser = new SendableChooser<>();
@@ -56,6 +57,9 @@ public class Robot extends IterativeRobot {
 	public static char switchSide;
 	public static char scaleSide;
 	public static String position;
+=======
+	SendableChooser<Command> chooser = new SendableChooser<>();
+>>>>>>> AutoTurnMerge
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -80,11 +84,20 @@ public class Robot extends IterativeRobot {
 		autoChooser.addObject("Testing", new Testing());
 		SmartDashboard.putData(autoChooser);
 		
+<<<<<<< HEAD
 		botLocation.addObject("Left", "Left");
 		botLocation.addObject("Middle", "Middle");
 		botLocation.addObject("Right", "Right");
 		
 		SmartDashboard.putData("AutoLocation", botLocation);
+=======
+		chooser.addObject("AutoDoNothing", new AutoDoNothing());
+		chooser.addObject("Testing", new Testing());
+		SmartDashboard.putData("Auto mode", chooser);
+		
+		System.out.println("Hello");
+	}
+>>>>>>> AutoTurnMerge
 
 		
 		switchChooser.addObject("Yes", "Yes");
