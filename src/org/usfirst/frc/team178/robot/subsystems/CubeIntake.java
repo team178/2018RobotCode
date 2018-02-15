@@ -27,9 +27,11 @@ public class CubeIntake extends Subsystem {
     	leftPiston = new DoubleSolenoid(RobotMap.PCM, RobotMap.INTAKEleftout, RobotMap.INTAKEleftin);
     }
     
+
     public void dropIntake(){
     	rightPiston.set(DoubleSolenoid.Value.kReverse); //kReverse subject to change
     	leftPiston.set(DoubleSolenoid.Value.kReverse); 
+
     }
     
     public DoubleSolenoid.Value getIntake()
@@ -48,7 +50,9 @@ public class CubeIntake extends Subsystem {
     	//left1.set(ControlMode.PercentOutput, speed);
     	//left2.set(ControlMode.PercentOutput, speed);
     	// rightPiston.set(DoubleSolenoid.Value.kReverse); //kReverse subject to change
-    	//leftPiston.set(DoubleSolenoid.Value.kReverse); 
+
+    	leftPiston.set(DoubleSolenoid.Value.kReverse); //kReverse subject to change
+
     }
     
  

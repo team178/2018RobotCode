@@ -20,7 +20,7 @@ public class CollectCube extends Command {
     	requires(Robot.cubeintake);
     }
 
-    // Called just before this Command runs the first time
+    //Called just before this Command runs for the first time
     protected void initialize() {
     	oi = Robot.oi;
     	cubeintake = Robot.cubeintake;
@@ -49,7 +49,7 @@ public class CollectCube extends Command {
     }
 
     // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
+    //subsystems is scheduled to run
     protected void interrupted() {
     }
 }

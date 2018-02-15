@@ -22,9 +22,8 @@ public class DriveForward extends Command {
     	distance = dist;
     	robotSpeed = spd;
     }
-
-    // Called just before this Command runs the first time
-    protected void initialize() {
+    	//Called just before this Command runs for the first time
+       protected void initialize() {
     	oi = Robot.oi;
     	drivetrain = Robot.drivetrain;
     	adjustedSpeed = -robotSpeed;

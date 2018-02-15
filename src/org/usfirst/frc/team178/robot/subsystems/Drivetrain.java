@@ -38,9 +38,9 @@ public class Drivetrain extends Subsystem {
 	   gyro = new AnalogGyro(RobotMap.DRIVEGyro);
 
 	   
-	   double dpp = 3 * ((6 * Math.PI) / 1024); // distance per pulse
+	   double dpp = 3 * ((6 * Math.PI) / 1024); //The distance per pulse
 		// gearRatio * (circumference/counts per revolution)
-	   right.setDistancePerPulse(dpp); // must be changed for both right and left
+	   right.setDistancePerPulse(dpp); //Must be changed for both right and left
 	   left.setDistancePerPulse(dpp);   
    }
    
@@ -52,6 +52,7 @@ public class Drivetrain extends Subsystem {
    public void resetGyro()
    {
 	  gyro.reset();
+	  //Called when AnalogGyro must be reset
    }
    
    public  void resetEncoders() {
