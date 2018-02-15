@@ -13,10 +13,10 @@ public class AutoTurnPID2 extends Command {
 	OI oi;
 	Drivetrain drivetrain;
 	double lspeed, rspeed, targetAngle, actualAngle;
-	double angleSetpoint, angleIntegral, previousAngle, angleDerivative, aP= .5, aI= 0.0, aD = 0.0;
+	double angleSetpoint, angleIntegral, previousAngle, angleDerivative, aP= 1, aI= 0.0, aD = 0.0;
 	final double minSpeed = .1;
 	int counter = 0;
-	double lastSpeed;
+	double lastSpeedL, lastSpeedR;
 	
 	
     public AutoTurnPID2(double tAngle, double speed) {
@@ -26,7 +26,8 @@ public class AutoTurnPID2 extends Command {
     targetAngle = tAngle;
     lspeed = speed;
     rspeed = speed;
-    lastSpeed = speed;
+    lastSpeedL = speed;
+    lastSpeedR = speed;
     }
 
     // Called just before this Command runs the first time
@@ -34,7 +35,9 @@ public class AutoTurnPID2 extends Command {
     	oi = Robot.oi;
     	drivetrain = Robot.drivetrain;
     	drivetrain.resetGyro();
-    	lastSpeed = lspeed;
+    	lastSpeedL = lspeed;
+    	lastSpeedR = rspeed;
+    	
     	
     }
 
@@ -47,10 +50,15 @@ public class AutoTurnPID2 extends Command {
     	double valuePID = turnPID(currentAngle);
     	System.out.println("PID Value: " + valuePID + "\n");
     	
-    	if (drivetrain.getAngle() < targetAngle) {
-    		drivetrain.drive(lastSpeed, lastSpeed);
-    		lastSpeed = lastSpeed*valuePID;
+    	if (currentAngle < targetAngle) {
+    		drivetrain.drive(lastSpeedL, lastSpeedL);
+    		lastSpeedL *= valuePID;
     	} //else {
+    	else if(currentAngle > targetAngle)
+    	{
+    		drivetrain.drive(-lastSpeedR, -lastSpeedR);
+    		lastSpeedR *= valuePID;
+    	}
     		//drivetrain.drive(0, 0);
     	//}
     /*	if (valuePID >=0) {
@@ -87,8 +95,14 @@ public class AutoTurnPID2 extends Command {
     
     public double turnPID(double currentAngle)
 	{
+    	if(targetAngle > 0)
+    	{
+    		aP = .5;
+    	}
+    	else
+    		aP = .9;
 		//How far the Robot is from it's target distance
-		double angleError = (angleSetpoint - currentAngle);  //inverse of difference between current distance and target distance 
+		double angleError = Math.abs(angleSetpoint - currentAngle);  //inverse of difference between current distance and target distance 
 	//	double angleError = drivetrain.getAngle() - angleSetpoint;
 		angleIntegral += (angleError * .02);
 		double angleDerivative = (angleError - previousAngle)/.02;
