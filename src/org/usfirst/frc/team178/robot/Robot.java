@@ -57,6 +57,7 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("AutoDoNothing", new AutoDoNothing());
 		chooser.addObject("Testing", new Testing());
 		SmartDashboard.putData("Auto mode", chooser);
+		
 		System.out.println("Hello");
 	}
 

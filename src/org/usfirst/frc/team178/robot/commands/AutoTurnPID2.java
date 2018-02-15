@@ -13,7 +13,7 @@ public class AutoTurnPID2 extends Command {
 	OI oi;
 	Drivetrain drivetrain;
 	double lspeed, rspeed, targetAngle, actualAngle;
-	double angleSetpoint, angleIntegral, previousAngle, angleDerivative, aP= .3, aI= 0.0, aD = 0.0;
+	double angleSetpoint, angleIntegral, previousAngle, angleDerivative, aP= .5, aI= 0.0, aD = 0.0;
 	final double minSpeed = .1;
 	int counter = 0;
 	double lastSpeed;
@@ -26,6 +26,7 @@ public class AutoTurnPID2 extends Command {
     targetAngle = tAngle;
     lspeed = speed;
     rspeed = speed;
+    lastSpeed = speed;
     }
 
     // Called just before this Command runs the first time
@@ -33,22 +34,22 @@ public class AutoTurnPID2 extends Command {
     	oi = Robot.oi;
     	drivetrain = Robot.drivetrain;
     	drivetrain.resetGyro();
+    	lastSpeed = lspeed;
     	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	System.out.println(drivetrain.getAngle());
-    	
-    	actualAngle = drivetrain.getAngle();
-    	
+    	double currentAngle = drivetrain.getAngle();
+    	System.out.println("Current Angle: " + currentAngle);	
     	setAngleSetpoint(targetAngle);
     	
-    	double valuePID = turnPID();
+    	double valuePID = turnPID(currentAngle);
+    	System.out.println("PID Value: " + valuePID + "\n");
     	
     	if (drivetrain.getAngle() < targetAngle) {
-    		drivetrain.drive(lastSpeed, minSpeed);
-    	lastSpeed = lspeed*turnPID();
+    		drivetrain.drive(lastSpeed, lastSpeed);
+    		lastSpeed = lastSpeed*valuePID;
     	} //else {
     		//drivetrain.drive(0, 0);
     	//}
@@ -64,7 +65,7 @@ public class AutoTurnPID2 extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (Math.abs(drivetrain.getAngle() - targetAngle) < .1) {
+    	if (Math.abs(drivetrain.getAngle() - targetAngle) < 1) {
     		return true;
     	}
     	else {
@@ -74,7 +75,7 @@ public class AutoTurnPID2 extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    //	drivetrain.drive(0, 0);
+    	drivetrain.drive(0, 0);
     }
 
     // Called when another command which requires one or more of the same
@@ -84,9 +85,8 @@ public class AutoTurnPID2 extends Command {
     	//yay
     }
     
-    public double turnPID()
+    public double turnPID(double currentAngle)
 	{
-		double currentAngle = drivetrain.getAngle();		//average distance feedback from two encoders
 		//How far the Robot is from it's target distance
 		double angleError = (angleSetpoint - currentAngle);  //inverse of difference between current distance and target distance 
 	//	double angleError = drivetrain.getAngle() - angleSetpoint;
