@@ -16,6 +16,7 @@ public class AutoTurnPID2 extends Command {
 	double angleSetpoint, angleIntegral, previousAngle, angleDerivative, aP= .3, aI= 0.0, aD = 0.0;
 	final double minSpeed = .1;
 	int counter = 0;
+	double lastSpeed;
 	
 	
     public AutoTurnPID2(double tAngle, double speed) {
@@ -46,7 +47,8 @@ public class AutoTurnPID2 extends Command {
     	double valuePID = turnPID();
     	
     	if (drivetrain.getAngle() < targetAngle) {
-    		drivetrain.drive(lspeed * turnPID(), minSpeed);
+    		drivetrain.drive(lastSpeed, minSpeed);
+    	lastSpeed = lspeed*turnPID();
     	} //else {
     		//drivetrain.drive(0, 0);
     	//}
@@ -72,13 +74,13 @@ public class AutoTurnPID2 extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	drivetrain.drive(0, 0);
+    //	drivetrain.drive(0, 0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	drivetrain.drive(0,0);
+    //	drivetrain.drive(0,0);
     	//yay
     }
     
