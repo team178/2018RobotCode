@@ -1,41 +1,36 @@
 package org.usfirst.frc.team178.robot.commands;
 
 import org.usfirst.frc.team178.robot.Robot;
-import org.usfirst.frc.team178.robot.subsystems.CubeIntake;
+import org.usfirst.frc.team178.robot.subsystems.CubeLoader;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class DropCube extends Command {
-	
-	CubeIntake cubeintake;
+public class LoadCube extends Command {
 
-    public DropCube() {
-    	requires(Robot.cubeintake);
+	CubeLoader cubeloader;
+	
+    public LoadCube() {
+    	requires(Robot.cubeloader);
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	cubeintake = Robot.cubeintake;
+    	cubeloader = Robot.cubeloader;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	cubeintake.ejectCube(0.75);
+    	cubeloader.loadCube(.75);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (cubeintake.getIntake() == DoubleSolenoid.Value.kReverse)
-    	{
-    		return true;
-    	}
-    	else {
-    		return false;
-    	}
+        return false;
     }
 
     // Called once after isFinished returns true

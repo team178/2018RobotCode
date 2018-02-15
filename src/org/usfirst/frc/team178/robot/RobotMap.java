@@ -40,10 +40,12 @@ public class RobotMap {
 	
 	public static int DRIVEGyro = 1;
 	
-	public static int INTAKEleft1 = 1;
-	public static int INTAKEleft2 = 2;
-	public static int INTAKEright1 = 3;
-	public static int INTAKEright2 = 4;
+	public static int INTAKEleft1 = 4;
+	public static int INTAKEright1 = 5;
+	public static int LOADERleft = 6;
+	public static int LOADERright = 8;
+	public static int SHOOTERleft = 7;
+	public static int SHOOTERright = 9;
 	
 	public static int JoystickPort = 0;
 	public static int JoystickPortXBOX = 1;

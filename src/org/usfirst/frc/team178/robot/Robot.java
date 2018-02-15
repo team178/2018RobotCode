@@ -25,10 +25,12 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static Drivetrain drivetrain;
 	public static CubeIntake cubeintake;
+	public static CubeLoader cubeloader;
 	public static Climber climber;
 	public static Pneumatics pneumatics;
 	public static AnalogGyro gyro;
 	public static Autonomous autonomous;
+	public static CubeShooter cubeshooter;
 
 	Command autonomousCommand;
 	
@@ -64,6 +66,8 @@ public class Robot extends IterativeRobot {
 		climber = new Climber();
 		pneumatics = new Pneumatics();
 		oi = new OI();
+		cubeloader = new CubeLoader();
+		cubeshooter = new CubeShooter();
 		
 		botLocation.addObject("Left", "Left");
 		botLocation.addObject("Middle", "Middle");

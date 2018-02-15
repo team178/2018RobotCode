@@ -24,7 +24,7 @@ public class CollectCube extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	cubeintake.collectCube(/*.75*/);
+    	cubeintake.collectCube(.75);
     }
 
     // Make this return true when this Command no longer needs to run execute()

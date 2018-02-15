@@ -14,10 +14,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 public class CubeIntake extends Subsystem {
 
     static TalonSRX left1;
-    //static TalonSRX left2;
     static TalonSRX right1;
-    //static TalonSRX right2;
-    // DoubleSolenoid rightPiston;
     DoubleSolenoid leftPiston;
     
     public CubeIntake() {
@@ -29,19 +26,16 @@ public class CubeIntake extends Subsystem {
     	leftPiston = new DoubleSolenoid(RobotMap.PCM, RobotMap.INTAKEleftout, RobotMap.INTAKEleftin);
     }
     
-    public void collectCube(/*double speed*/) {
-    	//right1.set(ControlMode.PercentOutput, speed);
-    	//right2.set(ControlMode.PercentOutput, speed);
-    	//left1.set(ControlMode.PercentOutput, -speed);
-    	//left2.set(ControlMode.PercentOutput, -speed);
-    	// rightPiston.set(DoubleSolenoid.Value.kReverse); //kReverse subject to change
+    public void collectCube(double speed) {
+    	right1.set(ControlMode.PercentOutput, speed);
+    	left1.set(ControlMode.PercentOutput, -speed);
     	leftPiston.set(DoubleSolenoid.Value.kReverse); 
     }
     
-    public void ejectCube(/*double speed*/) {
-    	//right1.set(ControlMode.PercentOutput, -speed);
+    public void ejectCube(double speed) {
+    	right1.set(ControlMode.PercentOutput, -speed);
     	//right2.set(ControlMode.PercentOutput, -speed);
-    	//left1.set(ControlMode.PercentOutput, speed);
+    	left1.set(ControlMode.PercentOutput, speed);
     	//left2.set(ControlMode.PercentOutput, speed);
     	// rightPiston.set(DoubleSolenoid.Value.kReverse); //kReverse subject to change
     	leftPiston.set(DoubleSolenoid.Value.kReverse); 

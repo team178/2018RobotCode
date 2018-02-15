@@ -34,7 +34,7 @@ public class AutoDecisions extends CommandGroup {
     			//not middle
     			boolean sameAsSwitch = (fieldConfig[0] == fieldConfig[2]);
     			boolean sameAsScale = (fieldConfig[1] == fieldConfig[2]);
-    			Command selection = null; //Make a doNothing command
+    			Command selection = new CrossLine();
     			if (sameAsSwitch && userChoice[2]) {
     				selection = new PutInSwitch();
     			}
