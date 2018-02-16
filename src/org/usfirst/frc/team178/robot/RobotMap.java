@@ -54,8 +54,10 @@ public class RobotMap {
 	
 	public static int INTAKEleftout = 0;
 	public static int INTAKEleftin = 1;
-	public static int INTAKErightout = 3;
-	public static int INTAKErightin = 4;
+	public static int INTAKErightout = 2;
+	public static int INTAKErightin = 3;
+	public static int SHOOTERout = 4;
+	public static int SHOOTERin = 5;
 	
 	public static int ClimberPort;
 	
