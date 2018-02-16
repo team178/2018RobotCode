@@ -3,7 +3,7 @@ package org.usfirst.frc.team178.robot.autocommandgroups;
 
 import org.usfirst.frc.team178.robot.commands.AutoTurn;
 import org.usfirst.frc.team178.robot.commands.AutoTurnPID;
-import org.usfirst.frc.team178.robot.commands.AutoTurnPID2;
+import org.usfirst.frc.team178.robot.commands.AutoTurnPID;
 import org.usfirst.frc.team178.robot.commands.DriveForward;
 import org.usfirst.frc.team178.robot.commands.DriveForwardDoublePID;
 import org.usfirst.frc.team178.robot.commands.EncoderSlowDown;
@@ -38,7 +38,7 @@ public class Testing extends CommandGroup {
     	//addSequential(new GyroDriveForward(50, .4));
     	//addSequential(new EncoderSlowDown(100, .5));
     	//addSequential(new DriveForwardDoublePID(150, .5));
-    	addSequential(new AutoTurnPID2(-90, .3)); //keep at .3 speed, have not tested other speeds
+    	addSequential(new AutoTurnPID(-90, .3)); //keep at .3 speed, have not tested other speeds
 
     }
 }

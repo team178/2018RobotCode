@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class DriveForwardDoublePID extends Command {
+public class DriveForwardPID extends Command {
 	Drivetrain drivetrain;
 	OI oi;
 	double robotSpeed, distance; 
@@ -23,7 +23,7 @@ public class DriveForwardDoublePID extends Command {
 	double  dIntegral = 0, dP = .9, dI = 0.0, dD = 0.0; //Variables for distance PID
 	double previousSpeedL,previousSpeedR ,distanceSetpoint, previousDistError;
 
-	public DriveForwardDoublePID(double dist, double speed) {
+	public DriveForwardPID(double dist, double speed) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.drivetrain);
