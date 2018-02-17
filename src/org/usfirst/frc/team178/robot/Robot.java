@@ -11,8 +11,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team178.robot.autocommandgroups.*;
 import org.usfirst.frc.team178.robot.subsystems.*;
 
-import org.usfirst.frc.team178.robot.autocommandgroups.Autonomous;
-
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -29,8 +27,8 @@ public class Robot extends IterativeRobot {
 	public static Climber climber;
 	public static Pneumatics pneumatics;
 	public static AnalogGyro gyro;
-	public static Autonomous autonomous;
 	public static CubeShooter cubeshooter;
+	public static AutoDecisions autodecisions;
 
 	Command autonomousCommand;
 	
@@ -52,6 +50,10 @@ public class Robot extends IterativeRobot {
 	public static char switchSide;
 	public static char scaleSide;
 	public static String position;
+	
+	public static boolean[] userChoice = new boolean[5];
+	public static char[] fieldConfig = new char[2];
+	public static String startPos;
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -68,10 +70,12 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		cubeloader = new CubeLoader();
 		cubeshooter = new CubeShooter();
+		autodecisions = new AutoDecisions(userChoice, fieldConfig);
 		
 		botLocation.addObject("Left", "Left");
 		botLocation.addObject("Middle", "Middle");
 		botLocation.addObject("Right", "Right");
+		botLocation.addDefault("Middle", "Middle");
 		
 		SmartDashboard.putData("AutoLocation", botLocation);
 
@@ -102,11 +106,6 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Go for scale?", scaleChooser);
 		SmartDashboard.putData("Second block?", pickUpSecondBlock);
 	}	
-
-	public static String returnSelection() {
-		return botLocation.getSelected();
-		
-	}
 	/**
 	 * This function is called once each time the robot enters Disabled mode.
 	 * You can use it to reset any subsystem information you want to clear when
@@ -114,17 +113,6 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void disabledInit() {
-			}
-
-	@Override
-	public void disabledPeriodic() {
-		Scheduler.getInstance().run();
-	}
-	
-	public static boolean[] userChoice = new boolean[5];
-	public static char[] fieldConfig = new char[3];
-	
-	public void getAutoSelections() {
 		//gameData = DriverStation.getInstance().getGameSpecificMessage();\
 		gameData = "RLR"; //for testing purposes
 		
@@ -134,14 +122,20 @@ public class Robot extends IterativeRobot {
 		userChoice[2] = ((switchChooser.getSelected()).equals("Yes"));
 		userChoice[3] = (scaleChooser.getSelected()).equals("Yes");
 		userChoice[4] = (pickUpSecondBlock.getSelected()).equals("Yes");
+//		userChoice = { (goForward.getSelected()).equals("Yes"), (vault.getSelected()).equals("Yes"), ((switchChooser.getSelected()).equals("Yes")), (scaleChooser.getSelected()).equals("Yes"), (pickUpSecondBlock.getSelected()).equals("Yes")};
 		
 		//Predetermined field positions/aspects
 		fieldConfig[0] = gameData.charAt(0); //this is switch 
 		fieldConfig[1] = gameData.charAt(1);  //this is scale
-    	fieldConfig[2] = returnSelection().charAt(0); //starting position
+    	
+		//starting position
+		startPos = botLocation.getSelected();
+			}
 
-		
-	}
+	@Override
+	public void disabledPeriodic() {
+		Scheduler.getInstance().run();
+	}	
 	/**
 	 * This autonomous (along with the chooser code above) shows how to select
 	 * between different autonomous modes using the dashboard. The sendable
@@ -161,8 +155,7 @@ public class Robot extends IterativeRobot {
 		 * = new MyAutoCommand(); break; case "Default Auto": default:
 		 * autonomousCommand = new ExampleCommand(); break; }
 		 */
-		getAutoSelections();
-		autonomousCommand = new AutoDecisions(userChoice, fieldConfig);
+		autonomousCommand = autodecisions;
 		
 		if (autonomousCommand != null)
 			autonomousCommand.start();

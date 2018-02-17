@@ -1,6 +1,7 @@
 package org.usfirst.frc.team178.robot.autocommandgroups;
 
 import org.usfirst.frc.team178.robot.commands.DriveForward;
+import org.usfirst.frc.team178.robot.Robot;
 import org.usfirst.frc.team178.robot.commands.AutoTurn;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -10,15 +11,19 @@ import org.usfirst.frc.team178.robot.commands.DropCube;
  *
  */
 public class AutoDecisions extends CommandGroup {
+	
+	String startPos = Robot.startPos;
 
     public AutoDecisions(boolean[] userChoice, char[] fieldConfig) {
+    	System.out.println("Heyo");
      
     	//Everything dependent on if GoForward is selected
     	if(userChoice[0]) {
-    		if (fieldConfig[2] == 'M')
+    		if (startPos.equals("Middle"))
     		{
     			if(userChoice[1])
     			{
+    				System.out.println("HI");
     				//addSequential(new PutInVault());
     				addSequential(new DriveForward(120, .25));
     				addSequential(new AutoTurn(180,.25));

@@ -24,7 +24,7 @@ public class CubeShooter extends Subsystem {
     	left = new TalonSRX(RobotMap.SHOOTERleft);
     	right = new TalonSRX(RobotMap.SHOOTERright);
     	leftpiston = new DoubleSolenoid(RobotMap.PCM, RobotMap.SHOOTERout);
-    	rightPiston = new DoubleSolenoid(RobotMap.PCM, RobotMap.SHOOTERin);
+    	//rightPiston = new DoubleSolenoid(RobotMap.PCM, RobotMap.SHOOTERin);
     	//I DONT THINK I DID THIS RIGHT NOOOOOOOOOOOOOOOOOOO -- Robbie
     	
     }
