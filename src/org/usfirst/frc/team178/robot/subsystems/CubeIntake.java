@@ -38,7 +38,7 @@ public class CubeIntake extends Subsystem {
     }
     
     public void collectCube(double speed) {
-    	right.set(speed);
+    	right.set(-speed);
     	left.set(speed);
     }
     
