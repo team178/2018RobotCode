@@ -67,5 +67,8 @@ public class RobotMap {
 	
 	public static int PRESSURETRANSDUCER = 0; // Analog
 	public static int ULTRASONICINPUT = 2; // Analog
+	
+	public static int extendretractOUT = 6; //PCM
+	public static int extendretractIN = 7; //PCM
 
 }

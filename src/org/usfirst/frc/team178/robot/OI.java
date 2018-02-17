@@ -37,12 +37,15 @@ public class OI {
 	public Button backButton = new JoystickButton(xbox, 7);
 	public Button startButton = new JoystickButton(xbox, 8);
 	
-	public OI () {
-		buttonA.whenPressed(new DropIntake());
-		buttonB.whenPressed(new FoldIntake());
-		buttonX.whileHeld(new ShootScale());
-		buttonY.whileHeld(new ShootSwitch());
-		lBumper.whileHeld(new CollectCube());
+	public OI () { //when pressed is up or down, while held is out or in
+		 buttonX.whenPressed(new FoldIntake());
+		 buttonA.whenPressed(new DropIntake());
+		 buttonY.whenPressed(new RaiseRamp());
+		 buttonB.whenPressed(new LowerRamp());
+		 lBumper.whileHeld(new LowerClimber());
+		 rBumper.whileHeld(new ElevateClimber());
+		 
+		 
 
 		//fill in as soon as we know what buttons will do what
 	}
