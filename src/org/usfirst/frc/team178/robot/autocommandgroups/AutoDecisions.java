@@ -1,5 +1,6 @@
 package org.usfirst.frc.team178.robot.autocommandgroups;
 
+import org.usfirst.frc.team178.robot.commands.AutoTurn;
 import org.usfirst.frc.team178.robot.commands.DriveForward;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -19,7 +20,10 @@ public class AutoDecisions extends CommandGroup {
     			if(userChoice[1])
     			{
     				//addSequential(new PutInVault());
-    				addSequential(new DriveForward(50, .5));
+    				addSequential(new DriveForward(120, .25));
+    				addSequential(new AutoTurn(180, .25));
+    				addSequential(new DriveForward(120, .25));
+    				//addSequential(new DropCube()); Add this class pls soooooooonnnnnn
     				
     			}
     		//	addSequential(new CrossLine());

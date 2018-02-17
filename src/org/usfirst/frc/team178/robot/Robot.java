@@ -13,8 +13,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team178.robot.autocommandgroups.*;
 import org.usfirst.frc.team178.robot.subsystems.*;
 
-import org.usfirst.frc.team178.robot.autocommandgroups.Autonomous;
-
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -33,7 +31,7 @@ public class Robot extends IterativeRobot {
 	public static AnalogGyro gyro;
 
 	public static Ultrasonic ultrasonic;
-	public static Autonomous autonomous;
+	public static AutoDecisions autodecisions;
 
 	Command autonomousCommand;
 	
@@ -75,6 +73,7 @@ public class Robot extends IterativeRobot {
 		ultrasonic = new Ultrasonic();
 		pneumatics = new Pneumatics();
 		oi = new OI();
+		autodecisions = new AutoDecisions(userChoice, fieldConfig);
 		
 		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture(0);
 		camera.setResolution(320, 240);
@@ -182,7 +181,7 @@ public class Robot extends IterativeRobot {
 		 * autonomousCommand = new ExampleCommand(); break; }
 		 */
 		getAutoSelections();
-		autonomousCommand = new AutoDecisions(userChoice, fieldConfig);
+		autonomousCommand = autodecisions;
 		
 		if (autonomousCommand != null)
 			autonomousCommand.start();
