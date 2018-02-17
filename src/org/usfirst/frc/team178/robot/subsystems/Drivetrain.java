@@ -17,10 +17,10 @@ public class Drivetrain extends Subsystem {
 	
    public static Talon left1;
    public static Talon left2;
-   //public static Talon left3;
+   public static Talon left3;
    public static Talon right1;
    public static Talon right2;
-   //public static Talon right3;
+   public static Talon right3;
    public static Encoder right;
    public static Encoder left;
    public static AnalogGyro gyro;
@@ -29,10 +29,10 @@ public class Drivetrain extends Subsystem {
    public Drivetrain() {
 	   left1 = new Talon(RobotMap.DMTopLeft);
 	   left2 = new Talon(RobotMap.DMMiddleLeft);
-	  // left3 = new Talon(RobotMap.DMBottomLeft);
+	   left3 = new Talon(RobotMap.DMBottomLeft);
 	   right1 = new Talon(RobotMap.DMTopRight);
 	   right2 = new Talon(RobotMap.DMMiddleRight);
-	   //right3 = new Talon(RobotMap.DMBottomRight);
+	   right3 = new Talon(RobotMap.DMBottomRight);
 	   right = new Encoder(RobotMap.DRIVEencoderRA,RobotMap.DRIVEencoderRB, false, Encoder.EncodingType.k4X);
 	   left = new Encoder(RobotMap.DRIVEencoderLA, RobotMap.DRIVEencoderLB, true, Encoder.EncodingType.k4X);
 	   gyro = new AnalogGyro(RobotMap.DRIVEGyro);
@@ -63,14 +63,14 @@ public class Drivetrain extends Subsystem {
    public void rightDrive(double speed) {
 	   right1.set( speed);
 	   right2.set( speed);
-	   //right3.set( speed);
+	   right3.set( speed);
  
    }
    
    public void leftDrive(double speed) {
 	   left1.set( speed);
 	   left2.set(speed);
-	   //left3.set( speed);
+	   left3.set( speed);
 	   
    }
    
@@ -78,10 +78,10 @@ public class Drivetrain extends Subsystem {
 	   
 	   left1.set( leftMotors);
 	   left2.set( leftMotors);
-	   //left3.set( leftMotors);
+	   left3.set( leftMotors);
 	   right1.set( rightMotors);
 	   right2.set( rightMotors);
-	 //  right3.set( rightMotors);
+	   right3.set( rightMotors);
    }
    
    public double getLeftDistance() {
