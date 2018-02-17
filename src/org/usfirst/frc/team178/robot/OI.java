@@ -42,6 +42,8 @@ public class OI {
 		 buttonA.whenPressed(new DropIntake());
 		 buttonY.whenPressed(new RaiseRamp());
 		 buttonB.whenPressed(new LowerRamp());
+		 lBumper.whileHeld(new LowerClimber());
+		 rBumper.whileHeld(new ElevateClimber());
 		 
 		 
 
