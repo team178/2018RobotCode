@@ -73,7 +73,7 @@ public class AutoTurnPID extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (Math.abs(drivetrain.getAngle() - targetAngle) < .2) {
+    	if (Math.abs(drivetrain.getAngle() - targetAngle) < .1) {
     		return true;
     	}
     	else {
@@ -100,7 +100,7 @@ public class AutoTurnPID extends Command {
     		aP = .3;
     	}
     	else
-    		aP = .9;
+    		aP = .5;
 		//How far the Robot is from it's target distance
 		double angleError = Math.abs(angleSetpoint - currentAngle);  //inverse of difference between current distance and target distance 
 	//	double angleError = drivetrain.getAngle() - angleSetpoint;
