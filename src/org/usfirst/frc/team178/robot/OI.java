@@ -40,6 +40,9 @@ public class OI {
 	public OI () {
 		buttonA.whenPressed(new DropIntake());
 		buttonB.whenPressed(new FoldIntake());
+		buttonX.whileHeld(new ShootScale());
+		buttonY.whileHeld(new ShootSwitch());
+		lBumper.whileHeld(new CollectCube());
 
 		//fill in as soon as we know what buttons will do what
 	}

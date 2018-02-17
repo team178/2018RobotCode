@@ -34,7 +34,7 @@ public class CollectCube extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (true)//cubeintake.getIntake() == DoubleSolenoid.Value.kReverse)
+    	if (false)//cubeintake.getIntake() == DoubleSolenoid.Value.kReverse)
     	{
     		return true;
     	}
@@ -45,11 +45,14 @@ public class CollectCube extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+
+    	cubeintake.collectCube(0);
     	/*cubeintake.foldIntake();*/
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	cubeintake.collectCube(0);
     }
 }
