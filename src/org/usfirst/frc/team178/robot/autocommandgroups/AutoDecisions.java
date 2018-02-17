@@ -22,7 +22,7 @@ public class AutoDecisions extends CommandGroup {
     			{
     				//addSequential(new PutInVault());
     				addSequential(new AutoTurnPID(90,.3));
-    				addSequential(new DriveForwardPID(100, .5));
+    				//addSequential(new DriveForwardPID(100, .5));
     			}
     		//	addSequential(new CrossLine());
 

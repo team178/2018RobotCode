@@ -51,13 +51,13 @@ public class AutoTurnPID extends Command {
     	System.out.println("PID Value: " + valuePID + "\n");
     	
     	if (currentAngle < targetAngle) {
-    		drivetrain.drive(lastSpeedL, lastSpeedL);
-    		lastSpeedL *= valuePID;
+    		drivetrain.drive(lspeed*valuePID, lspeed*valuePID);
+    		//lspeed *= valuePID;
     	} //else {
     	else if(currentAngle > targetAngle)
     	{
-    		drivetrain.drive(-lastSpeedR, -lastSpeedR);
-    		lastSpeedR *= valuePID;
+    		drivetrain.drive(-(lspeed*valuePID), -(lspeed * valuePID));
+    	//	lspeed *= valuePID;
     	}
     		//drivetrain.drive(0, 0);
     	//}
@@ -73,7 +73,7 @@ public class AutoTurnPID extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (Math.abs(drivetrain.getAngle() - targetAngle) < 1) {
+    	if (Math.abs(drivetrain.getAngle() - targetAngle) < .2) {
     		return true;
     	}
     	else {
@@ -97,7 +97,7 @@ public class AutoTurnPID extends Command {
 	{
     	if(targetAngle > 0)
     	{
-    		aP = .5;
+    		aP = .3;
     	}
     	else
     		aP = .9;
