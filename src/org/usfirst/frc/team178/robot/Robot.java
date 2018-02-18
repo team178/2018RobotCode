@@ -31,7 +31,6 @@ public class Robot extends IterativeRobot {
 	public static AnalogGyro gyro;
 
 	public static Ultrasonic ultrasonic;
-	public static AutoDecisions autodecisions;
 
 	Command autonomousCommand;
 	
@@ -73,7 +72,6 @@ public class Robot extends IterativeRobot {
 		ultrasonic = new Ultrasonic();
 		pneumatics = new Pneumatics();
 		oi = new OI();
-		autodecisions = new AutoDecisions(userChoice, fieldConfig);
 		
 		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture(0);
 		camera.setResolution(320, 240);
@@ -181,7 +179,7 @@ public class Robot extends IterativeRobot {
 		 * autonomousCommand = new ExampleCommand(); break; }
 		 */
 		getAutoSelections();
-		autonomousCommand = autodecisions;
+		autonomousCommand = new AutoDecisions(userChoice, fieldConfig);
 		
 		if (autonomousCommand != null)
 			autonomousCommand.start();

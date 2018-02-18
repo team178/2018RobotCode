@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutoDecisions extends CommandGroup {
 
     public AutoDecisions(boolean[] userChoice, char[] fieldConfig) {
-     
+    	System.out.println("auto descisions init");
     	//Everything dependent on if GoForward is selected
     	if(userChoice[0]) {
     		if (fieldConfig[2] == 'M')
@@ -25,7 +25,8 @@ public class AutoDecisions extends CommandGroup {
     			if(userChoice[1])
     			{
     				//addSequential(new PutInVault());
-    				addSequential(new AutoTurnPID(-90,.3));
+    				addSequential(new AutoTurnPID(90,.3));
+    				System.out.println("Lets turn plz");
     				//addSequential(new DriveForwardPID(100, .5));
 
     			}
