@@ -13,7 +13,7 @@ public class AutoTurnPID extends Command {
 	OI oi;
 	Drivetrain drivetrain;
 	double lspeed, rspeed, targetAngle, actualAngle;
-	double angleSetpoint, angleIntegral, previousAngle, angleDerivative, aP= 1, aI= 0.02, aD = 0.01;
+	double angleSetpoint, angleIntegral, previousAngle, angleDerivative, aP= 1, aI= 0.01, aD = 0.01;
 	final double minSpeed = .1;
 	int counter = 0;
 	double lastSpeedL, lastSpeedR;
@@ -74,7 +74,7 @@ public class AutoTurnPID extends Command {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     	System.out.println("OVer HErE");
-    	if (Math.abs(drivetrain.getAngle() - targetAngle) < 1 && Math.abs(angleDerivative) < 0.05 ) {
+    	if (Math.abs(drivetrain.getAngle() - targetAngle) < 1.5 && Math.abs(angleDerivative) < 0.03 ) {
     		System.out.println("stop turning");
     		return true;
     	}
