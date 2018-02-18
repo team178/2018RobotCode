@@ -76,12 +76,12 @@ public class Drivetrain extends Subsystem {
    
    public void drive(double leftMotors, double rightMotors) {
 	   
-	   left1.set( leftMotors);
-	   left2.set( leftMotors);
-	   left3.set( leftMotors);
-	   right1.set( rightMotors);
-	   right2.set( rightMotors);
-	   right3.set( rightMotors);
+	   left1.set(leftMotors);
+	   left2.set(leftMotors);
+	   //left3.set( leftMotors);
+	   right1.set(rightMotors);
+	   right2.set(rightMotors);
+	 //  right3.set( rightMotors);
    }
    
    public double getLeftDistance() {

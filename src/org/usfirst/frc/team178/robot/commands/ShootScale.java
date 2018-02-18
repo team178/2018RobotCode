@@ -28,7 +28,7 @@ public class ShootScale extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	ramp.bringCubeIn(.75);
-    	if (ultrasonic.getDistance() <= 5) {
+    	if (ultrasonic.getDistance() <= 1) {
     		ramp.shootCube(1);
     		ramp.punchCube();
     	}
