@@ -9,49 +9,41 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ShootSwitch extends Command {
+public class ControlRampIntake extends Command {
+	OI oi;
 	Ramp ramp;
-	double time;
-	double yVal;
-    public ShootSwitch() {
-    	time = 100000000;
-    	requires (Robot.ramp);
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    }
+	double speed;
+	
+    public ControlRampIntake() {
+        requires(Robot.ramp);    
+        }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	oi =  Robot.oi;
     	ramp = Robot.ramp;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	ramp.shootCube(1);
-    ramp.bringCubeIn(1);
+    	speed = oi.getXboxY();
+    	ramp.bringCubeIn(-speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	double passedTime = timeSinceInitialized();
-    	if (passedTime >= time) {
-    		return true;
-    	}
-    	else {
-    		return false;
-    	}
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	ramp.stopLoading();
-    	ramp.stopShooting();
+    	ramp.bringCubeIn(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	ramp.stopLoading();
-    	ramp.stopShooting();
+
+    	ramp.bringCubeIn(0);
     }
 }

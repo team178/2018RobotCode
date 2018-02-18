@@ -28,7 +28,7 @@ public class Ramp extends Subsystem {
 		right1 = new Talon(RobotMap.RAMPright1);
 		right2 = new Talon(RobotMap.RAMPright2);
 		shootingPiston = new DoubleSolenoid(RobotMap.PCM, RobotMap.shootingPistonOUT, RobotMap.shootingPistonIN);
-		extendretract = new DoubleSolenoid(RobotMap.PCM, RobotMap.extendretractOUT, RobotMap.extendretractIN);
+		extendretract = new DoubleSolenoid(RobotMap.PCM, RobotMap.LiftShooter, RobotMap.DropShooter);
 	}
 	
 	public void bringCubeIn(double speed) {

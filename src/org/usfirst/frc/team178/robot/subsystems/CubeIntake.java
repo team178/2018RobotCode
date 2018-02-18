@@ -17,24 +17,21 @@ public class CubeIntake extends Subsystem {
 
     static Talon left;
     static Talon right;
-    DoubleSolenoid rightPiston;
-    DoubleSolenoid leftPiston;
+    DoubleSolenoid piston;
     
     public CubeIntake() {
     	left = new Talon(RobotMap.INTAKEleft);
     	right = new Talon(RobotMap.INTAKEright); 
-    	rightPiston = new DoubleSolenoid(RobotMap.PCM, RobotMap.INTAKErightin, RobotMap.INTAKErightout);
-    	leftPiston = new DoubleSolenoid(RobotMap.PCM, RobotMap.INTAKEleftout, RobotMap.INTAKEleftin);
+    	piston = new DoubleSolenoid(RobotMap.PCM, RobotMap.INTAKEin, RobotMap.INTAKEout);
     }
     
     public void dropIntake(){
-    	rightPiston.set(DoubleSolenoid.Value.kReverse); //kReverse subject to change
-    	leftPiston.set(DoubleSolenoid.Value.kReverse); 
+    	piston.set(DoubleSolenoid.Value.kReverse); //kReverse subject to change
     }
     
     public DoubleSolenoid.Value getIntake()
     {
-    	return leftPiston.get();
+    	return piston.get();
     }
     
     public void collectCube(double speed) {
@@ -54,8 +51,7 @@ public class CubeIntake extends Subsystem {
  
 
     public void foldIntake() {
-    	rightPiston.set(DoubleSolenoid.Value.kForward);
-    	leftPiston.set(DoubleSolenoid.Value.kForward);
+    	piston.set(DoubleSolenoid.Value.kForward);
 
     }
     

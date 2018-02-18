@@ -29,10 +29,10 @@ public class Drivetrain extends Subsystem {
    public Drivetrain() {
 	   left1 = new Talon(RobotMap.DMTopLeft);
 	   left2 = new Talon(RobotMap.DMMiddleLeft);
-	   left3 = new Talon(RobotMap.DMBottomLeft);
+	//   left3 = new Talon(RobotMap.DMBottomLeft);
 	   right1 = new Talon(RobotMap.DMTopRight);
 	   right2 = new Talon(RobotMap.DMMiddleRight);
-	   right3 = new Talon(RobotMap.DMBottomRight);
+	//   right3 = new Talon(RobotMap.DMBottomRight);
 	   right = new Encoder(RobotMap.DRIVEencoderRA,RobotMap.DRIVEencoderRB, false, Encoder.EncodingType.k4X);
 	   left = new Encoder(RobotMap.DRIVEencoderLA, RobotMap.DRIVEencoderLB, true, Encoder.EncodingType.k4X);
 	   gyro = new AnalogGyro(RobotMap.DRIVEGyro);
@@ -63,14 +63,14 @@ public class Drivetrain extends Subsystem {
    public void rightDrive(double speed) {
 	   right1.set( speed);
 	   right2.set( speed);
-	   right3.set( speed);
+	//   right3.set( speed);
  
    }
    
    public void leftDrive(double speed) {
 	   left1.set( speed);
 	   left2.set(speed);
-	   left3.set( speed);
+	  // left3.set( speed);
 	   
    }
    
