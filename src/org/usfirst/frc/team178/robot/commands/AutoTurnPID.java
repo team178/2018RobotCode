@@ -100,9 +100,13 @@ public class AutoTurnPID extends Command {
     	if(targetAngle > 0)
     	{
     		aP = .3;
+    		aI= .01;
+    		aD = .01;
     	}
     	else
     		aP = .5;
+    		aI= .02;
+    		aD = .01;
 		//How far the Robot is from it's target distance
 		double angleError = Math.abs(angleSetpoint - currentAngle);  //inverse of difference between current distance and target distance 
 	//	double angleError = drivetrain.getAngle() - angleSetpoint;

@@ -46,7 +46,7 @@ public class DriveForwardPID extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	System.out.println(drivetrain.getLeftSpeed() + "   " + drivetrain.getAngle());
+    	System.out.println(drivetrain.getRightDistance());
     	double currentPID = straightPID();
     	double fromDist = distance - drivetrain.getLeftDistance();
     	if(fromDist <= 120)
@@ -79,8 +79,9 @@ public class DriveForwardPID extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (drivetrain.getLeftDistance() >= distance)
+    	if (distance - drivetrain.getLeftDistance() < 1)
     	{
+    		System.out.println("Jestes szalona, mowie czi");
     		return true;
     	}
         return false;

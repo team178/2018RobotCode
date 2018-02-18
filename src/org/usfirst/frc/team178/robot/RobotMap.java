@@ -71,4 +71,7 @@ public class RobotMap {
 	public static int extendretractOUT = 6; //PCM
 	public static int extendretractIN = 7; //PCM
 
+	public enum SubsystemIndex {
+		ALL, BUMPER
+	}
 }
