@@ -39,13 +39,14 @@ public class OI {
 	
 	public OI () { //when pressed is up or down, while held is out or in
 		 buttonY.whileHeld(new ShootScale());
-		 buttonA.whenPressed(new DropIntake());
-		 buttonX.whileHeld(new ShootSwitch());
+		 buttonA.whenPressed(new RaiseRamp());
 		 buttonB.whenPressed(new LowerRamp());
+		 buttonX.whileHeld(new ShootSwitch());
 		 lBumper.whileHeld(new CollectCube());
 		 rBumper.whileHeld(new ControlRampIntake());
-		 startButton.whenPressed(new DropIntake());
-		 backButton.whenPressed(new FoldIntake());
+		 button5.whenPressed(new DropIntake());
+		 button2.whenPressed(new FoldIntake());
+		 
 		 
 		 
 
