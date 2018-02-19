@@ -27,8 +27,8 @@ public class ShootSwitch extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	ramp.shootCube(1);
-    ramp.bringCubeIn(1);
+    	ramp.shootCube(0.5);
+    ramp.bringCubeIn(0.5);
     }
 
     // Make this return true when this Command no longer needs to run execute()

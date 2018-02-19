@@ -48,7 +48,7 @@ public class DriveForwardPID extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
   //  	System.out.println(drivetrain.getRightDistance());
-    	System.out.println(drivetrain.getRightDistance());
+    	//System.out.println(drivetrain.getRightDistance());
     	double currentPID = straightPID();
     	double fromDist = distance - drivetrain.getLeftDistance();
     	//System.out.println("Execute:" + (distance - Math.abs(drivetrain.getLeftDistance())));
@@ -87,7 +87,8 @@ public class DriveForwardPID extends Command {
     	{
     //		System.out.println(drivetrain.getLeftDistance());
     //		System.out.println("I'm not finished!");
-    		
+
+    		System.out.println("Finished driving");
     		return true;
     	} else {
     //		System.out.println("I'm actually finished!");
