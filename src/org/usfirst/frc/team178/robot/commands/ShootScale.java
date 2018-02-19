@@ -25,13 +25,11 @@ public class ShootScale extends Command {
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	System.out.println(ramp.getDistance());
-    	//ramp.bringCubeIn(.75);
-  // 	if (ramp.getDistance() <= 1) {
-   //		System.out.println("covered");
-		//ramp.punchCube();	
-   		//ramp.shootCube(1);
-    //	}
+    	ramp.bringCubeIn(.75);
+   // 	if (ultrasonic.getDistance() <= 1) {
+    		ramp.shootCube(1);
+    	//}
+    //		ramp.punchCube();
     }
 
     // Make this return true when this Command no longer needs to run execute()
