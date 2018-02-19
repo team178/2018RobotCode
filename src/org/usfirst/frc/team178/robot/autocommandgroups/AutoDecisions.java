@@ -7,6 +7,7 @@ import org.usfirst.frc.team178.robot.commands.AutoTurn;
 
 import org.usfirst.frc.team178.robot.commands.DriveForward;
 import org.usfirst.frc.team178.robot.commands.DriveForwardPID;
+import org.usfirst.frc.team178.robot.commands.GyroDriveForward;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
