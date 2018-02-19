@@ -26,7 +26,7 @@ public class AutoDecisions extends CommandGroup {
     			{
     				//addSequential(new PutInVault());
     			//	addSequential(new AutoTurnPID(90,.3));
-    				addSequential(new DriveForwardPID(50,.5));
+    				addSequential(new AutoTurn(45, .5));
     				System.out.println("Lets turn plz");
     				//addSequential(new DriveForwardPID(100, .5));
 

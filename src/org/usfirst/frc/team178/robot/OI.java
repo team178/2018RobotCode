@@ -44,6 +44,8 @@ public class OI {
 		 buttonB.whenPressed(new LowerRamp());
 		 lBumper.whileHeld(new CollectCube());
 		 rBumper.whileHeld(new ControlRampIntake());
+		 startButton.whenPressed(new DropIntake());
+		 backButton.whenPressed(new FoldIntake());
 		 
 		 
 

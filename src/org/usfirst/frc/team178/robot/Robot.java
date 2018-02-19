@@ -30,7 +30,6 @@ public class Robot extends IterativeRobot {
 	public static Pneumatics pneumatics;
 	public static AnalogGyro gyro;
 
-	public static Ultrasonic ultrasonic;
 
 	Command autonomousCommand;
 	
@@ -69,7 +68,6 @@ public class Robot extends IterativeRobot {
 		cubeintake = new CubeIntake();
 		ramp = new Ramp();
 		climber = new Climber();
-		ultrasonic = new Ultrasonic();
 		pneumatics = new Pneumatics();
 		oi = new OI();
 		
