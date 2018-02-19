@@ -2,22 +2,29 @@ package org.usfirst.frc.team178.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team178.robot.*;
+import org.usfirst.frc.team178.robot.RobotMap.SubsystemIndex;
 import org.usfirst.frc.team178.robot.subsystems.Climber;
+import org.usfirst.frc.team178.robot.subsystems.LightsSubsystem;
 /**
  *
  */
 public class Climb extends Command {
 
     Climber climber;
+    LightsSubsystem lights;
 	
 	public Climb() {
+		
     	requires(Robot.climber);
+    	requires(Robot.lights);
     	
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	climber = Robot.climber;
+    	lights = Robot.lights;
+    	lights.sendMessage(SubsystemIndex.ALL, "u");
     }
 
     // Called repeatedly when this Command is scheduled to run

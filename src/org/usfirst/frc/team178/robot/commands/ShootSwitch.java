@@ -1,11 +1,11 @@
 package org.usfirst.frc.team178.robot.commands;
-
+import org.usfirst.frc.team178.robot.RobotMap.SubsystemIndex;
 import org.usfirst.frc.team178.robot.OI;
 import org.usfirst.frc.team178.robot.Robot;
 import org.usfirst.frc.team178.robot.subsystems.Ramp;
 
 import edu.wpi.first.wpilibj.command.Command;
-
+import org.usfirst.frc.team178.robot.subsystems.*;
 /**
  *
  */
@@ -13,9 +13,12 @@ public class ShootSwitch extends Command {
 	Ramp ramp;
 	double time;
 	double yVal;
+	OI oi;
+	LightsSubsystem lights;
     public ShootSwitch() {
     	time = 100000000;
     	requires (Robot.ramp);
+    	requires (Robot.lights);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -23,6 +26,9 @@ public class ShootSwitch extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	ramp = Robot.ramp;
+    	oi = Robot.oi;
+    	lights = Robot.lights;
+    	lights.sendMessage(SubsystemIndex.ALL, "s");
     }
 
     // Called repeatedly when this Command is scheduled to run
