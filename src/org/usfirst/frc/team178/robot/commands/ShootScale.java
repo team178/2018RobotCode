@@ -1,7 +1,6 @@
 package org.usfirst.frc.team178.robot.commands;
 
 import org.usfirst.frc.team178.robot.Robot;
-import org.usfirst.frc.team178.robot.RobotMap.SubsystemIndex;
 import org.usfirst.frc.team178.robot.subsystems.Ramp;
 import org.usfirst.frc.team178.robot.subsystems.Ultrasonic;
 
@@ -19,18 +18,12 @@ public class ShootScale extends Command {
     	requires(Robot.ramp);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.lights);
-    	
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	ramp = Robot.ramp;
     	ultrasonic = Robot.ultrasonic;
-    	lights = Robot.lights;
-    	lights.sendMessage(SubsystemIndex.ALL, "u")
-    	
-    	
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
