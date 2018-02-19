@@ -20,7 +20,7 @@ public class CollectCube extends Command {
 	
     public CollectCube() {
     	requires(Robot.cubeintake);
-    	requires(Robot.lights);
+   // 	requires(Robot.lights);
     	
     }
 
@@ -28,9 +28,9 @@ public class CollectCube extends Command {
     protected void initialize() {
     	oi = Robot.oi;
     	cubeintake = Robot.cubeintake;
-    	lights = Robot.lights;
+   // 	lights = Robot.lights;
     	
-    	lights.sendMessage(SubsystemIndex.ALL, "c");
+   // 	lights.sendMessage(SubsystemIndex.ALL, "c");
     	
     	
     }

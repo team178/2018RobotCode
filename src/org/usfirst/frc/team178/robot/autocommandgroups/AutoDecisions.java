@@ -25,7 +25,7 @@ public class AutoDecisions extends CommandGroup {
     			if(userChoice[1])
     			{
     				addSequential(new DriveForwardPID(100, .5));
-    				addSequential(new AutoTurn(180, .5));
+    				addSequential(new AutoTurn(180, .2));
     				addSequential(new DriveForwardPID(100, .5));
     				addSequential(new AutoVaultDrop(.5));
 
