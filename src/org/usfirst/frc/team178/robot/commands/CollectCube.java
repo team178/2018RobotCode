@@ -1,7 +1,9 @@
 package org.usfirst.frc.team178.robot.commands;
 
+import org.usfirst.frc.team178.robot.subsystems.*;
 import org.usfirst.frc.team178.robot.OI;
 import org.usfirst.frc.team178.robot.Robot;
+import org.usfirst.frc.team178.robot.RobotMap.SubsystemIndex;
 import org.usfirst.frc.team178.robot.subsystems.CubeIntake;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -14,16 +16,24 @@ public class CollectCube extends Command {
 
 	CubeIntake cubeintake;
 	OI oi;
+	LightsSubsystem  lights; 
 	double yVal;
 	
     public CollectCube() {
     	requires(Robot.cubeintake);
+    	requires(Robot.lights);
+    	
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	oi = Robot.oi;
     	cubeintake = Robot.cubeintake;
+    	lights = Robot.lights;
+    	
+    	lights.sendMessage(SubsystemIndex.ALL, "c");
+    	
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run

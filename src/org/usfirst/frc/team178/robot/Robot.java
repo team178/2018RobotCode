@@ -29,6 +29,8 @@ public class Robot extends IterativeRobot {
 	public static Climber climber;
 	public static Pneumatics pneumatics;
 	public static AnalogGyro gyro;
+	public static LightsSubsystem lights;
+	
 
 
 	Command autonomousCommand;
