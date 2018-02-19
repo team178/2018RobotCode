@@ -71,13 +71,13 @@ public class Robot extends IterativeRobot {
 		pneumatics = new Pneumatics();
 		oi = new OI();
 		
-		UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(0);
+	/*	UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(0);
 		camera1.setResolution(320, 240);
 		camera1.setFPS(25);
 		
 		UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture(1);
 		camera2.setResolution(320, 240);
-		camera2.setFPS(25);
+		camera2.setFPS(25); */
 	
 		autoChooser.addObject("Testing", new Testing());
 		SmartDashboard.putData(autoChooser);

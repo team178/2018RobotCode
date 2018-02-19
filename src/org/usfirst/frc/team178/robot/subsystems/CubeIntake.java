@@ -39,13 +39,9 @@ public class CubeIntake extends Subsystem {
     	left.set(speed);
     }
     
-    public void ejectCube(/*double speed*/) {
-    	//right1.set(ControlMode.PercentOutput, -speed);
-    	//right2.set(ControlMode.PercentOutput, -speed);
-    	//left1.set(ControlMode.PercentOutput, speed);
-    	//left2.set(ControlMode.PercentOutput, speed);
-    	// rightPiston.set(DoubleSolenoid.Value.kReverse); //kReverse subject to change
-    	//leftPiston.set(DoubleSolenoid.Value.kReverse); 
+    public void ejectCube(double speed) {
+    	left.set(speed);
+    	right.set(-speed);
     }
     
  
