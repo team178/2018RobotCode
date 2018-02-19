@@ -47,7 +47,7 @@ public class JoystickDrive extends Command {
 		else {
 			drivetrain.drive(0,0);
 		}
-		System.out.println(oi.getY());
+	//	System.out.println(oi.getY());
     }
 
     // Make this return true when this Command no longer needs to run execute()

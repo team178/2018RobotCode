@@ -2,7 +2,6 @@ package org.usfirst.frc.team178.robot.commands;
 
 import org.usfirst.frc.team178.robot.Robot;
 import org.usfirst.frc.team178.robot.subsystems.Ramp;
-import org.usfirst.frc.team178.robot.subsystems.Ultrasonic;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -11,7 +10,6 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class ShootScale extends Command {
 	Ramp ramp;
-	Ultrasonic ultrasonic;
 	double time;
     public ShootScale() {
     	time = 100000000;
@@ -23,15 +21,15 @@ public class ShootScale extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	ramp = Robot.ramp;
-    	ultrasonic = Robot.ultrasonic;
+//    	ultrasonic = Robot.ultrasonic;
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	ramp.bringCubeIn(.75);
-    	if (ultrasonic.getDistance() <= 1) {
+   // 	if (ultrasonic.getDistance() <= 1) {
     		ramp.shootCube(1);
-    		ramp.punchCube();
-    	}
+    	//}
+    //		ramp.punchCube();
     }
 
     // Make this return true when this Command no longer needs to run execute()
