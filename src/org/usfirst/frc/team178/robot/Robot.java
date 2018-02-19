@@ -29,7 +29,7 @@ public class Robot extends IterativeRobot {
 	public static Climber climber;
 	public static Pneumatics pneumatics;
 	public static AnalogGyro gyro;
-
+    public static LightsSubsystem lights;
 	public static Ultrasonic ultrasonic;
 
 	Command autonomousCommand;
@@ -72,6 +72,7 @@ public class Robot extends IterativeRobot {
 		ultrasonic = new Ultrasonic();
 		pneumatics = new Pneumatics();
 		oi = new OI();
+		lights = new LightsSubsystem();
 		
 		UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(0);
 		camera1.setResolution(320, 240);
