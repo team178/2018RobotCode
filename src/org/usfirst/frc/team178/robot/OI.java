@@ -46,6 +46,8 @@ public class OI {
 		 rBumper.whileHeld(new ControlRampIntake());
 		 button5.whenPressed(new DropIntake());
 		 button2.whenPressed(new FoldIntake());
+		 buttonY.whileHeld(new Climb());
+		 buttonA.whileHeld(new RotateArm());
 		 
 		 
 		 
