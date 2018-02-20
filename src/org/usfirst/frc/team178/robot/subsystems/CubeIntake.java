@@ -2,8 +2,8 @@ package org.usfirst.frc.team178.robot.subsystems;
 import org.usfirst.frc.team178.robot.subsystems.*;
 import org.usfirst.frc.team178.robot.RobotMap;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+//import com.ctre.phoenix.motorcontrol.ControlMode;
+//import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -39,13 +39,9 @@ public class CubeIntake extends Subsystem {
     	left.set(speed);
     }
     
-    public void ejectCube(/*double speed*/) {
-    	//right1.set(ControlMode.PercentOutput, -speed);
-    	//right2.set(ControlMode.PercentOutput, -speed);
-    	//left1.set(ControlMode.PercentOutput, speed);
-    	//left2.set(ControlMode.PercentOutput, speed);
-    	// rightPiston.set(DoubleSolenoid.Value.kReverse); //kReverse subject to change
-    	//leftPiston.set(DoubleSolenoid.Value.kReverse); 
+    public void ejectCube(double speed) {
+    	left.set(speed);
+    	right.set(-speed);
     }
     
  

@@ -14,6 +14,10 @@ import edu.wpi.first.wpilibj.Talon;
  *
  */
 public class Drivetrain extends Subsystem {
+	public static final double diameter = 6;
+	public static final double gearRatio = 3; //figure out for main bot (5.95:1?)
+	public static final double circumference = diameter * Math.PI;
+	public static final double countsPerRevolution = 1024;
 	
    public static Talon left1;
    public static Talon left2;
@@ -37,9 +41,8 @@ public class Drivetrain extends Subsystem {
 	   left = new Encoder(RobotMap.DRIVEencoderLA, RobotMap.DRIVEencoderLB, true, Encoder.EncodingType.k4X);
 	   gyro = new AnalogGyro(RobotMap.DRIVEGyro);
 
-	   
-	   double dpp = 3 * ((6 * Math.PI) / 1024); // distance per pulse
-		// gearRatio * (circumference/counts per revolution)
+	  
+	   double dpp = gearRatio * (circumference/countsPerRevolution);
 	   right.setDistancePerPulse(dpp); // must be changed for both right and left
 	   left.setDistancePerPulse(dpp);   
    }

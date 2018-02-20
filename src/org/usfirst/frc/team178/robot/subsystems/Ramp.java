@@ -2,6 +2,7 @@ package org.usfirst.frc.team178.robot.subsystems;
 
 import org.usfirst.frc.team178.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Ultrasonic;
@@ -18,7 +19,7 @@ public class Ramp extends Subsystem {
 	public static Talon right2;
 	public static DoubleSolenoid shootingPiston;
 	public static DoubleSolenoid extendretract;
-	public static Ultrasonic ultrasonic;
+	public static AnalogInput ultrasonic;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
@@ -29,6 +30,7 @@ public class Ramp extends Subsystem {
 		right2 = new Talon(RobotMap.RAMPright2);
 		shootingPiston = new DoubleSolenoid(RobotMap.PCM, RobotMap.shootingPistonOUT, RobotMap.shootingPistonIN);
 		extendretract = new DoubleSolenoid(RobotMap.PCM, RobotMap.LiftShooter, RobotMap.DropShooter);
+		ultrasonic = new AnalogInput(RobotMap.ULTRASONICINPUT);
 	}
 	
 	public void bringCubeIn(double speed) {
@@ -66,6 +68,10 @@ public class Ramp extends Subsystem {
 	
 	public void lowerRamp() {
 		extendretract.set(DoubleSolenoid.Value.kReverse);
+	}
+	
+	public double getDistance() {
+		return ultrasonic.getVoltage();
 	}
 	
     public void initDefaultCommand() {
