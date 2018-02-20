@@ -37,10 +37,10 @@ public class OI {
 	public Button backButton = new JoystickButton(xbox, 7);
 	public Button startButton = new JoystickButton(xbox, 8);
 	
-	public OI () { //when pressed is up or down, while held is out or in
-		 buttonY.whileHeld(new ShootScale());
-		 buttonA.whenPressed(new RaiseRamp());
-		 buttonB.whenPressed(new LowerRamp());
+	public OI () { //when pressed is up or down, while held is out or information
+	//	 buttonY.whileHeld(new ShootScale()); NOTE: Can't shoot for scale
+	//	 buttonA.whenPressed(new RaiseRamp());
+	//	 buttonB.whenPressed(new LowerRamp());
 		 buttonX.whileHeld(new ShootSwitch());
 		 lBumper.whileHeld(new CollectCube());
 		 rBumper.whileHeld(new ControlRampIntake());

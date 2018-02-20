@@ -37,10 +37,13 @@ public class CollectCube extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	rightStickY = oi.getXboxRightY();
-    	leftStickY = oi.getXboxLeftY();
-    	cubeintake.collectCubeRight(rightStickY);
-    	cubeintake.collectCubeLeft(leftStickY);
+    	System.out.println(cubeintake.getLeftUltrasonic());
+    	System.out.println(cubeintake.getRightUltrasonic());
+    //	rightStickY = oi.getXboxRightY();
+    //	leftStickY = oi.getXboxLeftY();
+    //	cubeintake.collectCubeRight(rightStickY);
+    //	cubeintake.collectCubeLeft(leftStickY);
+    	//Temporarily commented out for testing purposes
     }
 
     // Make this return true when this Command no longer needs to run execute()

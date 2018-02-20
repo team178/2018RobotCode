@@ -37,11 +37,8 @@ public class Robot extends IterativeRobot {
 	
 	public static SendableChooser<String> botLocation = new SendableChooser<>();
 	public static SendableChooser<String> switchChooser = new SendableChooser<>();
-	public static SendableChooser<String> scaleChooser = new SendableChooser<>();
 	public static SendableChooser<String> goForward = new SendableChooser<>();
-	public static SendableChooser<String> pickUpSecondBlock = new SendableChooser<>();
 	public static SendableChooser<String> vault = new SendableChooser<>();
-	public static SendableChooser<Command> autoChooser = new SendableChooser<>();
 	
 	public static boolean goForwardChoice;
 	public static boolean vaultChooser;
@@ -80,43 +77,26 @@ public class Robot extends IterativeRobot {
 		UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture(1);
 		camera2.setResolution(320, 240);
 		camera2.setFPS(25); */
-	
-		autoChooser.addObject("Testing", new Testing());
-		SmartDashboard.putData(autoChooser);
 		
 		botLocation.addObject("Left", "Left");
 		botLocation.addObject("Middle", "Middle");
 		botLocation.addObject("Right", "Right");
 		
 		SmartDashboard.putData("AutoLocation", botLocation);
-		chooser.addObject("Testing", new Testing());
-		SmartDashboard.putData("Auto mode", chooser);
 		
 		switchChooser.addObject("Yes", "Yes");
 		switchChooser.addObject("No", "No");
-		switchChooser.addDefault("No", "No");
-
-		scaleChooser.addObject("Yes", "Yes");
-		scaleChooser.addObject("No", "No");
-		scaleChooser.addDefault("No", "No");
 		
 		goForward.addObject("Yes", "Yes");
 		goForward.addObject("No", "No");
-		goForward.addDefault("No", "No");
 		SmartDashboard.putData("Drive Forward?", goForward);
-		
-		pickUpSecondBlock.addDefault("No", "No");
-		pickUpSecondBlock.addObject("Yes", "Yes");
 		
 
 		vault.addObject("Yes", "Yes");
 		vault.addObject("No", "No");
-		vault.addDefault("No", "No");
 
 		SmartDashboard.putData("Go for vault?", vault);
 		SmartDashboard.putData("Go for switch?", switchChooser);
-		SmartDashboard.putData("Go for scale?", scaleChooser);
-		SmartDashboard.putData("Second block?", pickUpSecondBlock);
 		
 		System.out.println("Hello");
 	}
@@ -125,7 +105,11 @@ public class Robot extends IterativeRobot {
 	
 
 	public static String returnSelection() {
-		return botLocation.getSelected();
+		if(botLocation.getSelected() == null) {
+			return "None";
+		} else {
+			return botLocation.getSelected();
+		}
 		
 	}
 	/**
@@ -141,25 +125,35 @@ public class Robot extends IterativeRobot {
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
 	}
-	
-	boolean[] userChoice = new boolean[5];
+	String[] choices = new String[3];
+	boolean[] userChoice = new boolean[3];
 	char[] fieldConfig = new char[3];
 	
 	public void getAutoSelections() {
-		//gameData = DriverStation.getInstance().getGameSpecificMessage();\
-		gameData = "RLR"; //for testing purposes
-		
+		choices[0] = goForward.getSelected();
+		choices[1] = vault.getSelected();
+		choices[2] = switchChooser.getSelected();
+			//	gameData = DriverStation.getInstance().getGameSpecificMessage();
+		gameData = "RLR";
+		for(int i = 0; i < choices.length; i++) {
+			if(choices[i] == null) {
+				choices[i] = "No";
+			}
+		}
 		//Array of the choices driver can make before auto
-		userChoice[0] = (goForward.getSelected()).equals("Yes");
-		userChoice[1] = (vault.getSelected()).equals("Yes");
-		userChoice[2] = ((switchChooser.getSelected()).equals("Yes"));
-		userChoice[3] = (scaleChooser.getSelected()).equals("Yes");
-		userChoice[4] = (pickUpSecondBlock.getSelected()).equals("Yes");
+		userChoice[0] = (choices[0].equals("Yes"));
+		userChoice[1] = (choices[1].equals("Yes"));
+		userChoice[2] = (choices[2].equals("Yes"));
 		
 		//Predetermined field positions/aspects
 		fieldConfig[0] = gameData.charAt(0); //this is switch 
 		fieldConfig[1] = gameData.charAt(1);  //this is scale
     	fieldConfig[2] = returnSelection().charAt(0); //starting position
+    	
+    	if(fieldConfig[2] != 'M' && fieldConfig[2] != 'L' && fieldConfig[2] != 'R') {
+    		fieldConfig[2] = 'd';
+    		userChoice[0] = false;
+    	}
 
 		
 	}
