@@ -6,13 +6,11 @@ import org.usfirst.frc.team178.robot.subsystems.Ramp;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ *THIS CLASS IS CURRENTLY NOT IN USE, BUT DO NOT DELETE
  */
-public class ShootScale extends Command {
+public class ZLowerRamp extends Command {
 	Ramp ramp;
-	double time;
-    public ShootScale() {
-    	time = 100000000;
+    public ZLowerRamp() {
     	requires(Robot.ramp);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -21,40 +19,25 @@ public class ShootScale extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	ramp = Robot.ramp;
-//    	ultrasonic = Robot.ultrasonic;
     }
+
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	//ramp.bringCubeIn(.75);
-   // 	if (ultrasonic.getDistance() <= 1) {
-    		ramp.shootCube(1);
-    	//}
-    		ramp.punchCube();
+    	//ramp.lowerRamp();
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	double passedTime = timeSinceInitialized();
-    	if (passedTime >= time) {
-    		return true;
-    	}
-    	else {
-    		return false;
-    	}
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	ramp.stopLoading();
-    	ramp.stopShooting();
-    	ramp.resetPiston();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	ramp.stopLoading();
-    	ramp.stopShooting();
-    	ramp.resetPiston();
     }
 }
