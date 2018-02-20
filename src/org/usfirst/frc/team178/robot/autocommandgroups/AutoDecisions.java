@@ -3,9 +3,9 @@ package org.usfirst.frc.team178.robot.autocommandgroups;
 
 import org.usfirst.frc.team178.robot.commands.AutoTurnPID;
 import org.usfirst.frc.team178.robot.commands.AutoVaultDrop;
-import org.usfirst.frc.team178.robot.commands.AutoTurnBackup;
+import org.usfirst.frc.team178.robot.commands.GhettoTurn;
 
-import org.usfirst.frc.team178.robot.commands.DriveForwardBackup;
+import org.usfirst.frc.team178.robot.commands.GhettoDriveForward;
 import org.usfirst.frc.team178.robot.commands.DriveForwardPID;
 import org.usfirst.frc.team178.robot.commands.GyroDriveForward;
 
