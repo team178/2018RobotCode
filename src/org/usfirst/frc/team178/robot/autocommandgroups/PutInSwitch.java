@@ -10,12 +10,12 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class PutInSwitch extends CommandGroup {
 
     public PutInSwitch() {
-    	addSequential(new DriveForward(145, 0.25));
+    	addSequential(new DriveForwardBackup(145, 0.25));
     	if((Robot.botLocation).getSelected().equals("Left")) {
-    		addSequential(new AutoTurn(45, 0.25));
+    		addSequential(new AutoTurnBackup(45, 0.25));
     		addSequential(new ShootSwitch());
     	} else {
-    		addSequential(new AutoTurn(-45, 0.25));
+    		addSequential(new AutoTurnBackup(-45, 0.25));
     		addSequential(new ShootSwitch());
     		}
     }

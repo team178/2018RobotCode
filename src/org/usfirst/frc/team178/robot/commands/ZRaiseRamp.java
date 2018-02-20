@@ -6,11 +6,11 @@ import org.usfirst.frc.team178.robot.subsystems.Ramp;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ *THIS CLASS IS CURRENTLY NOT IN USE, BUT DO NOT DELETE
  */
-public class RaiseRamp extends Command {
+public class ZRaiseRamp extends Command {
 	Ramp ramp;
-    public RaiseRamp() {
+    public ZRaiseRamp() {
     	requires(Robot.ramp);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -23,7 +23,7 @@ public class RaiseRamp extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	ramp.raiseRamp();
+    	//ramp.raiseRamp();
     }
 
     // Make this return true when this Command no longer needs to run execute()

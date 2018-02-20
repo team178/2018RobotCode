@@ -12,13 +12,13 @@ import org.usfirst.frc.team178.robot.subsystems.Drivetrain;
 /**
  *
  */
-public class AutoTurn extends Command {
+public class AutoTurnBackup extends Command {
 	OI oi;
 	Drivetrain drivetrain;
 	double lspeed, rspeed, targetAngle, actualAngle;
 	
 	
-    public AutoTurn(double tAngle, double speed) {
+    public AutoTurnBackup(double tAngle, double speed) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     requires(Robot.drivetrain);
