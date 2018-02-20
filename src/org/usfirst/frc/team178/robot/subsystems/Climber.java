@@ -24,7 +24,7 @@ public class Climber extends Subsystem {
 	}
 	
 	public void rotate(double speed) {
-		rotationMotor.set(speed);
+		rotationMotor.set(-speed);
 	}
 	
 	public void climb(double speed) {
