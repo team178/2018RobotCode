@@ -28,9 +28,11 @@ public class Ramp extends Subsystem {
 		left2 = new Talon(RobotMap.RAMPleft2);
 		right1 = new Talon(RobotMap.RAMPright1);
 		right2 = new Talon(RobotMap.RAMPright2);
+	/*
 		shootingPiston = new DoubleSolenoid(RobotMap.PCM, RobotMap.shootingPistonOUT, RobotMap.shootingPistonIN);
 		extendretract = new DoubleSolenoid(RobotMap.PCM, RobotMap.LiftShooter, RobotMap.DropShooter);
 		ultrasonic = new AnalogInput(RobotMap.ULTRASONICINPUT);
+		*/
 	}
 	
 	public void bringCubeIn(double speed) {
@@ -42,16 +44,6 @@ public class Ramp extends Subsystem {
 		left2.set(speed);
 		right2.set(-speed);
 	}
-	
-	public void punchCube() {
-
-		shootingPiston.set(DoubleSolenoid.Value.kReverse);
-	}
-	
-	public void resetPiston() {
-		shootingPiston.set(DoubleSolenoid.Value.kForward);
-	}
-	
 	public void stopLoading() {
 		left1.set(0);
 		right1.set(0);
@@ -62,6 +54,20 @@ public class Ramp extends Subsystem {
 		right2.set(0);
 	}
 	
+	public double getDistance() {
+		return ultrasonic.getVoltage();
+	}
+	//Stuff to go for scale, do not delete
+	/*
+	public void punchCube() {
+
+		shootingPiston.set(DoubleSolenoid.Value.kReverse);
+	}
+	
+	public void resetPiston() {
+		shootingPiston.set(DoubleSolenoid.Value.kForward);
+	}
+	
 	public void raiseRamp() {
 		extendretract.set(DoubleSolenoid.Value.kForward);
 	}
@@ -69,10 +75,7 @@ public class Ramp extends Subsystem {
 	public void lowerRamp() {
 		extendretract.set(DoubleSolenoid.Value.kReverse);
 	}
-	
-	public double getDistance() {
-		return ultrasonic.getVoltage();
-	}
+	*/
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.

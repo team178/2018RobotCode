@@ -40,9 +40,7 @@ public class CollectCube extends Command {
     	System.out.println(cubeintake.getLeftUltrasonic());
     	System.out.println(cubeintake.getRightUltrasonic());
     //	rightStickY = oi.getXboxRightY();
-    //	leftStickY = oi.getXboxLeftY();
     //	cubeintake.collectCubeRight(rightStickY);
-    //	cubeintake.collectCubeLeft(leftStickY);
     	//Temporarily commented out for testing purposes
     }
 
