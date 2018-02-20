@@ -14,10 +14,10 @@ public class PutInScale extends CommandGroup {
     	addSequential(new DriveForwardBackup(300, 0.25));
     	if((Robot.botLocation).getSelected().equals("Left")) {
     		addSequential(new AutoTurnBackup(45, 0.25));
-    		addSequential(new ZShootScale());
+    		addSequential(new ShootScale());
     	} else {
     		addSequential(new AutoTurnBackup(-45, 0.25));
-    		addSequential(new ZShootScale());
+    		addSequential(new ShootScale());
     		}
     	
     	
