@@ -13,6 +13,7 @@ public class RotateArm extends Command {
 	double time;
     public RotateArm() {
     	requires(Robot.climber);
+    	time = 100000000;
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }

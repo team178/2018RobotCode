@@ -40,12 +40,13 @@ public class CollectCube extends Command {
     //	System.out.println("L  " + cubeintake.getLeftUltrasonic());
     	//System.out.println("R  " + cubeintake.getRightUltrasonic());
     	rightStickY = oi.getXboxRightY();
-    	//leftStickY = oi.getXboxLeftY();
+    	leftStickY = oi.getXboxLeftY();
     	//if(cubeintake.getLeftUltrasonic() < 1.0 || cubeintake.getRightUltrasonic() < 1.0) {
     		//cubeintake.collectCubeLeft(leftStickY);
     	//} else {
-    		cubeintake.collectCubeBoth(rightStickY);
-    		//cubeintake.collectCubeLeft(leftStickY);
+    		//cubeintake.collectCubeRight(rightStickY);
+    		cubeintake.collectCubeLeft(leftStickY);
+    		cubeintake.collectCubeRight(rightStickY);
     	}
 //    }
 
