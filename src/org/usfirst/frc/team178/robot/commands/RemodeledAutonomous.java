@@ -32,7 +32,7 @@ public class RemodeledAutonomous extends Command {
     		if (RobotPosition == 'M') {
     			if (Robot.vaultChooser) {
     				new GyroDriveForward(125, 0.75);
-    				new AutoTurnBackup(180, 0.75);
+    				new GhettoTurn(180, 0.75);
     				new GyroDriveForward(125,0.75);
     				//new AutoDropCube();
     			} else {
@@ -46,10 +46,10 @@ public class RemodeledAutonomous extends Command {
     					if(RobotPosition == SwitchSide) {
     						if(RobotPosition == 'L') {
     							new GyroDriveForward(320, 0.75);
-    							new AutoTurnBackup(45, 0.75);
+    							new GhettoTurn(45, 0.75);
     						} else {
     							new GyroDriveForward(320, 0.75);
-    							new AutoTurnBackup(-45, 0.75);
+    							new GhettoTurn(-45, 0.75);
     						}
     						
     					} else {
@@ -60,10 +60,10 @@ public class RemodeledAutonomous extends Command {
     				if(RobotPosition == ScaleSide) {
     					if(RobotPosition == 'L') {
     						new GyroDriveForward(125, 0.75);
-    						new AutoTurnBackup(45,0.75);
+    						new GhettoTurn(45,0.75);
     					} else {
     						new GyroDriveForward(125, 0.75);
-    						new AutoTurnBackup(-45, 0.75);
+    						new GhettoTurn(-45, 0.75);
     					}
     				} else {
     					new GyroDriveForward(125, 0.75);

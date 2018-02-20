@@ -9,13 +9,13 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class DriveForwardBackup extends Command {
+public class GhettoDriveForward extends Command {
 	Drivetrain drivetrain;
 	OI oi;
 	double distance, robotSpeed, adjustedSpeed;
 	
 
-    public DriveForwardBackup(double dist, double spd) {
+    public GhettoDriveForward(double dist, double spd) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.drivetrain);
