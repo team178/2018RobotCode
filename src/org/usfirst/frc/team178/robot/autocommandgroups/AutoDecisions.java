@@ -3,6 +3,7 @@ package org.usfirst.frc.team178.robot.autocommandgroups;
 
 import org.usfirst.frc.team178.robot.commands.AutoTurnPID;
 import org.usfirst.frc.team178.robot.commands.AutoVaultDrop;
+import org.usfirst.frc.team178.robot.commands.DriveBackwards;
 import org.usfirst.frc.team178.robot.commands.AutoTurn;
 
 import org.usfirst.frc.team178.robot.commands.DriveForward;
@@ -25,12 +26,7 @@ public class AutoDecisions extends CommandGroup {
     		{
     			if(userChoice[1])
     			{
-    				addSequential(new DriveForwardPID(100, .5));
     				addSequential(new AutoTurnPID(90, .3));
-    				addSequential(new DriveForwardPID(50, .5));
-    				addSequential(new AutoTurnPID(90, .3));
-    				addSequential(new DriveForwardPID(100, .5));
-    				//addSequential(new AutoVaultDrop(.5));
 
     			}
 
