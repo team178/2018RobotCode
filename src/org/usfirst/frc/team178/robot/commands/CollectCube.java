@@ -16,7 +16,7 @@ public class CollectCube extends Command {
 	CubeIntake cubeintake;
 	OI oi;
 	LightsSubsystem  lights; 
-	double yVal;
+	double rightStickY, leftStickY;
 	
     public CollectCube() {
     	requires(Robot.cubeintake);
@@ -37,8 +37,10 @@ public class CollectCube extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	yVal = oi.getXBoxY();
-    	cubeintake.collectCube(yVal);
+    	rightStickY = oi.getXboxRightY();
+    	leftStickY = oi.getXboxLeftY();
+    	cubeintake.collectCubeRight(rightStickY);
+    	cubeintake.collectCubeLeft(leftStickY);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -55,13 +57,12 @@ public class CollectCube extends Command {
     // Called once after isFinished returns true
     protected void end() {
 
-    	cubeintake.collectCube(0);
-    	/*cubeintake.foldIntake();*/
+    	cubeintake.collectCubeLeft(0);
+    	cubeintake.collectCubeRight(0);
     }
-
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
+    
     protected void interrupted() {
-    	cubeintake.collectCube(0);
+    	cubeintake.collectCubeLeft(0);
+    	cubeintake.collectCubeRight(0);
     }
 }

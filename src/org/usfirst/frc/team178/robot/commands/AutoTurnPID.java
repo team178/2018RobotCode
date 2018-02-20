@@ -12,22 +12,15 @@ import edu.wpi.first.wpilibj.command.Command;
 public class AutoTurnPID extends Command {
 	OI oi;
 	Drivetrain drivetrain;
-	double lspeed, rspeed, targetAngle, actualAngle;
+	double robotSpeed, targetAngle, actualAngle;
 	double angleSetpoint, angleIntegral, previousAngle, angleDerivative, aP= 1, aI= 0.01, aD = 0.01;
-	final double minSpeed = .1;
-	double lastSpeedL, lastSpeedR;
 	static int counter;
 	
 	
     public AutoTurnPID(double tAngle, double speed) {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     requires(Robot.drivetrain);
     targetAngle = tAngle;
-    lspeed = speed;
-    rspeed = speed;
-    lastSpeedL = speed;
-    lastSpeedR = speed;
+    robotSpeed = speed;
     }
 
     // Called just before this Command runs the first time
@@ -35,10 +28,7 @@ public class AutoTurnPID extends Command {
     	oi = Robot.oi;
     	drivetrain = Robot.drivetrain;
     	drivetrain.resetGyro();
-    	lastSpeedL = lspeed;
-    	lastSpeedR = rspeed;
     	counter = 0;
-    	
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -48,18 +38,13 @@ public class AutoTurnPID extends Command {
     	double currentAngle = drivetrain.getAngle();
     	System.out.println("Current Angle: " + currentAngle);	
     	setAngleSetpoint(targetAngle);
-    	
     	double valuePID = turnPID(currentAngle);
-    	System.out.println("PID Value: " + valuePID + "\n");
-    	
     	if (currentAngle < targetAngle) {
-    		drivetrain.drive(lspeed*valuePID, lspeed*valuePID);
-    		//lspeed *= valuePID;
+    		drivetrain.drive(robotSpeed*valuePID, robotSpeed*valuePID);
     	} //else {
     	else if(currentAngle > targetAngle)
     	{
-    		drivetrain.drive(-(lspeed*valuePID), -(lspeed * valuePID));
-    	//	lspeed *= valuePID;
+    		drivetrain.drive(-(robotSpeed*valuePID), -(robotSpeed * valuePID));
     	}
     	
     }
@@ -81,16 +66,12 @@ public class AutoTurnPID extends Command {
     	}
     }
 
-    // Called once after isFinished returns true
     protected void end() {
     	drivetrain.drive(0, 0);
     }
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
     protected void interrupted() {
-    //	drivetrain.drive(0,0);
-    	//yay
+    	drivetrain.drive(0,0);
     }
     
     public double turnPID(double currentAngle)
@@ -107,17 +88,10 @@ public class AutoTurnPID extends Command {
     		aD = .01;
 		//How far the Robot is from it's target distance
 		double angleError = Math.abs(angleSetpoint - currentAngle);  //inverse of difference between current distance and target distance 
-	//	double angleError = drivetrain.getAngle() - angleSetpoint;
 		angleIntegral += (angleError * .02);
 		angleDerivative = (angleError - previousAngle)/.02;
-		System.out.println("derv: " + angleDerivative);
 		previousAngle = angleError;
-		double output = 1- 1/(aP * angleError + aI * angleIntegral + aD * angleDerivative); //inverse of output
-	
-		/*
-		double newSpeed = previousAngle * (1-output);
-		previousAngle = previousAngle * (1-output);
-		*/
+		double output = 1- 1/(aP * angleError + aI * angleIntegral + aD * angleDerivative); //inverse of output	
 		return output;
 	}
     

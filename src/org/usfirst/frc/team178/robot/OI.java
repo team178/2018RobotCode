@@ -53,8 +53,12 @@ public class OI {
 		//fill in as soon as we know what buttons will do what
 	}
 	
-	public double getXBoxY() {
+	public double getXboxRightY() {
 		return xbox.getRawAxis(5);
+	}
+	
+	public double getXboxLeftY() {
+		return xbox.getRawAxis(2);
 	}
 	
 	public double getX () {
@@ -69,8 +73,5 @@ public class OI {
 		return joystick1.getRawAxis(3);
 	}
 	
-	public double getXboxY () {
-		return xbox.getRawAxis(5);
-	}
 	
 }

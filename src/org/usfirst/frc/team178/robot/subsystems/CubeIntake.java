@@ -34,9 +34,13 @@ public class CubeIntake extends Subsystem {
     	return piston.get();
     }
     
-    public void collectCube(double speed) {
-    	right.set(-speed);
+    public void collectCubeLeft(double speed) {
     	left.set(speed);
+    }
+    
+    public void collectCubeRight(double speed)
+    {
+    	right.set(-speed);
     }
     
     public void ejectCube(double speed) {

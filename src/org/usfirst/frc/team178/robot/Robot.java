@@ -105,9 +105,9 @@ public class Robot extends IterativeRobot {
 		goForward.addDefault("No", "No");
 		SmartDashboard.putData("Drive Forward?", goForward);
 		
-		pickUpSecondBlock.addObject("Yes", "Yes");
-		pickUpSecondBlock.addObject("No", "No");
 		pickUpSecondBlock.addDefault("No", "No");
+		pickUpSecondBlock.addObject("Yes", "Yes");
+		
 
 		vault.addObject("Yes", "Yes");
 		vault.addObject("No", "No");
