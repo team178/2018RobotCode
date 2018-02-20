@@ -57,10 +57,6 @@ public class OI {
 		return xbox.getRawAxis(5);
 	}
 	
-	public double getXboxLeftY() {
-		return xbox.getRawAxis(2);
-	}
-	
 	public double getX () {
 		return joystick1.getX();
 	}

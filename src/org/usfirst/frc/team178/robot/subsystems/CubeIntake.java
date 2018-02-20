@@ -48,6 +48,12 @@ public class CubeIntake extends Subsystem {
     	right.set(-speed);
     }
     
+    public void collectCubeBoth(double speed)
+    {
+    	left.set(speed);
+    	right.set(-speed);
+    }
+    
     public void ejectCube(double speed) {
     	left.set(speed);
     	right.set(-speed);
