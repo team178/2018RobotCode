@@ -9,7 +9,6 @@ import org.usfirst.frc.team178.robot.subsystems.Climber;
 public class Climb extends Command {
 
     Climber climber;
-    double time;
 	
 	public Climb() {
     	requires(Robot.climber);
@@ -28,18 +27,12 @@ public class Climb extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {	
-    double passedTime = timeSinceInitialized();
-	if (passedTime >= time) {
-		return true;
-	}
-	else {
-		return false;
-	}
+    	return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	climber.climb(0);
+    //	climber.climb(0);
     }
 
     // Called when another command which requires one or more of the same

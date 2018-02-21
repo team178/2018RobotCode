@@ -1,13 +1,16 @@
 package org.usfirst.frc.team178.robot.autocommandgroups;
 
 
+import org.usfirst.frc.team178.robot.commands.AutoControlRampIntake;
 import org.usfirst.frc.team178.robot.commands.AutoTurnPID;
 import org.usfirst.frc.team178.robot.commands.AutoVaultDrop;
 import org.usfirst.frc.team178.robot.commands.CollectCube;
+import org.usfirst.frc.team178.robot.commands.Delay;
 import org.usfirst.frc.team178.robot.commands.GhettoTurn;
 
 import org.usfirst.frc.team178.robot.commands.GhettoDriveForward;
 import org.usfirst.frc.team178.robot.commands.DriveForwardPID;
+import org.usfirst.frc.team178.robot.commands.DropIntake;
 import org.usfirst.frc.team178.robot.commands.GyroDriveForward;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -26,7 +29,15 @@ public class AutoDecisions extends CommandGroup {
     		{
     			if(userChoice[1])
     			{
-    				addSequential(new DriveForwardPID(100, .5));
+    				addSequential(new DropIntake(true));
+    				addSequential(new DriveForwardPID(92, .5, true));
+    				addSequential(new Delay(1));
+    				addSequential(new AutoTurnPID(180, .35, false));
+    				addSequential(new Delay(1));
+    				addSequential(new DriveForwardPID(92, .5, true));
+    				addSequential(new Delay(1));
+    				addSequential(new AutoControlRampIntake(.4));
+    				addSequential(new AutoVaultDrop(.4));
     			
     				
 

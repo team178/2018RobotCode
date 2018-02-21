@@ -15,9 +15,9 @@ import edu.wpi.first.wpilibj.Talon;
  */
 public class Drivetrain extends Subsystem {
 	public static final double diameter = 6;
-	public static final double gearRatio = 10.71; //figure out for main bot (5.95:1?)
+	public static final double gearRatio = 1; //figure out for main bot (5.95:1?)
 	public static final double circumference = diameter * Math.PI;
-	public static final double countsPerRevolution = 8192;
+	public static final double countsPerRevolution = 1024;
 	
    public static Talon left1;
    public static Talon left2;

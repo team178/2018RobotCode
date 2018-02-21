@@ -15,18 +15,21 @@ public class AutoTurnPID extends Command {
 	double robotSpeed, targetAngle, actualAngle;
 	double angleSetpoint, angleIntegral, previousAngle, angleDerivative, aP= 1, aI= 0.01, aD = 0.01;
 	static int counter;
+	boolean resetGyro;
 	
 	
-    public AutoTurnPID(double tAngle, double speed) {
+    public AutoTurnPID(double tAngle, double speed, boolean resetG) {
     requires(Robot.drivetrain);
     targetAngle = tAngle;
     robotSpeed = speed;
+    resetGyro = resetG;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	oi = Robot.oi;
     	drivetrain = Robot.drivetrain;
+    	if(resetGyro)
     	drivetrain.resetGyro();
     	counter = 0;
     }
@@ -56,12 +59,7 @@ public class AutoTurnPID extends Command {
     	if (Math.abs(drivetrain.getAngle() - targetAngle) < 1.5 && Math.abs(angleDerivative) < 0.03 ) {
     		System.out.println("stop turning");
     		return true;
-    	}
-    	else if (counter > 200)
-    	{
-    		return true;
-    	}
-    	else {
+    	} else {
     		return false;
     	}
     }

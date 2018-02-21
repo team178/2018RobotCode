@@ -14,6 +14,7 @@ public class DriveForwardPID extends Command {
 	Drivetrain drivetrain;
 	OI oi;
 	double robotSpeed, distance; 
+	boolean resetGyro;
 	
 	//Variables for angle adjustment
 	double aP = 0.1, aI = 0.1, aD = 0, aIntegral = 0; //These are all constants that need to be determined through testing and tuned
@@ -21,15 +22,16 @@ public class DriveForwardPID extends Command {
 	double angleSetpoint, previousAngleError;
 
 	//Variables for slowing down
-	double  dIntegral = 0, dP = .9, dI = 0.0, dD = 0.0; //Variables for distance PID
+	double  dIntegral = 0, dP = .4, dI = 0.0, dD = 0.0; //Variables for distance PID
 	double previousSpeedL,previousSpeedR ,distanceSetpoint, previousDistError;
 
-	public DriveForwardPID(double dist, double speed) {
+	public DriveForwardPID(double dist, double speed, boolean resetG) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.drivetrain);
     	robotSpeed = speed; //units = Factor between -1 and 1
     	distance = dist; //units = inches
+    	resetGyro = resetG;
     }
 
     // Called just before this Command runs the first time
@@ -38,6 +40,7 @@ public class DriveForwardPID extends Command {
     	drivetrain = Robot.drivetrain;
     	previousSpeedL = robotSpeed;
     	previousSpeedR = robotSpeed;
+    	if(resetGyro)
     	drivetrain.resetGyro();
     	drivetrain.resetEncoders();
     	setAngleSetpoint(0);
@@ -109,14 +112,14 @@ public class DriveForwardPID extends Command {
     	drivetrain.drive(0, 0);
     }
 	
-	
+    double derivative;
 	public double stopPID()
 	{
 		double currentDist = (drivetrain.getRightDistance() + Math.abs(drivetrain.getLeftDistance()))/2;		//average distance feedback from two encoders
 		//How far the Robot is from it's target distance
 		double distError = Math.abs(distanceSetpoint - currentDist);  //inverse of difference between current distance and target distance 
 		dIntegral += (distError * .02);
-		double derivative = (distError - previousDistError)/.02;
+		derivative = (distError - previousDistError)/.02;
 		previousDistError = distError;
 		double output = 1-(1/ (dP * distError + dI * dIntegral + dD * derivative)); //inverse of output
 		//double newSpeed = previousSpeed * (1-output);

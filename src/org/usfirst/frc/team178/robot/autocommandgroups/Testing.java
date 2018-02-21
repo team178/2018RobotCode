@@ -38,7 +38,7 @@ public class Testing extends CommandGroup {
     	//addSequential(new GyroDriveForward(50, .4));
     	//addSequential(new EncoderSlowDown(100, .5));
     	//addSequential(new DriveForwardDoublePID(150, .5));
-    	addSequential(new AutoTurnPID(-90, .3)); //keep at .3 speed, have not tested other speeds
+    //	addSequential(new AutoTurnPID(-90, .3)); //keep at .3 speed, have not tested other speeds
 
     }
 }

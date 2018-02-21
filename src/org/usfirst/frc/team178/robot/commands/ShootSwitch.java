@@ -11,10 +11,8 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class ShootSwitch extends Command {
 	Ramp ramp;
-	double time;
 	double yVal;
     public ShootSwitch() {
-    	time = 100000000;
     	requires (Robot.ramp);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -33,19 +31,12 @@ public class ShootSwitch extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	double passedTime = timeSinceInitialized();
-    	if (passedTime >= time) {
-    		return true;
-    	}
-    	else {
     		return false;
-    	}
+    	
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	ramp.stopLoading();
-    	ramp.stopShooting();
     }
 
     // Called when another command which requires one or more of the same
