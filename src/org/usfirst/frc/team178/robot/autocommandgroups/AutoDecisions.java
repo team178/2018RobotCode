@@ -36,7 +36,7 @@ public class AutoDecisions extends CommandGroup {
     				addSequential(new Delay(1));
     				addSequential(new DriveForwardPID(92, .5, true));
     				addSequential(new Delay(1));
-    				addSequential(new AutoControlRampIntake(.4));
+    				addSequential(new AutoControlRampIntake(.4, 1));
     				addSequential(new AutoVaultDrop(.4));
     			
     				
