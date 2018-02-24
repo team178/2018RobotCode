@@ -29,6 +29,7 @@ public class AutoDecisions extends CommandGroup {
     		{
     			if(userChoice[1])
     			{
+    				if(!userChoice[2]) {
     				addSequential(new DropIntake(true));
     				addSequential(new DriveForwardPID(92, .5, true));
     				addSequential(new Delay(1));
@@ -39,7 +40,9 @@ public class AutoDecisions extends CommandGroup {
     				addSequential(new AutoControlRampIntake(.4, 1));
     				addSequential(new AutoVaultDrop(.4));
     			
-    				
+    				} else {
+    					addSequential(new AutoMiddleSwitch());
+    				}
 
     			}
 
@@ -48,7 +51,7 @@ public class AutoDecisions extends CommandGroup {
     		{
     		
     			boolean sameAsSwitch = (fieldConfig[0] == fieldConfig[2]);
-    			Command selection = null;
+    			Command selection = new DriveForwardPID(120, .5, true);
     			if (sameAsSwitch && userChoice[2]) {
     				selection = new PutInSwitch();
     			}
