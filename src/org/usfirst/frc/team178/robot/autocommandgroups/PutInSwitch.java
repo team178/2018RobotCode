@@ -11,13 +11,13 @@ public class PutInSwitch extends CommandGroup {
 
     String botLocation = (Robot.botLocation).getSelected();
     public PutInSwitch() {
-    	addSequential(new DriveForwardPID(145, 0.5));
+    	addSequential(new DriveForwardPID(145, 0.5, true));
         addSequential(new Delay(1));
     	if(botLocation.equals("Left")) {
-    		addSequential(new AutOTurnPID(45, 0.25));
+    		addSequential(new AutoTurnPID(45, 0.25, true));
     		addSequential(new ShootSwitch());
     	} else {
-    		addSequential(new AutoTurnPID(-45, 0.25));
+    		addSequential(new AutoTurnPID(-45, 0.25, true));
     		addSequential(new ShootSwitch());
     		}
     }
