@@ -30,7 +30,7 @@ public class AutoDecisions extends CommandGroup {
     			if(userChoice[1])
     			{
     				if(!userChoice[2]) {
-    				addSequential(new DropIntake(true));
+    				/*addSequential(new DropIntake(true));
     				addSequential(new DriveForwardPID(92, .5, true));
     				addSequential(new Delay(1));
     				addSequential(new AutoTurnPID(180, .35, false));
@@ -39,7 +39,8 @@ public class AutoDecisions extends CommandGroup {
     				addSequential(new Delay(1));
     				addSequential(new AutoControlRampIntake(.4, 1));
     				addSequential(new AutoVaultDrop(.4));
-    			
+    			*/
+    				addSequential(new DriveForwardPID(50,.5,true));
     				} else {
     					addSequential(new AutoMiddleSwitch());
     				}
