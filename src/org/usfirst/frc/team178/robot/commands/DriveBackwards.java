@@ -9,7 +9,8 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class DriveForwardDoublePID extends Command {
+public class DriveBackwards extends Command {
+	public final double driveConstant = 22.36;
 	Drivetrain drivetrain;
 	OI oi;
 	double robotSpeed, distance; 
@@ -23,12 +24,12 @@ public class DriveForwardDoublePID extends Command {
 	double  dIntegral = 0, dP = .9, dI = 0.0, dD = 0.0; //Variables for distance PID
 	double previousSpeedL,previousSpeedR ,distanceSetpoint, previousDistError;
 
-	public DriveForwardDoublePID(double dist, double speed) {
+	public DriveBackwards(double dist, double speed) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.drivetrain);
-    	robotSpeed = speed;
-    	distance = dist;
+    	robotSpeed = speed; //units = Factor between -1 and 1
+    	distance = dist; //units = inches
     }
 
     // Called just before this Command runs the first time
@@ -46,44 +47,20 @@ public class DriveForwardDoublePID extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	System.out.println(drivetrain.getLeftSpeed() + "   " + drivetrain.getAngle());
-    	double currentPID = straightPID();
-    	double fromDist = distance - drivetrain.getLeftDistance();
-    	if(fromDist <= 120)
-    	{
-    		if(currentPID < 0)
-    		{
-    			drivetrain.drive((previousSpeedL*stopPID()), -((previousSpeedR*(1-Math.abs(currentPID)))*stopPID() ));
-    			previousSpeedL = previousSpeedL*stopPID();
-    			previousSpeedR = previousSpeedR* stopPID();
-    		}
-    		else
-    		{
-    			drivetrain.drive((previousSpeedL * (1-currentPID)) * stopPID(), -(previousSpeedR * stopPID()));
-    			previousSpeedL = previousSpeedL  * stopPID();
-    			previousSpeedR = previousSpeedR * stopPID();
-    		}
-    	}
-    	else
-    	{
-    		if(currentPID < 0)
-    		{
-    			drivetrain.drive(previousSpeedL, -(previousSpeedR*(1-Math.abs(currentPID))));
-    		}
-    		else
-    		{
-    			drivetrain.drive(previousSpeedL * (1-currentPID), -previousSpeedR);
-    		}
-    	}
+    	drivetrain.drive(-.3, .3);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (drivetrain.getLeftDistance() >= distance)
+    	//.System.out.println((distance - drivetrain.getLeftDistance()));
+    	if(drivetrain.getRightDistance() < distance)
     	{
+    		System.out.println("Finished driving");
     		return true;
+    	} else {
+    //		System.out.println("I'm actually finished!");
+    		 return false;
     	}
-        return false;
     }
 
     // Called once after isFinished returns true
@@ -102,9 +79,9 @@ public class DriveForwardDoublePID extends Command {
 	
 	public double stopPID()
 	{
-		double currentDist = (drivetrain.getRightDistance() + drivetrain.getLeftDistance())/2;		//average distance feedback from two encoders
+		double currentDist = Math.abs(drivetrain.getRightDistance() + drivetrain.getLeftDistance())/2;		//average distance feedback from two encoders
 		//How far the Robot is from it's target distance
-		double distError = (distanceSetpoint - currentDist);  //inverse of difference between current distance and target distance 
+		double distError = Math.abs(distanceSetpoint - currentDist);  //inverse of difference between current distance and target distance 
 		dIntegral += (distError * .02);
 		double derivative = (distError - previousDistError)/.02;
 		previousDistError = distError;
@@ -122,7 +99,7 @@ public class DriveForwardDoublePID extends Command {
 	
 	public double straightPID() //Note to self, maybe change this to just straight up return the output and make it a double method
 	{
-		double error = drivetrain.getAngle() - angleSetpoint; //calculates devation from intended angle
+		double error = drivetrain.getAngle() - angleSetpoint; //calculates devation from intended angle 			//Need to add absolute Vaule? -- Robbie
 		aIntegral += (error * .02); //Integral is the sum of all the errors while running (* the iteration time which is 20 ms)
 		double derivative = (error - previousAngleError)/ .02; //change in error * iteration time (20 ms)
 		previousAngleError = error; //sets this last calculated error as the "previousError" for the next time the method is run

@@ -37,15 +37,31 @@ public class OI {
 	public Button backButton = new JoystickButton(xbox, 7);
 	public Button startButton = new JoystickButton(xbox, 8);
 	
-	public OI () {
-		buttonA.whenPressed(new DropIntake());
-		buttonB.whenPressed(new FoldIntake());
+	public OI () { //when pressed is up or down, while held is out or information
+	//	 buttonY.whileHeld(new ShootScale()); NOTE: Can't shoot for scale
+	//	 buttonA.whenPressed(new RaiseRamp());
+	//	 buttonB.whenPressed(new LowerRamp());
+		 buttonX.whileHeld(new ShootSwitch());
+		 lBumper.whileHeld(new CollectCube());
+		 rBumper.whileHeld(new ControlRampIntake());
+		 button5.whenPressed(new DropIntake(false));
+		 button2.whenPressed(new FoldIntake());
+		 buttonY.whileHeld(new Climb());
+		 buttonA.whileHeld(new RotateArm());
+		 buttonB.whileHeld(new ReverseRotateArm());
+		 
+		 
+		 
 
 		//fill in as soon as we know what buttons will do what
 	}
 	
-	public double getXBoxY() {
+	public double getXboxRightY() {
 		return xbox.getRawAxis(5);
+	}
+	
+	public double getXboxLeftY() {
+		return xbox.getRawAxis(1);
 	}
 	
 	public double getX () {
@@ -60,8 +76,5 @@ public class OI {
 		return joystick1.getRawAxis(3);
 	}
 	
-	public double getXboxY () {
-		return xbox.getRawAxis(5);
-	}
 	
 }

@@ -3,6 +3,7 @@ package org.usfirst.frc.team178.robot;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -11,8 +12,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team178.robot.autocommandgroups.*;
 import org.usfirst.frc.team178.robot.subsystems.*;
-
-import org.usfirst.frc.team178.robot.autocommandgroups.AutoDoNothing;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -30,37 +29,89 @@ public class Robot extends IterativeRobot {
 	public static Climber climber;
 	public static Pneumatics pneumatics;
 	public static AnalogGyro gyro;
-	public static Ultrasonic ultrasonic;
+	public static LightsSubsystem lights;
+	
+
 
 	Command autonomousCommand;
 	
-	SendableChooser<Command> chooser = new SendableChooser<>();
+	public static SendableChooser<String> botLocation = new SendableChooser<>();
+	public static SendableChooser<String> switchChooser = new SendableChooser<>();
+	public static SendableChooser<String> goForward = new SendableChooser<>();
+	public static SendableChooser<String> vault = new SendableChooser<>();
 	
+	public static boolean goForwardChoice;
+	public static boolean vaultChooser;
+	public static boolean switchChoice;
+	public static boolean scaleChoice;
+	public static boolean secondBlock;
+	public static boolean isOnSide;
+	
+	public static String gameData;
+	public static char switchSide;
+	public static char scaleSide;
+	public static String position;
+
+	SendableChooser<Command> chooser = new SendableChooser<>();
+
 
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
 	@Override
+	
+	
 	public void robotInit() {
 		drivetrain = new Drivetrain();
 		cubeintake = new CubeIntake();
 		ramp = new Ramp();
 		climber = new Climber();
-		ultrasonic = new Ultrasonic();
-		//pneumatics = new Pneumatics();
+		pneumatics = new Pneumatics();
 		oi = new OI();
 		
-		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture(0);
-		camera.setResolution(320, 240);
-		camera.setFPS(25);
+	/*	UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(0);
+		camera1.setResolution(320, 240);
+		camera1.setFPS(25);
 		
-		chooser.addObject("AutoDoNothing", new AutoDoNothing());
-		chooser.addObject("Testing", new Testing());
-		SmartDashboard.putData("Auto mode", chooser);
+		UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture(1);
+		camera2.setResolution(320, 240);
+		camera2.setFPS(25); */
+		
+		botLocation.addObject("Left", "Left");
+		botLocation.addObject("Middle", "Middle");
+		botLocation.addObject("Right", "Right");
+		
+		SmartDashboard.putData("AutoLocation", botLocation);
+		
+		switchChooser.addObject("Yes", "Yes");
+		switchChooser.addObject("No", "No");
+		
+		goForward.addObject("Yes", "Yes");
+		goForward.addObject("No", "No");
+		SmartDashboard.putData("Drive Forward?", goForward);
+		
+
+		vault.addObject("Yes", "Yes");
+		vault.addObject("No", "No");
+
+		SmartDashboard.putData("Go for vault?", vault);
+		SmartDashboard.putData("Go for switch?", switchChooser);
+		
 		System.out.println("Hello");
 	}
 
+		
+	
+
+	public static String returnSelection() {
+		if(botLocation.getSelected() == null) {
+			return "None";
+		} else {
+			return botLocation.getSelected();
+		}
+		
+	}
 	/**
 	 * This function is called once each time the robot enters Disabled mode.
 	 * You can use it to reset any subsystem information you want to clear when
@@ -68,14 +119,44 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void disabledInit() {
-
-	}
+			}
 
 	@Override
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
 	}
+	String[] choices = new String[3];
+	boolean[] userChoice = new boolean[3];
+	char[] fieldConfig = new char[3];
+	
+	public void getAutoSelections() {
+		choices[0] = goForward.getSelected();
+		choices[1] = vault.getSelected();
+		choices[2] = switchChooser.getSelected();
+			//	gameData = DriverStation.getInstance().getGameSpecificMessage();
+		gameData = "RLR";
+		for(int i = 0; i < choices.length; i++) {
+			if(choices[i] == null) {
+				choices[i] = "No";
+			}
+		}
+		//Array of the choices driver can make before auto
+		userChoice[0] = (choices[0].equals("Yes"));
+		userChoice[1] = (choices[1].equals("Yes"));
+		userChoice[2] = (choices[2].equals("Yes"));
+		
+		//Predetermined field positions/aspects
+		fieldConfig[0] = gameData.charAt(0); //this is switch 
+		fieldConfig[1] = gameData.charAt(1);  //this is scale
+    	fieldConfig[2] = returnSelection().charAt(0); //starting position
+    	
+    	if(fieldConfig[2] != 'M' && fieldConfig[2] != 'L' && fieldConfig[2] != 'R') {
+    		fieldConfig[2] = 'd';
+    		userChoice[0] = false;
+    	}
 
+		
+	}
 	/**
 	 * This autonomous (along with the chooser code above) shows how to select
 	 * between different autonomous modes using the dashboard. The sendable
@@ -89,20 +170,20 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		autonomousCommand = (Command) chooser.getSelected();
-		
-		if(autonomousCommand != null)
-			autonomousCommand.start();
-
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
 		 * = new MyAutoCommand(); break; case "Default Auto": default:
 		 * autonomousCommand = new ExampleCommand(); break; }
 		 */
+		getAutoSelections();
+		autonomousCommand = new AutoDecisions(userChoice, fieldConfig);
+		
+		if (autonomousCommand != null)
+			autonomousCommand.start();
 
 		// schedule the autonomous command (example)
-
+		
 	}
 
 	/**
@@ -130,7 +211,6 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		//SmartDashboard.putNumber("Pressure", pneumatics.getPressure());
 		Scheduler.getInstance().run();
 	}
 

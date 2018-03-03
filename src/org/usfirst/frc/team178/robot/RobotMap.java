@@ -26,46 +26,51 @@ public class RobotMap {
 	
 	//Drivetrain variables (Will assign values later)
 	
-	public static int DMTopRight = 1; // PWM
-	public static int DMMiddleRight = 2; // PWM
-	public static int DMBottomRight = 3; // PWM
-	public static int DMTopLeft = 4; // PWM
-	public static int DMMiddleLeft = 5; // PWM
-	public static int DMBottomLeft = 6; // PWM
+	public static int DMTopRight = 0; // PWM
+	public static int DMMiddleRight = 1; // PWM
+	//public static int DMBottomRight = 3; // PWM
+	public static int DMTopLeft = 2; // PWM
+	public static int DMMiddleLeft = 3; // PWM
+	//public static int DMBottomLeft = 6; // PWM	
+
+	public static int INTAKEleft = 4; // PWM
+	public static int INTAKEright = 5; // PWM
 	
-	public static int RAMPleft1 = 7; // PWM
-	public static int RAMPleft2 = 8; // PWM
-	public static int RAMPright1 = 9; // PWM
-	public static int RAMPright2 = 10; // PWM
-	
-	public static int DRIVEencoderRA = 1; // DIO
-	public static int DRIVEencoderRB = 2; // DIO
-	public static int DRIVEencoderLA = 3; // DIO
-	public static int DRIVEencoderLB = 4; // DIO
+	public static int RAMPleft1 = 6; // PWM
+	public static int RAMPleft2 = 7; // PWM
+	public static int RAMPright1 = 8; // PWM
+	public static int RAMPright2 = 9; // PWM
+	public static int DRIVEencoderRA = 0; // DIO
+	public static int DRIVEencoderRB = 1; // DIO
+	public static int DRIVEencoderLA = 2; // DIO
+	public static int DRIVEencoderLB = 3; // DIO
 	
 	public static int DRIVEGyro = 1; // Analog
 	
-	public static int INTAKEleft = 11; // PWM
-	public static int INTAKEright = 12; // PWM
 	
 	public static int JoystickPort = 0; // computer
 	public static int JoystickPortXBOX = 1; // computer
 	
 	public static int PCM = 7; // CAN
 	
-	public static int INTAKEleftout = 0; // PCM
-	public static int INTAKEleftin = 1; // PCM
-	public static int INTAKErightout = 2; // PCM
-	public static int INTAKErightin = 3; // PCM
+	public static int INTAKEout = 0; // PCM
+	public static int INTAKEin = 1; // PCM
 
-	public static int shootingPistonOUT = 4; // PCM
-	public static int shootingPistonIN = 5; // PCM
+	public static int shootingPistonOUT = 2; // PCM
+	public static int shootingPistonIN = 3; // PCM
 	
-	public static int WINCH1 = 13; // PWM
-	public static int WINCH2 = 14; // PWM
-	public static int CLIMBER = 15; // PWM
+	public static int WINCH1 = 10; // PWM
+	public static int WINCH2 = 11; // PWM
+	public static int CLIMBER = 12; // PWM
 	
-	public static int PRESSURETRANSDUCER = 0; // Analog
-	public static int ULTRASONICINPUT = 2; // Analog
+	public static int PRESSURETRANSDUCER = 0; //Analog
+	public static int ULTRASONICLEFTINPUT = 2; // Analog
+	public static int ULTRASONICRIGHTINPUT = 3; //Analog
+	
+	public static int LiftShooter = 4; //PCM
+	public static int DropShooter = 5; //PCM
 
+	public enum SubsystemIndex {
+		ALL, BUMPER
+	}
 }

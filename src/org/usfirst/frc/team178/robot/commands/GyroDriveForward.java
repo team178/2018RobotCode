@@ -84,7 +84,7 @@ public class GyroDriveForward extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	System.out.println(drivetrain.getAngle());
+    	System.out.println(drivetrain.getRightDistance());
     	double currentPID = straightPID();
     	if(currentPID < 0)
     	{

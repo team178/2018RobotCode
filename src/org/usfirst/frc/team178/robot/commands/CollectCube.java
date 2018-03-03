@@ -1,7 +1,8 @@
 package org.usfirst.frc.team178.robot.commands;
-
+import org.usfirst.frc.team178.robot.subsystems.*;
 import org.usfirst.frc.team178.robot.OI;
 import org.usfirst.frc.team178.robot.Robot;
+import org.usfirst.frc.team178.robot.RobotMap.SubsystemIndex;
 import org.usfirst.frc.team178.robot.subsystems.CubeIntake;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -14,42 +15,58 @@ public class CollectCube extends Command {
 
 	CubeIntake cubeintake;
 	OI oi;
-	double yVal;
+	LightsSubsystem  lights; 
+	double rightStickY, leftStickY;
 	
     public CollectCube() {
     	requires(Robot.cubeintake);
+   // 	requires(Robot.lights);
+    	
     }
 
     //Called just before this Command runs for the first time
     protected void initialize() {
     	oi = Robot.oi;
     	cubeintake = Robot.cubeintake;
+   // 	lights = Robot.lights;
+    	
+   // 	lights.sendMessage(SubsystemIndex.ALL, "c");
+    	
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	yVal = oi.getXBoxY();
-    	cubeintake.collectCube(yVal);
-    }
+    //	System.out.println("L  " + cubeintake.getLeftUltrasonic());
+    	//System.out.println("R  " + cubeintake.getRightUltrasonic());
+    	rightStickY = oi.getXboxRightY();
+    	leftStickY = oi.getXboxLeftY();
+    	//if(cubeintake.getLeftUltrasonic() < 1.0 || cubeintake.getRightUltrasonic() < 1.0) {
+    		//cubeintake.collectCubeLeft(leftStickY);
+    	//} else {
+    		//cubeintake.collectCubeRight(rightStickY);
+    		cubeintake.collectCubeLeft(leftStickY);
+    		cubeintake.collectCubeRight(rightStickY);
+    	}
+//    }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (true)//cubeintake.getIntake() == DoubleSolenoid.Value.kReverse)
-    	{
-    		return true;
-    	}
-    	else {
+    	
+    
     		return false;
-    	}
+    	
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	/*cubeintake.foldIntake();*/
-    }
 
-    // Called when another command which requires one or more of the same
-    //subsystems is scheduled to run
+    	cubeintake.collectCubeLeft(0);
+    	cubeintake.collectCubeRight(0);
+    }
+    
     protected void interrupted() {
+    	cubeintake.collectCubeLeft(0);
+    	cubeintake.collectCubeRight(0);
     }
 }

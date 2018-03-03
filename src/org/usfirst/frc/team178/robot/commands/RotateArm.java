@@ -1,49 +1,35 @@
 package org.usfirst.frc.team178.robot.commands;
 
 import org.usfirst.frc.team178.robot.Robot;
-import org.usfirst.frc.team178.robot.subsystems.CubeIntake;
+import org.usfirst.frc.team178.robot.subsystems.Climber;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class DropIntake extends Command {
-	CubeIntake cubeintake;
-	boolean isAuto;
-	
-    public DropIntake(boolean auto) {
-    	requires (Robot.cubeintake);
-    	isAuto = auto;
+public class RotateArm extends Command {
+	Climber climber;
+    public RotateArm() {
+    	requires(Robot.climber);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	cubeintake = Robot.cubeintake;
+    	climber = Robot.climber;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	cubeintake.dropIntake();
+    	climber.rotate(0.4);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if(isAuto)
-    		return true;
-    /*	if (cubeintake.getIntake() == DoubleSolenoid.Value.kReverse)
-    	{
-    		return true;
-    	}
-    	else {
-        return false;
-    	}
-    	*/
-    	else
-    	return false;
+		return false;
+	
     }
 
     // Called once after isFinished returns true
@@ -53,5 +39,6 @@ public class DropIntake extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	climber.rotate(0);
     }
 }

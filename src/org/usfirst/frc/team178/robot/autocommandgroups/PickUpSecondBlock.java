@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class AutoDoNothing extends CommandGroup {
+public class PickUpSecondBlock extends CommandGroup {
 
-    public AutoDoNothing() {
+    public PickUpSecondBlock() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());

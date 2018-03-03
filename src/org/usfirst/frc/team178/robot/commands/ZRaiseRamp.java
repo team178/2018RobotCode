@@ -1,49 +1,34 @@
 package org.usfirst.frc.team178.robot.commands;
 
 import org.usfirst.frc.team178.robot.Robot;
-import org.usfirst.frc.team178.robot.subsystems.CubeIntake;
+import org.usfirst.frc.team178.robot.subsystems.Ramp;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ *THIS CLASS IS CURRENTLY NOT IN USE, BUT DO NOT DELETE
  */
-public class DropIntake extends Command {
-	CubeIntake cubeintake;
-	boolean isAuto;
-	
-    public DropIntake(boolean auto) {
-    	requires (Robot.cubeintake);
-    	isAuto = auto;
+public class ZRaiseRamp extends Command {
+	Ramp ramp;
+    public ZRaiseRamp() {
+    	requires(Robot.ramp);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	cubeintake = Robot.cubeintake;
+    	ramp = Robot.ramp;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	cubeintake.dropIntake();
+    	//ramp.raiseRamp();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if(isAuto)
-    		return true;
-    /*	if (cubeintake.getIntake() == DoubleSolenoid.Value.kReverse)
-    	{
-    		return true;
-    	}
-    	else {
         return false;
-    	}
-    	*/
-    	else
-    	return false;
     }
 
     // Called once after isFinished returns true

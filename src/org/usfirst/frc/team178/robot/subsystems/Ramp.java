@@ -2,6 +2,7 @@ package org.usfirst.frc.team178.robot.subsystems;
 
 import org.usfirst.frc.team178.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Ultrasonic;
@@ -17,7 +18,8 @@ public class Ramp extends Subsystem {
 	public static Talon right1;
 	public static Talon right2;
 	public static DoubleSolenoid shootingPiston;
-	public static Ultrasonic ultrasonic;
+	public static DoubleSolenoid extendretract;
+	public static AnalogInput ultrasonic;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
@@ -27,6 +29,7 @@ public class Ramp extends Subsystem {
 		right1 = new Talon(RobotMap.RAMPright1);
 		right2 = new Talon(RobotMap.RAMPright2);
 		shootingPiston = new DoubleSolenoid(RobotMap.PCM, RobotMap.shootingPistonOUT, RobotMap.shootingPistonIN);
+		extendretract = new DoubleSolenoid(RobotMap.PCM, RobotMap.LiftShooter, RobotMap.DropShooter);
 	}
 	
 	public void bringCubeIn(double speed) {
@@ -38,6 +41,20 @@ public class Ramp extends Subsystem {
 		left2.set(speed);
 		right2.set(-speed);
 	}
+	public void stopLoading() {
+		left1.set(0);
+		right1.set(0);
+	}
+	
+	public void stopShooting() {
+		left2.set(0);
+		right2.set(0);
+	}
+	
+	public double getDistance() {
+		return ultrasonic.getVoltage();
+	}
+	//Stuff to go for scale, do not delete
 	
 	public void punchCube() {
 
@@ -48,15 +65,15 @@ public class Ramp extends Subsystem {
 		shootingPiston.set(DoubleSolenoid.Value.kForward);
 	}
 	
-	public void stopLoading() {
-		left1.set(0);
-		right1.set(0);
+	public void raiseRamp() {
+		extendretract.set(DoubleSolenoid.Value.kForward);
 	}
 	
-	public void stopShooting() {
-		left2.set(0);
-		right2.set(0);
+	public void lowerRamp() {
+		extendretract.set(DoubleSolenoid.Value.kReverse);
 	}
+	
+	
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.

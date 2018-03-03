@@ -9,13 +9,13 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class DriveForward extends Command {
+public class GhettoDriveForward extends Command {
 	Drivetrain drivetrain;
 	OI oi;
 	double distance, robotSpeed, adjustedSpeed;
 	
 
-    public DriveForward(double dist, double spd) {
+    public GhettoDriveForward(double dist, double spd) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.drivetrain);
@@ -36,7 +36,7 @@ public class DriveForward extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	System.out.println("Right:" + String.format("%.5g%n", drivetrain.getRightSpeed()) + "Left:" + String.format("%.5g%n", drivetrain.getLeftSpeed()));
+  //  	System.out.println("Right:" + String.format("%.5g%n", drivetrain.getRightSpeed()) + "Left:" + String.format("%.5g%n", drivetrain.getLeftSpeed()));
     	double error = drivetrain.getLeftSpeed() - drivetrain.getRightSpeed(); // subtracts to find error value
 		if (Math.abs(error) > 0.001) { // checks to see if the error value is greater than .001
 			// drives only left side
@@ -45,8 +45,8 @@ public class DriveForward extends Command {
 			// drivetrain.getLeftDistance());
 			// System.out.println("RightDistance: " +
 			// drivetrain.getRightDistance());
-			 System.out.println("RightSpeed: " + drivetrain.getRightSpeed());
-			 System.out.println("LeftSpeed: " + drivetrain.getLeftSpeed());
+		//	 System.out.println("RightSpeed: " + drivetrain.getRightSpeed());
+		//	 System.out.println("LeftSpeed: " + drivetrain.getLeftSpeed());
 			double speedChange = .5 + (distance - drivetrain.getRightDistance()) / distance;
 			if (drivetrain.getLeftDistance() <= (distance * .7)) {
 				double leftSpd = robotSpeed * speedChange;
@@ -73,6 +73,7 @@ public class DriveForward extends Command {
     			drivetrain.rightDrive(adjustedSpeed);
     		}
     	}
+//		System.out.println("E:" + drivetrain.getLeftDistance());
     }
     
 
