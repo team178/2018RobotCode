@@ -21,7 +21,7 @@ public class AutoMiddleSwitch extends CommandGroup {
     		addSequential(new DriveForwardPID(25, .5, false));
     		addSequential(new Delay(1));
     		addSequential(new AutoTurnPID(-90, .5, false));
-    		addSequential(new ShootSwitch());
+    		addSequential(new ShootSwitch(true));
     	} else if (switchSide == 'R') {
     		addSequential(new DriveForwardPID(110, .5, true));
     		addSequential(new Delay(1));
@@ -30,7 +30,7 @@ public class AutoMiddleSwitch extends CommandGroup {
     		addSequential(new DriveForwardPID(25, .5, false));
     		addSequential(new Delay(1));
     		addSequential(new AutoTurnPID(90, .5, false));
-    		addSequential(new ShootSwitch());
+    		addSequential(new ShootSwitch(true));
     	}
       
     }
