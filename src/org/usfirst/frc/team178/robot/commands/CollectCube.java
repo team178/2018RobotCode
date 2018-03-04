@@ -45,8 +45,8 @@ public class CollectCube extends Command {
     		//cubeintake.collectCubeLeft(leftStickY);
     	//} else {
     		//cubeintake.collectCubeRight(rightStickY);
-    		cubeintake.collectCubeLeft(leftStickY);
-    		cubeintake.collectCubeRight(rightStickY);
+    		cubeintake.collectCubeLeft(-leftStickY);
+    		cubeintake.collectCubeRight(-rightStickY);
     	}
 //    }
 
