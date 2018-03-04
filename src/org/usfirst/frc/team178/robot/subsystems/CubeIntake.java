@@ -30,6 +30,7 @@ public class CubeIntake extends Subsystem {
     	ultrasonicright = new AnalogInput(RobotMap.ULTRASONICRIGHTINPUT);
     }
     
+
     public void dropIntake(){
     	piston.set(DoubleSolenoid.Value.kReverse); //kReverse subject to change
     }

@@ -127,7 +127,7 @@ public class Robot extends IterativeRobot {
 	}
 	String[] choices = new String[3];
 	boolean[] userChoice = new boolean[3];
-	char[] fieldConfig = new char[3];
+	public static char[] fieldConfig = new char[3];
 	
 	public void getAutoSelections() {
 		choices[0] = goForward.getSelected();

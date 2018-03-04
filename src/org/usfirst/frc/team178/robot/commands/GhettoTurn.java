@@ -21,13 +21,14 @@ public class GhettoTurn extends Command {
     public GhettoTurn(double tAngle, double speed) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	//Requires drivetrain to declare dependency
     requires(Robot.drivetrain);
     targetAngle = tAngle;
     lspeed = speed;
     rspeed = speed;
     }
 
-    // Called just before this Command runs the first time
+    // Called just before this Command runs for the first time
     protected void initialize() {
     	oi = Robot.oi;
     	drivetrain = Robot.drivetrain;

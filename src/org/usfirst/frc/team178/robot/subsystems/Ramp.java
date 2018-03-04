@@ -33,13 +33,13 @@ public class Ramp extends Subsystem {
 	}
 	
 	public void bringCubeIn(double speed) {
-		left1.set(-speed);
+		left1.set(speed);
 		right1.set(-speed);
 	}
 	
 	public void shootCube(double speed) {
 		left2.set(speed);
-		right2.set(speed);
+		right2.set(-speed);
 	}
 	public void stopLoading() {
 		left1.set(0);

@@ -24,7 +24,7 @@ public class CollectCube extends Command {
     	
     }
 
-    // Called just before this Command runs the first time
+    //Called just before this Command runs for the first time
     protected void initialize() {
     	oi = Robot.oi;
     	cubeintake = Robot.cubeintake;
@@ -45,20 +45,17 @@ public class CollectCube extends Command {
     		//cubeintake.collectCubeLeft(leftStickY);
     	//} else {
     		//cubeintake.collectCubeRight(rightStickY);
-    		cubeintake.collectCubeLeft(-leftStickY);
-    		cubeintake.collectCubeRight(-rightStickY);
+    		cubeintake.collectCubeLeft(leftStickY);
+    		cubeintake.collectCubeRight(rightStickY);
     	}
 //    }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (false)//cubeintake.getIntake() == DoubleSolenoid.Value.kReverse)
-    	{
-    		return true;
-    	}
-    	else {
+    	
+    
     		return false;
-    	}
+    	
     }
 
     // Called once after isFinished returns true

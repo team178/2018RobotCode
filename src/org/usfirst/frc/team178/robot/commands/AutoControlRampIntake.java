@@ -10,13 +10,17 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class AutoControlRampIntake extends Command {
+	double time;
+	int counter;
 	OI oi;
 	Ramp ramp;
 	double speed;
 	
-    public AutoControlRampIntake(double spe) {
+    public AutoControlRampIntake(double spe, double t) {
         requires(Robot.ramp);    
         speed = spe;
+        time = t;
+        counter = (int) time * 50;
         }
 
     // Called just before this Command runs the first time
@@ -27,12 +31,17 @@ public class AutoControlRampIntake extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	counter--;
     	ramp.bringCubeIn(-speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+    	if(counter <= 0) {
+    		return true;
+    	} else {
+        return false;
+    	}
     }
 
     // Called once after isFinished returns true

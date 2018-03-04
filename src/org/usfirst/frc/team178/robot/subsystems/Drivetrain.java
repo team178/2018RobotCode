@@ -55,6 +55,7 @@ public class Drivetrain extends Subsystem {
    public void resetGyro()
    {
 	  gyro.reset();
+	  //Called when AnalogGyro must be reset
    }
    
    public  void resetEncoders() {

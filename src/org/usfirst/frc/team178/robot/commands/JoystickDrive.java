@@ -20,7 +20,8 @@ public class JoystickDrive extends Command {
     	requires(Robot.drivetrain);
     }
 
-    // Called just before this Command runs the first time
+  //Called just before this Command runs for the first time
+    
     protected void initialize() {
     	oi = Robot.oi;
     	drivetrain = Robot.drivetrain;
@@ -28,7 +29,7 @@ public class JoystickDrive extends Command {
   
     }
 
-    // Called repeatedly when this Command is scheduled to run
+  //Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	yVal = oi.getY();
 		twistVal = 0.5*(oi.getTwist());
@@ -39,7 +40,7 @@ public class JoystickDrive extends Command {
 		
 		//The if condition implements what's called a dead zone. 
 		//Makes it so that the robot will only drive when the driver is touching the joystick. Joysticks sometimes send
-		//small numbers when they're not actually touched, so this eliminates that. 
+		//small numbers when they're not actually touched. This eliminates that. 
 
 		if(Math.abs(yVal)>0.1 || Math.abs(twistVal)>0.1){
 			drivetrain.drive(twistVal-yVal, twistVal+yVal);
@@ -55,12 +56,12 @@ public class JoystickDrive extends Command {
         return false;
     }
 
-    // Called once after isFinished returns true
+  //Called once after isFinished returns true
     protected void end() {
     }
 
     // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
+   //subsystems are scheduled to run
     protected void interrupted() {
     }
 }
