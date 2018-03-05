@@ -20,7 +20,7 @@ public class AutoSideSwitch extends CommandGroup {
     		if(Robot.fieldConfig[0] == 'R') {
     			addSequential(new DriveBackwards(-120, .5));
     			addSequential(new Delay(1));
-    			addSequential(new AutoTurnPID(-90, .5, true));
+    			addSequential(new AutoTurnPID(90, .5, true));
     			addSequential(new Delay(1));
     			addSequential(new DriveBackwards(-20, .5));
     			addSequential(new ShootSwitch(true));
@@ -31,7 +31,7 @@ public class AutoSideSwitch extends CommandGroup {
     		if (Robot.fieldConfig[0] == 'L') {
     			addSequential(new DriveBackwards(-120, .5));
     			addSequential(new Delay(1));
-    			addSequential(new AutoTurnPID(90, .5, true));
+    			addSequential(new AutoTurnPID(-90, .5, true));
     			addSequential(new Delay(1));
     			addSequential(new DriveBackwards(-20, .5));
     			addSequential(new ShootSwitch(true));
