@@ -41,7 +41,7 @@ public class OI {
 	//	 buttonY.whileHeld(new ShootScale()); NOTE: Can't shoot for scale
 	//	 buttonA.whenPressed(new RaiseRamp());
 	//	 buttonB.whenPressed(new LowerRamp());
-		 buttonX.whileHeld(new ShootSwitch());
+		 buttonX.whileHeld(new ShootSwitch(false));
 		 lBumper.whileHeld(new CollectCube());
 		 rBumper.whileHeld(new ControlRampIntake());
 		 button5.whenPressed(new DropIntake(false));
@@ -74,6 +74,10 @@ public class OI {
 	
 	public double getTwist () {
 		return joystick1.getRawAxis(3);
+	}
+	
+	public double getTrigger() {
+		return xbox.getRawAxis(3);
 	}
 	
 	
