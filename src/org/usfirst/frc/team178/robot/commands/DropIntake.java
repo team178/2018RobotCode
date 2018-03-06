@@ -1,8 +1,9 @@
 package org.usfirst.frc.team178.robot.commands;
 
 import org.usfirst.frc.team178.robot.Robot;
+import org.usfirst.frc.team178.robot.RobotMap.SubsystemIndex;
 import org.usfirst.frc.team178.robot.subsystems.CubeIntake;
-
+import org.usfirst.frc.team178.robot.subsystems.LightsSubsystem;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -11,8 +12,10 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class DropIntake extends Command {
 	CubeIntake cubeintake;
+	LightsSubsystem lights;
     public DropIntake() {
     	requires (Robot.cubeintake);
+    	requires (Robot.lights);
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -20,6 +23,8 @@ public class DropIntake extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	cubeintake = Robot.cubeintake;
+    	lights = Robot.lights;
+    	lights.sendMessage(SubsystemIndex.ALL,"d");
     }
 
     // Called repeatedly when this Command is scheduled to run

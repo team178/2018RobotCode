@@ -28,7 +28,7 @@ public class ShootSwitch extends Command {
     	ramp = Robot.ramp;
     	oi = Robot.oi;
     	lights = Robot.lights;
-    	lights.sendMessage(SubsystemIndex.ALL, "s");
+    	lights.sendMessage(SubsystemIndex.ALL, "h");
     }
 
     // Called repeatedly when this Command is scheduled to run

@@ -26,10 +26,10 @@ public class LightsSubsystem extends Subsystem {
     }
     public void setBaseColor(SubsystemIndex subsystem) {
  	   if (ds.getAlliance() == Alliance.Blue) {
- 		   sendMessage(subsystem, "Ocean");
+ 		   sendMessage(subsystem, "b");
  	   }
  	   else if (ds.getAlliance() == Alliance.Red){
- 		   sendMessage(subsystem, "Fire");
+ 		   sendMessage(subsystem, "r");
  	   }
     }
      
