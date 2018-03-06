@@ -43,7 +43,7 @@ public class OI {
 	//	 buttonB.whenPressed(new LowerRamp());
 		 buttonX.whileHeld(new ShootSwitch(false));
 		 lBumper.whileHeld(new CollectCube());
-		 rBumper.whileHeld(new ControlRampIntake());
+		 //rBumper.whileHeld(new ControlRampIntake());
 		 button5.whenPressed(new DropIntake(false));
 		 button2.whenPressed(new FoldIntake());
 		 buttonA.whileHeld(new Climb());
