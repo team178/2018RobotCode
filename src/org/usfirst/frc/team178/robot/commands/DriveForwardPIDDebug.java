@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class DriveBackwardPID extends Command {
+public class DriveForwardPIDDebug extends Command {
 	public final double driveConstant = 22.36;
 	Drivetrain drivetrain;
 	OI oi;
@@ -25,7 +25,7 @@ public class DriveBackwardPID extends Command {
 	double  dIntegral = 0, dP = .4, dI = 0.0, dD = 0.0; //Variables for distance PID
 	double previousSpeedL,previousSpeedR ,distanceSetpoint, previousDistError;
 
-	public DriveBackwardPID(double dist, double speed, boolean resetG) {
+	public DriveForwardPIDDebug(double dist, double speed, boolean resetG) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.drivetrain);
@@ -50,8 +50,6 @@ public class DriveBackwardPID extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	drivetrain.drive(robotSpeed, -robotSpeed);
-    	/*
   //  	System.out.println(drivetrain.getRightDistance());
     	//System.out.println(drivetrain.getRightDistance());
     	double currentPID = straightPID();
@@ -83,7 +81,6 @@ public class DriveBackwardPID extends Command {
     			drivetrain.drive(robotSpeed * (1-currentPID), -robotSpeed);
     		}
     	}
-    	*/
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -116,7 +113,6 @@ public class DriveBackwardPID extends Command {
     }
 	
     double derivative;
-    /*
 	public double stopPID()
 	{
 		double currentDist = (drivetrain.getRightDistance() + Math.abs(drivetrain.getLeftDistance()))/2;		//average distance feedback from two encoders
@@ -130,13 +126,13 @@ public class DriveBackwardPID extends Command {
 		//previousSpeed = previousSpeed * (1-output);
 		return output;
 	}
-	*/
+	
 	
 	public void setDistanceSetpoint(double target)
 	{
 		this.distanceSetpoint = target;
 	}
-	/*
+	
 	public double straightPID() //Note to self, maybe change this to just straight up return the output and make it a double method
 	{
 		double error = drivetrain.getAngle() - angleSetpoint; //calculates devation from intended angle 			//Need to add absolute Vaule? -- Robbie
@@ -146,7 +142,7 @@ public class DriveBackwardPID extends Command {
 		double output = ( aP * error + aI * aIntegral +  aD * derivative);    //Uses the PID equation to get an output
 		return output;
 	}
-	*/
+	
 	public void setAngleSetpoint(int setpoint)
 	{
 		this.angleSetpoint = setpoint; //sets the target value (which is the orientation of the robot in degrees)
