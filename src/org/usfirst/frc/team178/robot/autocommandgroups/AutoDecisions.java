@@ -6,6 +6,7 @@ import org.usfirst.frc.team178.robot.commands.AutoTurnPID;
 import org.usfirst.frc.team178.robot.commands.AutoVaultDrop;
 import org.usfirst.frc.team178.robot.commands.CollectCube;
 import org.usfirst.frc.team178.robot.commands.Delay;
+import org.usfirst.frc.team178.robot.commands.DriveBackwardPID;
 import org.usfirst.frc.team178.robot.commands.GhettoTurn;
 
 import org.usfirst.frc.team178.robot.commands.GhettoDriveForward;
@@ -40,7 +41,7 @@ public class AutoDecisions extends CommandGroup {
     				addSequential(new AutoControlRampIntake(.4, 1));
     				addSequential(new AutoVaultDrop(.4));
     			*/
-    				addSequential(new DriveForwardPID(50,.5,true));
+    				addSequential(new DriveBackwardPID(-50,-.5,true));
     				} else {
     					addSequential(new AutoMiddleSwitch());
     				}

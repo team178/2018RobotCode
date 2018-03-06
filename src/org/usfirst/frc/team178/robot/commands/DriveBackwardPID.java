@@ -53,7 +53,7 @@ public class DriveBackwardPID extends Command {
   //  	System.out.println(drivetrain.getRightDistance());
     	//System.out.println(drivetrain.getRightDistance());
     	double currentPID = straightPID();
-    	double fromDist = distance - drivetrain.getLeftDistance();
+    	double fromDist = Math.abs(distance) - Math.abs(drivetrain.getLeftDistance());
     	//System.out.println("Execute:" + (distance - Math.abs(drivetrain.getLeftDistance())));
     	if(fromDist <= 120)
     	{
@@ -86,7 +86,7 @@ public class DriveBackwardPID extends Command {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     	//.System.out.println((distance - drivetrain.getLeftDistance()));
-    	if (distance - Math.abs(drivetrain.getLeftDistance()) < 1)
+    	if (Math.abs(distance) - Math.abs(drivetrain.getLeftDistance()) < 1)
     	{
     //		System.out.println(drivetrain.getLeftDistance());
     //		System.out.println("I'm not finished!");
@@ -115,9 +115,9 @@ public class DriveBackwardPID extends Command {
     double derivative;
 	public double stopPID()
 	{
-		double currentDist = (drivetrain.getRightDistance() + Math.abs(drivetrain.getLeftDistance()))/2;		//average distance feedback from two encoders
+		double currentDist = (Math.abs(drivetrain.getRightDistance()) + Math.abs(drivetrain.getLeftDistance()))/2;		//average distance feedback from two encoders
 		//How far the Robot is from it's target distance
-		double distError = Math.abs(distanceSetpoint - currentDist);  //inverse of difference between current distance and target distance 
+		double distError = Math.abs(distanceSetpoint) - Math.abs(currentDist);  //inverse of difference between current distance and target distance 
 		dIntegral += (distError * .02);
 		derivative = (distError - previousDistError)/.02;
 		previousDistError = distError;
