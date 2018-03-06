@@ -14,12 +14,14 @@ import edu.wpi.first.wpilibj.command.Command;
 public class CollectCube extends Command {
 
 	CubeIntake cubeintake;
+	Ramp ramp;
 	OI oi;
 	LightsSubsystem  lights; 
 	double rightStickY, leftStickY;
 	
     public CollectCube() {
     	requires(Robot.cubeintake);
+    	requires(Robot.ramp);
    // 	requires(Robot.lights);
     	
     }
@@ -28,6 +30,7 @@ public class CollectCube extends Command {
     protected void initialize() {
     	oi = Robot.oi;
     	cubeintake = Robot.cubeintake;
+    	ramp = Robot.ramp;
    // 	lights = Robot.lights;
     	
    // 	lights.sendMessage(SubsystemIndex.ALL, "c");
@@ -47,6 +50,7 @@ public class CollectCube extends Command {
     		//cubeintake.collectCubeRight(rightStickY);
     		cubeintake.collectCubeLeft(leftStickY);
     		cubeintake.collectCubeRight(rightStickY);
+    		ramp.bringCubeIn(-leftStickY);
     	}
 //    }
 
