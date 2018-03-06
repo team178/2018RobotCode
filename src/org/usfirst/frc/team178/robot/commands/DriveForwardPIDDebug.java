@@ -25,12 +25,21 @@ public class DriveForwardPIDDebug extends Command {
 	double  dIntegral = 0, dP = .4, dI = 0.0, dD = 0.0; //Variables for distance PID
 	double previousSpeedL,previousSpeedR ,distanceSetpoint, previousDistError;
 
-	public DriveForwardPIDDebug(double dist, double speed, boolean resetG) {
+	public DriveForwardPIDDebug(double dist, double speed, boolean resetG, boolean goForward) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.drivetrain);
-    	robotSpeed = speed; //units = Factor between -1 and 1
-    	distance = dist; //units = inches
+    	if(goForward)
+    	{
+    		robotSpeed = speed; //units = Factor between -1 and 
+    		distance = dist;
+    	}
+    	else
+    	{
+    		robotSpeed = -speed;
+    		distance = dist;
+    	}
+
     	resetGyro = resetG;
     }
 

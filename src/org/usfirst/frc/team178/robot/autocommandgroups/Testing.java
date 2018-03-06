@@ -19,7 +19,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class Testing extends CommandGroup {
 
     public Testing() {
-       addSequential(new DriveBackwards(-100, -.5));
+       addSequential(new DriveBackwards(-100, .5));
        //addSequential(new AutoTurnPID(90, .5));
        //addSequential(new AutoTurnPID(-90, .5));
        //addSequential(new AutoDecisions());
