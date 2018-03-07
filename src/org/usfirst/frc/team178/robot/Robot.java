@@ -177,7 +177,7 @@ public class Robot extends IterativeRobot {
 		 * autonomousCommand = new ExampleCommand(); break; }
 		 */
 		getAutoSelections();
-		autonomousCommand = new Testing();
+		autonomousCommand = new AutoDecisions(userChoice, fieldConfig);
 		//autonomousCommand = new AutoDecisions(userChoice, fieldConfig);
 		
 		if (autonomousCommand != null)

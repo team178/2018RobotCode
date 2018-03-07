@@ -48,9 +48,9 @@ public class CollectCube extends Command {
     		//cubeintake.collectCubeLeft(leftStickY);
     	//} else {
     		//cubeintake.collectCubeRight(rightStickY);
-    		cubeintake.collectCubeLeft(leftStickY);
-    		cubeintake.collectCubeRight(rightStickY);
-    		ramp.bringCubeIn(-leftStickY);
+    		cubeintake.collectCubeLeft(-leftStickY);
+    		cubeintake.collectCubeRight(-rightStickY);
+    		ramp.bringCubeIn(leftStickY);
     	}
 //    }
 
@@ -64,12 +64,13 @@ public class CollectCube extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-
+    	ramp.bringCubeIn(0);
     	cubeintake.collectCubeLeft(0);
     	cubeintake.collectCubeRight(0);
     }
     
     protected void interrupted() {
+    	ramp.bringCubeIn(0);
     	cubeintake.collectCubeLeft(0);
     	cubeintake.collectCubeRight(0);
     }

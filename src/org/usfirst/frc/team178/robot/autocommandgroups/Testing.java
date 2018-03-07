@@ -3,6 +3,7 @@ package org.usfirst.frc.team178.robot.autocommandgroups;
 
 import org.usfirst.frc.team178.robot.commands.GhettoTurn;
 import org.usfirst.frc.team178.robot.commands.AutoTurnPID;
+import org.usfirst.frc.team178.robot.commands.DriveBackwardPID;
 import org.usfirst.frc.team178.robot.commands.DriveBackwards;
 import org.usfirst.frc.team178.robot.commands.DriveForwardPIDDebug;
 import org.usfirst.frc.team178.robot.commands.AutoTurnPID;
@@ -20,9 +21,14 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class Testing extends CommandGroup {
 
     public Testing() {
+<<<<<<< Updated upstream
     	addSequential(new DriveForwardPIDDebug(65,.5,true, false));
     //   addSequential(new DriveBackwards(-100, .5));
        //addSequential(new AutoTurnPID(90, .5));
+=======
+       addSequential(new DriveBackwardPID(-100, -.5, true));
+       //addSequential(new AutoTurnPID(90, .5, true));
+>>>>>>> Stashed changes
        //addSequential(new AutoTurnPID(-90, .5));
        //addSequential(new AutoDecisions());
     }

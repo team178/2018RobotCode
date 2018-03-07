@@ -51,7 +51,7 @@ public class DriveBackwardPID extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	drivetrain.drive(robotSpeed, -robotSpeed);
-    	/*
+    	
   //  	System.out.println(drivetrain.getRightDistance());
     	//System.out.println(drivetrain.getRightDistance());
     	double currentPID = straightPID();
@@ -83,13 +83,17 @@ public class DriveBackwardPID extends Command {
     			drivetrain.drive(robotSpeed * (1-currentPID), -robotSpeed);
     		}
     	}
-    	*/
-    }
+    	}
+    	
+    
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+    	System.out.println("Distance: " + distance);
+    	System.out.println("Distance to go: " + (distance - drivetrain.getLeftDistance()));
+    	
     	//.System.out.println((distance - drivetrain.getLeftDistance()));
-    	if (distance - Math.abs(drivetrain.getLeftDistance()) < 1)
+    	if (-distance - Math.abs(drivetrain.getLeftDistance()) < 1)
     	{
     //		System.out.println(drivetrain.getLeftDistance());
     //		System.out.println("I'm not finished!");
@@ -116,7 +120,7 @@ public class DriveBackwardPID extends Command {
     }
 	
     double derivative;
-    /*
+    
 	public double stopPID()
 	{
 		double currentDist = (drivetrain.getRightDistance() + Math.abs(drivetrain.getLeftDistance()))/2;		//average distance feedback from two encoders
@@ -130,13 +134,13 @@ public class DriveBackwardPID extends Command {
 		//previousSpeed = previousSpeed * (1-output);
 		return output;
 	}
-	*/
+	
 	
 	public void setDistanceSetpoint(double target)
 	{
 		this.distanceSetpoint = target;
 	}
-	/*
+	
 	public double straightPID() //Note to self, maybe change this to just straight up return the output and make it a double method
 	{
 		double error = drivetrain.getAngle() - angleSetpoint; //calculates devation from intended angle 			//Need to add absolute Vaule? -- Robbie
@@ -146,7 +150,7 @@ public class DriveBackwardPID extends Command {
 		double output = ( aP * error + aI * aIntegral +  aD * derivative);    //Uses the PID equation to get an output
 		return output;
 	}
-	*/
+	
 	public void setAngleSetpoint(int setpoint)
 	{
 		this.angleSetpoint = setpoint; //sets the target value (which is the orientation of the robot in degrees)
