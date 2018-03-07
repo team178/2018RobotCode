@@ -22,7 +22,8 @@ public class AutoDecisions extends CommandGroup {
     	if(userChoice[0] || !(fieldConfig[2] == 'N')) {
     		if (userChoice[2]) {
     			if (fieldConfig[0] == 'M') {
-    				addSequential(new AutoMiddleSwitch());
+    				//addSequential(new AutoMiddleSwitch());
+    				addSequential(new DriveForwardPIDDebug(50,.5,true, false));
     			} else {
     				addSequential(new AutoSideSwitch());
     			}
