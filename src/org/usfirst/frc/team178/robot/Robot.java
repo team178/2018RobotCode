@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team178.robot.autocommandgroups.*;
+import org.usfirst.frc.team178.robot.commands.ControlRampIntake;
 import org.usfirst.frc.team178.robot.subsystems.*;
 
 /**
@@ -179,6 +180,7 @@ public class Robot extends IterativeRobot {
 		getAutoSelections();
 		autonomousCommand = new AutoDecisions(userChoice, fieldConfig);
 		//autonomousCommand = new AutoDecisions(userChoice, fieldConfig);
+		cubeintake.foldIntake();
 		
 		if (autonomousCommand != null)
 			autonomousCommand.start();

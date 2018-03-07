@@ -18,22 +18,22 @@ public class AutoSideSwitch extends CommandGroup {
     public AutoSideSwitch() {
     	if(Robot.fieldConfig[2] == 'R') {
     		if(Robot.fieldConfig[0] == 'R') {
-    			addSequential(new DriveForwardPIDDebug(-120, .5, true, false));
+    			addSequential(new DriveForwardPIDDebug(120, .3, true, false));
     			addSequential(new Delay(1));
-    			addSequential(new AutoTurnPID(90, .5, true));
+    			addSequential(new AutoTurnPID(90, .3, true));
     			addSequential(new Delay(1));
-    			addSequential(new DriveForwardPIDDebug(-20, .5, true, false));
+    			addSequential(new DriveForwardPIDDebug(20, .3, true, false));
     			addSequential(new ShootSwitch(true));
     		} else {
-    			addSequential(new DriveForwardPIDDebug(-120,.5, true, false));
+    			addSequential(new DriveForwardPIDDebug(120,.3, true, false));
     		}
     	} else if (Robot.fieldConfig[2] == 'L') {
     		if (Robot.fieldConfig[0] == 'L') {
-    			addSequential(new DriveForwardPIDDebug(-120, .5, true, false));
+    			addSequential(new DriveForwardPIDDebug(120, .3, true, false));
     			addSequential(new Delay(1));
-    			addSequential(new AutoTurnPID(-90, .5, true));
+    			addSequential(new AutoTurnPID(90, .3, true));
     			addSequential(new Delay(1));
-    			addSequential(new DriveForwardPIDDebug(-20, .5, true, false));
+    			addSequential(new DriveForwardPIDDebug(20, .3, true, false));
     			addSequential(new ShootSwitch(true));
     		}
     	}

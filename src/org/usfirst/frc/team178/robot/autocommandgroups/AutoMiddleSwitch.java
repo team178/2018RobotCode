@@ -15,26 +15,26 @@ public class AutoMiddleSwitch extends CommandGroup {
 	char switchSide = Robot.switchSide;
     public AutoMiddleSwitch() {
     	if(switchSide == 'L') {
-    		addSequential(new DriveForwardPIDDebug(-90, .5, true, false));
+    		addSequential(new DriveForwardPIDDebug(90, .3, true, false));
     		addSequential(new Delay(1));
-    		addSequential(new AutoTurnPID(-90, .5, true));
+    		addSequential(new AutoTurnPID(90, .3, true));
     		addSequential(new Delay(1));
-    		addSequential(new DriveForwardPIDDebug(-25, .5, true, false));
+    		addSequential(new DriveForwardPIDDebug(25, .3, true, false));
     		addSequential(new Delay(1));
-    		addSequential(new AutoTurnPID(90, .5, true));
+    		addSequential(new AutoTurnPID(90, .3, true));
     		addSequential(new Delay(1));
-    		addSequential(new DriveForwardPIDDebug(-30, .5, true, false));
+    		addSequential(new DriveForwardPIDDebug(30, .3, true, false));
     		addSequential(new ShootSwitch(true));
     	} else if (switchSide == 'R') {
-    		addSequential(new DriveForwardPIDDebug(-90, .5, true, false));
+    		addSequential(new DriveForwardPIDDebug(90, .3, true, false));
     		addSequential(new Delay(1));
-    		addSequential(new AutoTurnPID(90, .5, true));
+    		addSequential(new AutoTurnPID(90, .3, true));
     		addSequential(new Delay(1));
-    		addSequential(new DriveForwardPIDDebug(-25, .5, true, false));
+    		addSequential(new DriveForwardPIDDebug(25, .3, true, false));
     		addSequential(new Delay(1));
-    		addSequential(new AutoTurnPID(-90, .5, true));
+    		addSequential(new AutoTurnPID(-90, .3, true));
     		addSequential(new Delay(1));
-    		addSequential(new DriveForwardPIDDebug(-30, .5, true, false));
+    		addSequential(new DriveForwardPIDDebug(30, .3, true, false));
     		addSequential(new ShootSwitch(true));
     	}
       
