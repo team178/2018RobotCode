@@ -24,7 +24,7 @@ public class DriveForwardPIDDebug extends Command {
 	double angleSetpoint, previousAngleError;
 
 	//Variables for slowing down
-	double  dIntegral = 0, dP = .25, dI = 0.0, dD = 0.0; //Variables for distance PID
+	double  dIntegral = 0, dP = .7, dI = 0.0, dD = 0.0; //Variables for distance PID
 	double previousSpeedL,previousSpeedR ,distanceSetpoint, previousDistError;
 
 	public DriveForwardPIDDebug(double dist, double speed, boolean resetG, boolean goForward) {
@@ -57,6 +57,7 @@ public class DriveForwardPIDDebug extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	System.out.println("Counter: " + counter);
   //  	System.out.println(drivetrain.getRightDistance());
     	//System.out.println(drivetrain.getRightDistance());
     	counter++;
@@ -112,7 +113,7 @@ public class DriveForwardPIDDebug extends Command {
 
     		System.out.println("Finished driving");
     		return true;
-    	} else if(counter> 100000){
+    	} else if(counter > 1000){
     		System.out.println("Finished driving");
     		return true;
     //		System.out.println("I'm actually finished!");

@@ -67,8 +67,8 @@ public class RobotMap {
 	public static int ULTRASONICLEFTINPUT = 2; // Analog
 	public static int ULTRASONICRIGHTINPUT = 3; //Analog
 	
-	public static int LiftShooter = 4; //PCM
-	public static int DropShooter = 5; //PCM
+	public static int extendArm = 4; //PCM
+	public static int retractArm  = 5; //PCM
 
 	public enum SubsystemIndex {
 		ALL, BUMPER

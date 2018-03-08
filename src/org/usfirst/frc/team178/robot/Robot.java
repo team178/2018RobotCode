@@ -135,7 +135,7 @@ public class Robot extends IterativeRobot {
 		choices[1] = vault.getSelected();
 		choices[2] = switchChooser.getSelected();
 			//	gameData = DriverStation.getInstance().getGameSpecificMessage();
-		gameData = "RLR";
+		gameData = "LLR";
 		for(int i = 0; i < choices.length; i++) {
 			if(choices[i] == null) {
 				choices[i] = "No";
@@ -178,8 +178,8 @@ public class Robot extends IterativeRobot {
 		 * autonomousCommand = new ExampleCommand(); break; }
 		 */
 		getAutoSelections();
+		//autonomousCommand = new Testing();
 		autonomousCommand = new AutoDecisions(userChoice, fieldConfig);
-		//autonomousCommand = new AutoDecisions(userChoice, fieldConfig);
 		cubeintake.foldIntake();
 		
 		if (autonomousCommand != null)

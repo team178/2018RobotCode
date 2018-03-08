@@ -17,30 +17,23 @@ public class AutoDecisions extends CommandGroup {
  * 
  */
     public AutoDecisions(boolean[] userChoice, char[] fieldConfig) {
-    	System.out.println("auto descisions init");
-    	//Everything dependent on if GoForward is selected
-    	if(userChoice[0] || !(fieldConfig[2] == 'N')) {
-    		if (!userChoice[2]) {
-    			if (fieldConfig[0] == 'M') {
-    				//addSequential(new AutoMiddleSwitch());
-    				addSequential(new DriveForwardPIDDebug(50,.3,true, false));
+    	if (userChoice[0] || !(fieldConfig[2] == 'N')) {
+    		if (userChoice[2]) {
+    			if (fieldConfig[2] == 'M') {
+    				addSequential(new AutoMiddleSwitch());
     			} else {
     				addSequential(new AutoSideSwitch());
     			}
     		} else {
-    			if (fieldConfig[2] == 'M') {
-    				if (userChoice[1]) {
-    					addSequential(new PutInVault());
-    				} else {
-    					addSequential(new DriveForwardPIDDebug(90, .3, true, false));
-    				}
+    			if (userChoice[1]) { 
+    				addSequential(new PutInVault());
     			} else {
-    				addSequential(new DriveForwardPIDDebug(120, .3, true, false));
+    				addSequential(new DriveForwardPIDDebug(90, .3, true, false));
+    			}
     		}
-    	} 
-    } else {
-    	System.out.println("Something went wrong or you didn't want to run autonomous");
-    }
+    	} else {
+    		System.out.println("Something went wrong or you didn't want to run autonomous");
+    	}
   }
 }
 

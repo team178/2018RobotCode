@@ -16,6 +16,7 @@ public class AutoTurnPID extends Command {
 	double angleSetpoint, angleIntegral, previousAngle, angleDerivative, aP= 1, aI= 0.01, aD = 0.01;
 	static int counter;
 	boolean resetGyro;
+	double currentAngle;
 	
 	
     public AutoTurnPID(double tAngle, double speed, boolean resetG) {
@@ -38,7 +39,7 @@ public class AutoTurnPID extends Command {
     protected void execute() {
     	counter++;
     	System.out.println("Counter:" + counter);
-    	double currentAngle = drivetrain.getAngle();
+    	currentAngle = drivetrain.getAngle();
     	System.out.println("Current Angle: " + currentAngle);	
     	setAngleSetpoint(targetAngle);
     	double valuePID = turnPID(currentAngle);
@@ -56,7 +57,7 @@ public class AutoTurnPID extends Command {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     	System.out.println("OVer HErE");
-    	if (Math.abs(drivetrain.getAngle() - targetAngle) < 1.5 && Math.abs(angleDerivative) < 0.03 ) {
+    	if ((Math.abs(drivetrain.getAngle() - targetAngle) < 1.5 && Math.abs(angleDerivative) < 0.03) || counter >= 300) {
     		System.out.println("stop turning");
     		return true;
     	} else {

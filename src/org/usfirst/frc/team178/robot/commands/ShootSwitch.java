@@ -27,6 +27,7 @@ public class ShootSwitch extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	ramp.extendArm();
     	ramp.shootCube(0.5);
     	ramp.bringCubeIn(0.5);
     }
@@ -47,6 +48,7 @@ public class ShootSwitch extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	ramp.retractArm();
     	ramp.stopLoading();
     	ramp.stopShooting();
     }

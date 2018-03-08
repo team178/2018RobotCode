@@ -21,8 +21,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class Testing extends CommandGroup {
 
     public Testing() {
-       addSequential(new DriveBackwardPID(-100, -.5, true));
-       //addSequential(new AutoTurnPID(90, .5, true));
+       //addSequential(new DriveBackwardPID(-100, -.5, true));
+       addSequential(new AutoTurnPID(90, .3, true));
        //addSequential(new AutoTurnPID(-90, .5));
        //addSequential(new AutoDecisions());
     }
