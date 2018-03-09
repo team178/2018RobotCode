@@ -25,7 +25,7 @@ public class AutoDecisions extends CommandGroup {
     				addSequential(new AutoSideSwitch());
     			}
     		} else {
-    			if (userChoice[1]) { 
+    			if (userChoice[1] && (fieldConfig[2] == 'M')) { 
     				addSequential(new PutInVault());
     			} else {
     				addSequential(new DriveForwardPIDDebug(90, .3, true, false));
