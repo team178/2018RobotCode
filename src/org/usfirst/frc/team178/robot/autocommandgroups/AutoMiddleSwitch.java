@@ -17,26 +17,14 @@ public class AutoMiddleSwitch extends CommandGroup {
     public AutoMiddleSwitch() {
 
     	if(switchSide == 'L') {
-    		addSequential(new DriveForwardPIDDebug(90, .3, true, false));
-    //		addSequential(new Delay(1));
-    		addSequential(new AutoTurnPID(-90, .3, true));
-    //		addSequential(new Delay(1));
-    		addSequential(new DriveForwardPIDDebug(60, .3, true, false));
-   // 		addSequential(new Delay(1));
-    		addSequential(new AutoTurnPID(90, .3, true));
-    //		addSequential(new Delay(1));
-    		addSequential(new DriveForwardPIDDebug(20, .3, true, false));
-    		addSequential(new ShootSwitch(true));
+    		addSequential(new DriveForwardPIDDebug(90, .5, true, false));
+    	//	addSequential(new AutoTurnPID(-90, .435, true));
+    	//	addSequential(new DriveForwardPIDDebug(80, .5, true, false));
+    	//	addSequential(new AutoTurnPID(90, .435, true));
+    	//	addSequential(new DriveForwardPIDDebug(25, .3, true, false));
+    	//	addSequential(new ShootSwitch(true));
     	} else if (switchSide == 'R') {
-    		addSequential(new DriveForwardPIDDebug(90, .3, true, false));
-    //		addSequential(new Delay(1));
-    		addSequential(new AutoTurnPID(90, .3, true));
-    //		addSequential(new Delay(1));
-    		addSequential(new DriveForwardPIDDebug(25, .3, true, false));
-    //		addSequential(new Delay(1));
-    		addSequential(new AutoTurnPID(-90, .3, true));
-    //		addSequential(new Delay(1));
-    		addSequential(new DriveForwardPIDDebug(20, .3, true, false));
+    		addSequential(new DriveForwardPIDDebug(95, .5, true, false));
     		addSequential(new ShootSwitch(true));
     	}
       

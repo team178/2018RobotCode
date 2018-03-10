@@ -29,7 +29,7 @@ public class RobotMap {
 	public static int DMTopRight = 0; // PWM
 	public static int DMMiddleRight = 1; // PWM
 	//public static int DMBottomRight = 3; // PWM
-	public static int DMTopLeft = 2; // PWM
+	public static int DMTopLeft = 17; // PWM
 	public static int DMMiddleLeft = 3; // PWM
 	//public static int DMBottomLeft = 6; // PWM	
 

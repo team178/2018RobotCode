@@ -32,6 +32,8 @@ public class Robot extends IterativeRobot {
 	public static AnalogGyro gyro;
 	public static LightsSubsystem lights;
 	
+	public static boolean autoIsInitialized;
+	
 
 
 	Command autonomousCommand;
@@ -72,12 +74,12 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		
 		UsbCamera camera1 = CameraServer.getInstance().startAutomaticCapture(0);
-		camera1.setResolution(320, 240);
-		camera1.setFPS(25);
+		camera1.setResolution(160, 120);
+		camera1.setFPS(14);
 		
 		UsbCamera camera2 = CameraServer.getInstance().startAutomaticCapture(1);
-		camera2.setResolution(320, 240);
-		camera2.setFPS(25); 
+		camera2.setResolution(160, 120);
+		camera2.setFPS(14); 
 		
 		botLocation.addObject("Left", "Left");
 		botLocation.addObject("Middle", "Middle");
@@ -130,7 +132,7 @@ public class Robot extends IterativeRobot {
 	boolean[] userChoice = new boolean[3];
 	public static char[] fieldConfig = new char[3];
 	
-	public void getAutoSelections() {
+	public boolean getAutoSelections() {
 		choices[0] = goForward.getSelected();
 		choices[1] = vault.getSelected();
 		choices[2] = switchChooser.getSelected();
@@ -139,6 +141,11 @@ public class Robot extends IterativeRobot {
 			if(choices[i] == null) {
 				choices[i] = "No";
 			}
+			
+		}
+		
+		if (gameData.equals("")) {
+			return false;
 		}
 		//Array of the choices driver can make before auto
 		userChoice[0] = (choices[0].equals("Yes"));
@@ -148,12 +155,14 @@ public class Robot extends IterativeRobot {
 		//Predetermined field positions/aspects
 		fieldConfig[0] = gameData.charAt(0); //this is switch 
 		fieldConfig[1] = gameData.charAt(1);  //this is scale
-    	fieldConfig[2] = returnSelection().charAt(0); //starting position
+		fieldConfig[2] = returnSelection().charAt(0); //starting position
     	
     	if(fieldConfig[2] != 'M' && fieldConfig[2] != 'L' && fieldConfig[2] != 'R') {
     		fieldConfig[2] = 'd';
     		userChoice[0] = false;
     	}
+    	
+    	return true;
 
 		
 	}
@@ -176,12 +185,9 @@ public class Robot extends IterativeRobot {
 		 * = new MyAutoCommand(); break; case "Default Auto": default:
 		 * autonomousCommand = new ExampleCommand(); break; }
 		 */
-		getAutoSelections();
-		autonomousCommand = new AutoDecisions(userChoice, fieldConfig);
-		cubeintake.foldIntake();
-		
-		if (autonomousCommand != null)
-			autonomousCommand.start();
+		autoIsInitialized = false;
+		gameData = "";
+		System.out.println("Starting autonomous periodic...");
 
 		// schedule the autonomous command (example)
 		
@@ -192,7 +198,21 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
-		Scheduler.getInstance().run();
+		if(autoIsInitialized) {
+			Scheduler.getInstance().run();
+		} else {
+			System.out.println("Waiting for Game Data...");
+			if(getAutoSelections()) {
+				System.out.println("Game data acquired.");
+				autonomousCommand = new AutoDecisions(userChoice, fieldConfig);
+				cubeintake.foldIntake();
+			
+				if (autonomousCommand != null)
+					autonomousCommand.start();
+			
+				autoIsInitialized = true;
+			}
+		}
 	}
 
 	@Override

@@ -28,15 +28,15 @@ public class AutoSideSwitch extends CommandGroup {
     	
     	if(Robot.fieldConfig[2] == 'R') {
     		if(Robot.fieldConfig[0] == 'R') {
-    			addSequential(new DriveForwardPIDDebug(146, .3, true, false));
-    			addSequential(new AutoTurnPID(-90, .3, true));
+    			addSequential(new DriveForwardPIDDebug(146, .5, true, false));
+    			addSequential(new AutoTurnPID(-90, .435, true));
     			addSequential(new DriveForwardPIDDebug(15, .3, true, false));
     			addSequential(new ShootSwitch(true));
     		}
     	} else if (Robot.fieldConfig[2] == 'L') {
     		if (Robot.fieldConfig[0] == 'L') {
-    			addSequential(new DriveForwardPIDDebug(146, .3, true, false));
-    			addSequential(new AutoTurnPID(90, .3, true));
+    			addSequential(new DriveForwardPIDDebug(146, .5, true, false));
+    			addSequential(new AutoTurnPID(90, .435, true));
     			addSequential(new DriveForwardPIDDebug(10, .3, true, false));
     			addSequential(new ShootSwitch(true));
     		}
