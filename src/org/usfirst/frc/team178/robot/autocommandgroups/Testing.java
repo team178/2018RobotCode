@@ -5,7 +5,7 @@ import org.usfirst.frc.team178.robot.commands.GhettoTurn;
 import org.usfirst.frc.team178.robot.commands.AutoTurnPID;
 import org.usfirst.frc.team178.robot.commands.DriveBackwardPID;
 import org.usfirst.frc.team178.robot.commands.DriveBackwards;
-import org.usfirst.frc.team178.robot.commands.DriveForwardPIDDebug;
+import org.usfirst.frc.team178.robot.commands.DriveForwardPID;
 import org.usfirst.frc.team178.robot.commands.AutoTurnPID;
 import org.usfirst.frc.team178.robot.commands.GhettoDriveForward;
 //import org.usfirst.frc.team178.robot.commands.DriveForwardDoublePID;

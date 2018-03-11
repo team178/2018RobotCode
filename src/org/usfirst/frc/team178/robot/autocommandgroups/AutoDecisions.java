@@ -33,7 +33,7 @@ public class AutoDecisions extends CommandGroup {
     				addSequential(new PutInVault());
     			} else {
     				System.out.println("Just going to drive forward");
-    				addSequential(new DriveForwardPIDDebug(90, .3, true, false));
+    				addSequential(new DriveForwardPID(90, .3, true, false));
     			}
     		}
     	} else {
