@@ -18,16 +18,21 @@ public class AutoDecisions extends CommandGroup {
  */
     public AutoDecisions(boolean[] userChoice, char[] fieldConfig) {
     	if (userChoice[0] || !(fieldConfig[2] == 'N')) {
+    		System.out.println("Go forward... ");
     		if (userChoice[2]) {
     			if (fieldConfig[2] == 'M') {
+    				System.out.println("Going for middle switch");
     				addSequential(new AutoMiddleSwitch());
     			} else {
     				addSequential(new AutoSideSwitch());
+    				System.out.println("Going for sidee switch");
     			}
     		} else {
     			if (userChoice[1] && (fieldConfig[2] == 'M')) { 
+    				System.out.println("Going for valut because we are in the middle");
     				addSequential(new PutInVault());
     			} else {
+    				System.out.println("Just going to drive forward");
     				addSequential(new DriveForwardPIDDebug(90, .3, true, false));
     			}
     		}

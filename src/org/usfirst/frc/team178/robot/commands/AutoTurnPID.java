@@ -31,7 +31,7 @@ public class AutoTurnPID extends Command {
     	oi = Robot.oi;
     	drivetrain = Robot.drivetrain;
     	if(resetGyro)
-    	drivetrain.resetGyro();
+    		drivetrain.resetGyro();
     	counter = 0;
     }
 

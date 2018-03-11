@@ -48,7 +48,7 @@ public class DriveForwardPIDDebug extends Command {
     	previousSpeedR = robotSpeed;
     	counter = 0;
     	if(resetGyro)
-    	drivetrain.resetGyro();
+    		drivetrain.resetGyro();
     	drivetrain.resetEncoders();
     	setAngleSetpoint(0);
     	setDistanceSetpoint(distance);

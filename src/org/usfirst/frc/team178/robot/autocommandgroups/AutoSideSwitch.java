@@ -26,18 +26,21 @@ public class AutoSideSwitch extends CommandGroup {
     		addSequential(new DriveForwardPIDDebug(120, .5, true, false));
     	}
     	
+    	System.out.println("Auto side switch: same side=" + isSame);
     	if(Robot.fieldConfig[2] == 'R') {
     		if(Robot.fieldConfig[0] == 'R') {
-    			addSequential(new DriveForwardPIDDebug(146, .5, true, false));
-    			addSequential(new AutoTurnPID(-90, .435, true));
-    			addSequential(new DriveForwardPIDDebug(15, .3, true, false));
+    			System.out.println("Going for RIGHT side");
+    			addSequential(new DriveForwardPIDDebug(135, .5, true, false));
+    			addSequential(new AutoTurnPID(-90, .435, true)); // false? so we dont reset  the gyro
+    			addSequential(new DriveForwardPIDDebug(20, .3, true, false));
     			addSequential(new ShootSwitch(true));
     		}
     	} else if (Robot.fieldConfig[2] == 'L') {
     		if (Robot.fieldConfig[0] == 'L') {
-    			addSequential(new DriveForwardPIDDebug(146, .5, true, false));
+    			System.out.println("Going for LEFT side");
+    			addSequential(new DriveForwardPIDDebug(135, .5, true, false)); //was 146
     			addSequential(new AutoTurnPID(90, .435, true));
-    			addSequential(new DriveForwardPIDDebug(10, .3, true, false));
+    			addSequential(new DriveForwardPIDDebug(20, .3, true, false)); //was 15
     			addSequential(new ShootSwitch(true));
     		}
     	}
