@@ -23,7 +23,7 @@ public class AutoSideSwitch extends CommandGroup {
     		isSame = true;
     	
     	if(!isSame) {
-    		addSequential(new DriveForwardPIDDebug(120, .3, true, false));
+    		addSequential(new DriveForwardPIDDebug(120, .5, true, false));
     	}
     	
     	if(Robot.fieldConfig[2] == 'R') {

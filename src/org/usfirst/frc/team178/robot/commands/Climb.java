@@ -8,6 +8,7 @@ import org.usfirst.frc.team178.robot.subsystems.Climber;
  */
 public class Climb extends Command {
 
+	OI oi;
     Climber climber;
 	
 	public Climb() {
@@ -18,11 +19,15 @@ public class Climb extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	climber = Robot.climber;
+    	oi = Robot.oi;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	climber.climb(1);
+    	if(oi.startButton.get() && oi.backButton.get())
+    		climber.climb(-.5);
+    	else
+    		climber.climb(1);
     }
 
     // Make this return true when this Command no longer needs to run execute()

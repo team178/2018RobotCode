@@ -60,6 +60,8 @@ public class DriveForwardPIDDebug extends Command {
    // 	System.out.println("Counter: " + counter);
   //  	System.out.println(drivetrain.getRightDistance());
     	//System.out.println(drivetrain.getRightDistance());
+    	if(counter%10 == 0)
+    		System.out.println(drivetrain.getAngle());
     	counter++;
     	double currentAnglePID;
     	double currentStopPID;
