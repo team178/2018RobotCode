@@ -137,11 +137,13 @@ public class Robot extends IterativeRobot {
 		choices[1] = vault.getSelected();
 		choices[2] = switchChooser.getSelected();
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
+		System.out.println(gameData);
+		//System.out.println(String.format("0x%02X", gameData));
 		for(int i = 0; i < choices.length; i++) {
 			if(choices[i] == null) {
 				choices[i] = "No";
 			}
-			
+		
 		}
 		
 		if (gameData.equals("")) {

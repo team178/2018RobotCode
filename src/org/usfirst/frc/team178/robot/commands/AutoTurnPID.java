@@ -13,7 +13,7 @@ public class AutoTurnPID extends Command {
 	OI oi;
 	Drivetrain drivetrain;
 	double robotSpeed, targetAngle, actualAngle;
-	double angleSetpoint, angleIntegral, previousAngle, angleDerivative, aP= 1, aI= 0.01, aD = 0.01;
+	double angleSetpoint, angleIntegral, previousAngle, angleDerivative, aP, aI, aD;
 	static int counter;
 	boolean resetGyro;
 	double currentAngle;
@@ -57,7 +57,7 @@ public class AutoTurnPID extends Command {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     	System.out.println("OVer HErE");
-    	if ((Math.abs(drivetrain.getAngle() - targetAngle) < 1.5 && Math.abs(angleDerivative) < 0.03) || counter >= 300) {
+    	if ((Math.abs(drivetrain.getAngle() - targetAngle) < 1.5 && Math.abs(angleDerivative) < 0.03) || counter >= 200) {
     		System.out.println("stop turning");
     		return true;
     	} else {
@@ -75,7 +75,10 @@ public class AutoTurnPID extends Command {
     
     public double turnPID(double currentAngle)
 	{
-    	if(targetAngle > 0)
+    	aP = .5;
+		aI= .02;
+		aD = .05;
+   /* 	if(targetAngle > 0)
     	{
     		aP = .3;
     		aI= .01;
@@ -84,7 +87,7 @@ public class AutoTurnPID extends Command {
     	else
     		aP = .5;
     		aI= .02;
-    		aD = .01;
+    		aD = .01;*/
 		//How far the Robot is from it's target distance
 		double angleError = Math.abs(angleSetpoint - currentAngle);  //inverse of difference between current distance and target distance 
 		angleIntegral += (angleError * .02);
