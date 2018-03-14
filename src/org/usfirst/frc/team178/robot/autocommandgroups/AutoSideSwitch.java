@@ -31,8 +31,8 @@ public class AutoSideSwitch extends CommandGroup {
     			System.out.println("Going for RIGHT side");
     			addSequential(new DriveForwardPID(135, .5, true, false));
     			addSequential(new AutoTurnPID(-90, .435, true)); // false? so we dont reset  the gyro
-    			addSequential(new DriveForwardPID(20, .3, true, false));
-    			addSequential(new ShootSwitch(true));
+    			//addSequential(new DriveForwardPID(20, .3, true, false));
+    		//	addSequential(new ShootSwitch(true));
     		}
     	} else if (Robot.fieldConfig[2] == 'L') {
     		if (Robot.fieldConfig[0] == 'L') {
