@@ -108,18 +108,14 @@ public class DriveForwardPID extends Command {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
   //  		System.out.println(distance - (Math.abs(drivetrain.getLeftDistance())));
-    	if (distance - Math.abs(drivetrain.getLeftDistance()) < 1)
+    	if (distance - Math.abs(drivetrain.getLeftDistance()) < 1 || counter >= 200)
     	{
     //		System.out.println(drivetrain.getLeftDistance());
     //		System.out.println("I'm not finished!");
 
     		System.out.println("Finished driving");
     		return true;
-    	} else if(counter > 1000){
-    		System.out.println("Finished driving");
-    		return true;
-    //		System.out.println("I'm actually finished!");
-    	}
+    	} 
     	else
     		return false;
     }
