@@ -12,6 +12,7 @@ public class AutoDecisions extends CommandGroup {
  * userChoice[0] = go forward
  * userChoice[1] = vault
  * userChoice[2] = switch
+ * userChoice[3] = either side of switch
  * fieldConfig[0] = switch position
  * fieldConfig[2] = robot position
  * 
