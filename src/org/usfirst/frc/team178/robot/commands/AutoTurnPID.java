@@ -57,7 +57,7 @@ public class AutoTurnPID extends Command {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     	System.out.println("OVer HErE");
-    	if ((Math.abs(drivetrain.getAngle() - targetAngle) < 1.5 && Math.abs(angleDerivative) < 0.03) || counter >= 200) {
+    	if ((Math.abs(drivetrain.getAngle() - targetAngle) < 1.5 && Math.abs(angleDerivative) < 0.03) || counter >= 80) {
     		System.out.println("stop turning");
     		return true;
     	} else {
