@@ -18,7 +18,7 @@ public class Ramp extends Subsystem {
 	public static Talon right1;
 	public static Talon right2;
 	public static DoubleSolenoid shootingPiston;
-	public static DoubleSolenoid extendingArm;
+	//public static DoubleSolenoid extendingArm;
 	public static AnalogInput ultrasonic;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -29,7 +29,7 @@ public class Ramp extends Subsystem {
 		right1 = new Talon(RobotMap.RAMPright1);
 		right2 = new Talon(RobotMap.RAMPright2);
 		shootingPiston = new DoubleSolenoid(RobotMap.PCM, RobotMap.shootingPistonOUT, RobotMap.shootingPistonIN);
-		extendingArm = new DoubleSolenoid(RobotMap.PCM, RobotMap.extendArm, RobotMap.retractArm);
+		//extendingArm = new DoubleSolenoid(RobotMap.PCM, RobotMap.extendArm, RobotMap.retractArm);
 	}
 	
 	public void bringCubeIn(double speed) {
@@ -65,13 +65,14 @@ public class Ramp extends Subsystem {
 		shootingPiston.set(DoubleSolenoid.Value.kForward);
 	}
 	
-	public void retractArm() {
+	/* public void retractArm() {
 		extendingArm.set(DoubleSolenoid.Value.kForward);
 	}
 	
 	public void extendArm() {
 		extendingArm.set(DoubleSolenoid.Value.kReverse);
 	}
+	*/
 	
 	
 	

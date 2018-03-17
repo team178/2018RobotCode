@@ -26,8 +26,10 @@ public class Climb extends Command {
     protected void execute() {
     	if(oi.startButton.get() && oi.backButton.get())
     		climber.climb(-.5);
-    	else
+    	else {
     		climber.climb(1);
+    	}
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -59,6 +59,10 @@ public class RobotMap {
 	public static int shootingPistonOUT = 2; // PCM
 	public static int shootingPistonIN = 3; // PCM
 	
+	public static int climberArmIN = 4; // PCM
+	public static int climberArmOUT = 5; //PCM
+			
+	
 	public static int WINCH1 = 10; // PWM
 	public static int WINCH2 = 11; // PWM
 	public static int CLIMBER = 12; // PWM
@@ -67,8 +71,8 @@ public class RobotMap {
 	public static int ULTRASONICLEFTINPUT = 2; // Analog
 	public static int ULTRASONICRIGHTINPUT = 3; //Analog
 	
-	public static int extendArm = 4; //PCM
-	public static int retractArm  = 5; //PCM
+//	public static int extendArm = 6; //PCM
+//	public static int retractArm  = 7; //PCM
 
 	public enum SubsystemIndex {
 		ALL, BUMPER

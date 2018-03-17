@@ -37,6 +37,9 @@ public class OI {
 	public Button backButton = new JoystickButton(xbox, 7);
 	public Button startButton = new JoystickButton(xbox, 8);
 	
+	static Joystick xboxdrive = new Joystick(2);
+	
+	
 	public OI () { //when pressed is up or down, while held is out or information
 	//	 buttonY.whileHeld(new ShootScale()); NOTE: Can't shoot for scale
 	//	 buttonA.whenPressed(new RaiseRamp());
@@ -56,6 +59,13 @@ public class OI {
 		//fill in as soon as we know what buttons will do what
 	}
 	
+	/*public double getXboxDriveX() {
+		return xboxdrive.getRawAxis()
+	}
+	
+	public double getXboxDriveY() {
+		return xboxdrive.getRawAxis()
+	}*/
 	public double getXboxRightY() {
 		return xbox.getRawAxis(5);
 	}

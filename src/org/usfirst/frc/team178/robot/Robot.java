@@ -42,7 +42,7 @@ public class Robot extends IterativeRobot {
 	public static SendableChooser<String> switchChooser = new SendableChooser<>();
 	public static SendableChooser<String> goForward = new SendableChooser<>();
 	public static SendableChooser<String> vault = new SendableChooser<>();
-	public static SendableChooser<String> anyswitch = new SendableChooser<>();
+//	public static SendableChooser<String> anyswitch = new SendableChooser<>();
 	
 	public static boolean goForwardChoice;
 	public static boolean vaultChooser;
@@ -100,12 +100,12 @@ public class Robot extends IterativeRobot {
 		vault.addObject("Yes", "Yes");
 		vault.addObject("No", "No");
 		
-		anyswitch.addObject("Yes", "Yes");
-		anyswitch.addObject("No", "No");
+	//	anyswitch.addObject("Yes", "Yes");
+	//	anyswitch.addObject("No", "No");
 
 		SmartDashboard.putData("Go for vault?", vault);
 		SmartDashboard.putData("Go for switch?", switchChooser);
-		SmartDashboard.putData("Go for switch no matter what?", anyswitch);
+	//	SmartDashboard.putData("Go for switch no matter what?", anyswitch);
 		
 		System.out.println("Hello");
 	}
@@ -134,7 +134,7 @@ public class Robot extends IterativeRobot {
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
 	}
-	String[] choices = new String[4];
+	String[] choices = new String[3];
 	public static boolean[] userChoice = new boolean[3];
 	public static char[] fieldConfig = new char[3];
 	
@@ -142,7 +142,7 @@ public class Robot extends IterativeRobot {
 		choices[0] = goForward.getSelected();
 		choices[1] = vault.getSelected();
 		choices[2] = switchChooser.getSelected();
-		choices[3] = anyswitch.getSelected();
+	//	choices[3] = anyswitch.getSelected();
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
 		for(int i = 0; i < choices.length; i++) {
 			if(choices[i] == null) {
@@ -158,7 +158,7 @@ public class Robot extends IterativeRobot {
 		userChoice[0] = (choices[0].equals("Yes"));
 		userChoice[1] = (choices[1].equals("Yes"));
 		userChoice[2] = (choices[2].equals("Yes"));
-		userChoice[3] = (choices[3].equals("Yes"));
+	//	userChoice[3] = (choices[3].equals("Yes"));
 		
 		//Predetermined field positions/aspects
 		fieldConfig[0] = gameData.charAt(0); //this is switch 

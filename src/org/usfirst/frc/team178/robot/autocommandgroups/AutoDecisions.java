@@ -18,6 +18,7 @@ public class AutoDecisions extends CommandGroup {
  * 
  */
     public AutoDecisions(boolean[] userChoice, char[] fieldConfig) {
+    	boolean eitherSide = false; //userChoice[3];
     	if (userChoice[0] || !(fieldConfig[2] == 'N')) {
     		System.out.println("Go forward... ");
     		if (userChoice[2]) {
@@ -25,7 +26,7 @@ public class AutoDecisions extends CommandGroup {
     				System.out.println("Going for middle switch");
     				addSequential(new AutoMiddleSwitch());
     			} else {
-    				addSequential(new AutoSideSwitch());
+    				addSequential(new AutoSideSwitch(eitherSide));
     				System.out.println("Going for sidee switch");
     			}
     		} else {

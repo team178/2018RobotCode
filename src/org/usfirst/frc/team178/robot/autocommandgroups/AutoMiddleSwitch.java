@@ -21,12 +21,12 @@ public class AutoMiddleSwitch extends CommandGroup {
     		addSequential(new DriveForwardPID(90, .5, true, false));
     	//	addSequential(new AutoTurnPID(-90, .435, true));
     	//	addSequential(new DriveForwardPIDDebug(80, .5, true, false));
-    	//	addSequential(new AutoTurnPID(90, .435, true));
+    	//	addSequential(new AutoTurnPID(90, .435, true)); 
     	//	addSequential(new DriveForwardPIDDebug(25, .3, true, false));
     	//	addSequential(new ShootSwitch(true));
     	} else if (switchSide == 'R') {
         	System.out.println("R");
-    		addSequential(new DriveForwardPID(92, .5, true, false));
+    		addSequential(new DriveForwardPID(95, .5, true, false));
     		addSequential(new ShootSwitch(true));
     	}
       
