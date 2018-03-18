@@ -26,7 +26,7 @@ public class ControlRampIntake extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	speed = oi.getXboxRightY();
+    	speed = oi.getXboxRightY()*0.7;
     	ramp.bringCubeIn(-speed);
     }
 
