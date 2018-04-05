@@ -54,7 +54,6 @@ public class OI {
 		 buttonB.whileHeld(new ReverseRotateArm());
 		 
 		 
-		 
 
 		//fill in as soon as we know what buttons will do what
 	}
@@ -90,5 +89,7 @@ public class OI {
 		return xbox.getRawAxis(3);
 	}
 	
-	
+	public double getXboxX() {
+		return xbox.getRawAxis(4);
+	}
 }

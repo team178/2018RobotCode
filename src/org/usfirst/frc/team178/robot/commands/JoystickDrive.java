@@ -31,25 +31,23 @@ public class JoystickDrive extends Command {
 
   //Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(oi.getTrigger() >= 0) {
-    	yVal = oi.getY();
-		twistVal = 0.5*(oi.getTwist());
-		//System.out.println("Y Val: " + yVal);
-		//System.out.println("Twist Val: " + twistVal);
-		//System.out.println("X Val: " + oi.getX());
-
-		
-		//The if condition implements what's called a dead zone. 
-		//Makes it so that the robot will only drive when the driver is touching the joystick. Joysticks sometimes send
-		//small numbers when they're not actually touched. This eliminates that. 
-
-		if(Math.abs(yVal)>0.1 || Math.abs(twistVal)>0.1){
-			drivetrain.drive(twistVal-yVal, twistVal+yVal);
-		}
-		else {
-			drivetrain.drive(0,0);
-		}
-    	} else {
+    	if (oi.rBumper.get()) {
+    		yVal = 0.3 * oi.getXboxRightY();
+    		twistVal = 0.3 * oi.getXboxX();
+    		System.out.println("Kiddy code");}
+    	else if(oi.getTrigger() >= 0) {
+ 	    	yVal = 0.3*oi.getY();
+ 			twistVal = 0.3*(oi.getTwist());
+ 			//System.out.println("Y Val: " + yVal);
+ 			//System.out.println("Twist Val: " + twistVal);
+ 			//System.out.println("X Val: " + oi.getX());
+ 	
+ 			
+ 			//The if condition implements what's called a dead zone. 
+ 			//Makes it so that the robot will only drive when the driver is touching the joystick. Joysticks sometimes send
+ 			//small numbers when they're not actually touched. This eliminates that. 
+     	}
+    	else {
     		yVal = -oi.getY();
     		twistVal = -0.5*(oi.getTwist());
     		//System.out.println("Y Val: " + yVal);
@@ -60,14 +58,14 @@ public class JoystickDrive extends Command {
     		//The if condition implements what's called a dead zone. 
     		//Makes it so that the robot will only drive when the driver is touching the joystick. Joysticks sometimes send
     		//small numbers when they're not actually touched. This eliminates that. 
-
-    		if(Math.abs(yVal)>0.1 || Math.abs(twistVal)>0.1){
-    			drivetrain.drive(twistVal-yVal, twistVal+yVal);
-    		}
-    		else {
-    			drivetrain.drive(0,0);
-    		}
     	}
+    	
+    	if(Math.abs(yVal)>0.1 || Math.abs(twistVal)>0.1){
+			drivetrain.drive(twistVal-yVal, twistVal+yVal);
+		}
+		else {
+			drivetrain.drive(0,0);
+		}
     	
 	//	System.out.println(oi.getY());
     }
