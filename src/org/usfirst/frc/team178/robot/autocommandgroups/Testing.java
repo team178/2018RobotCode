@@ -19,7 +19,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  *
  */
 public class Testing extends CommandGroup {
-
+	
+	//As indicated, this is for testing, not actual competition
     public Testing() {
        //addSequential(new DriveBackwardPID(-100, -.5, true));
        addSequential(new AutoTurnPID(90, .3, true));

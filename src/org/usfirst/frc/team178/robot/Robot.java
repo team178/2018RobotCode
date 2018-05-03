@@ -83,23 +83,27 @@ public class Robot extends IterativeRobot {
 		camera2.setResolution(160, 120);
 		camera2.setFPS(14); 
 		
+		//Possible bot locations
 		botLocation.addObject("Left", "Left");
 		botLocation.addObject("Middle", "Middle");
 		botLocation.addObject("Right", "Right");
 		
 		SmartDashboard.putData("AutoLocation", botLocation);
 		
+		//Go to switch?
 		switchChooser.addObject("Yes", "Yes");
 		switchChooser.addObject("No", "No");
 		
+		//Cross auto line?
 		goForward.addObject("Yes", "Yes");
 		goForward.addObject("No", "No");
 		SmartDashboard.putData("Drive Forward?", goForward);
 		
-
+		//Vault?
 		vault.addObject("Yes", "Yes");
 		vault.addObject("No", "No");
 		
+		//Go to switch regardless of side?
 		anyswitch.addObject("Yes", "Yes");
 		anyswitch.addObject("No", "No");
 
@@ -144,6 +148,7 @@ public class Robot extends IterativeRobot {
 		choices[2] = switchChooser.getSelected();
 		choices[3] = anyswitch.getSelected();
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
+		//Filling auto array
 		for(int i = 0; i < choices.length; i++) {
 			if(choices[i] == null) {
 				choices[i] = "No";
@@ -208,15 +213,18 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
 		if(autoIsInitialized) {
 			Scheduler.getInstance().run();
-		} else {
+		}
+		//Processing choices for auto?
+		else {
 			System.out.println("Waiting for Game Data...");
 			if(getAutoSelections()) {
 				System.out.println("Game data acquired.");
 				autonomousCommand = new AutoDecisions(userChoice, fieldConfig);
 				cubeintake.foldIntake();
 			
-				if (autonomousCommand != null)
+				if (autonomousCommand != null) {
 					autonomousCommand.start();
+					}
 			
 				autoIsInitialized = true;
 			}

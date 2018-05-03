@@ -16,7 +16,7 @@ public class ControlRampIntake extends Command {
 	
     public ControlRampIntake() {
         requires(Robot.ramp);    
-        }
+    }
 
     // Called just before this Command runs the first time
     protected void initialize() {
@@ -26,7 +26,7 @@ public class ControlRampIntake extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	speed = oi.getXboxRightY()*0.7;
+    	speed = oi.getXboxRightY();
     	ramp.bringCubeIn(-speed);
     }
 
@@ -43,7 +43,6 @@ public class ControlRampIntake extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-
     	ramp.bringCubeIn(0);
     }
 }

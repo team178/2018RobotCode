@@ -35,16 +35,13 @@ public class Climber extends Subsystem {
 		winchMotor2.set(speed);
 	}
 	
-	public void retractArm()
-	{
+	public void retractArm() {
 		armPiston.set(DoubleSolenoid.Value.kForward);
 	}
 	
-	public void extendArm()
-	{
+	public void extendArm() {
 		armPiston.set(DoubleSolenoid.Value.kReverse);
 	}
-	
 
     public void initDefaultCommand() {
 

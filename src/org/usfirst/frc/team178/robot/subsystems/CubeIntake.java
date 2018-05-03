@@ -35,8 +35,7 @@ public class CubeIntake extends Subsystem {
     	piston.set(DoubleSolenoid.Value.kReverse); //kReverse subject to change
     }
     
-    public DoubleSolenoid.Value getIntake()
-    {
+    public DoubleSolenoid.Value getIntake() {
     	return piston.get();
     }
     
@@ -44,13 +43,11 @@ public class CubeIntake extends Subsystem {
     	left.set(speed);
     }
     
-    public void collectCubeRight(double speed)
-    {
+    public void collectCubeRight(double speed) {
     	right.set(-speed);
     }
     
-    public void collectCubeBoth(double speed)
-    {
+    public void collectCubeBoth(double speed) {
     	left.set(speed);
     	right.set(-speed);
     }
@@ -59,23 +56,18 @@ public class CubeIntake extends Subsystem {
     	left.set(speed);
     	right.set(-speed);
     }
-    
- 
 
     public void foldIntake() {
     	piston.set(DoubleSolenoid.Value.kForward);
-
     }
     
-    public double getLeftUltrasonic () {
+    public double getLeftUltrasonic() {
     	return ultrasonicleft.getVoltage();
     }
     
-    public double getRightUltrasonic () {
+    public double getRightUltrasonic() {
     	return ultrasonicright.getVoltage();
     }
-    
-  
     
     public void initDefaultCommand() {
     	

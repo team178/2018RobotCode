@@ -19,6 +19,7 @@ public class Delay extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	//Delay the start of a command
     	counter--;
     }
 
@@ -26,8 +27,9 @@ public class Delay extends Command {
     protected boolean isFinished() {
     	if(counter <= 0) {
     		return true;
-    	} else {
-        return false;
+    	}
+    	else {
+    		return false;
     	}
     }
 

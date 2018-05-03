@@ -21,7 +21,7 @@ public class AutoControlRampIntake extends Command {
         speed = spe;
         time = t;
         counter = (int) time * 50;
-        }
+    }
 
     // Called just before this Command runs the first time
     protected void initialize() {
@@ -31,6 +31,7 @@ public class AutoControlRampIntake extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	//Run for a specified time
     	counter--;
     	ramp.bringCubeIn(-speed);
     }
@@ -39,8 +40,9 @@ public class AutoControlRampIntake extends Command {
     protected boolean isFinished() {
     	if(counter <= 0) {
     		return true;
-    	} else {
-        return false;
+    	}
+    	else {
+    		return false;
     	}
     }
 
@@ -52,7 +54,6 @@ public class AutoControlRampIntake extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-
     	ramp.bringCubeIn(0);
     }
 }

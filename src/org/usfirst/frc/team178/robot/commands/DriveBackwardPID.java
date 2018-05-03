@@ -15,14 +15,14 @@ public class DriveBackwardPID extends Command {
 	OI oi;
 	double robotSpeed, distance; 
 	boolean resetGyro;
-	
+    double derivative;
 	//Variables for angle adjustment
 	double aP = 0.1, aI = 0.1, aD = 0, aIntegral = 0; //These are all constants that need to be determined through testing and tuned
-	//I and D curren ly set to 0 as I want to implement one part at a time successfully
+	//I and D currently set to 0 as I want to implement one part at a time successfully
 	double angleSetpoint, previousAngleError;
-
 	//Variables for slowing down
-	double  dIntegral = 0, dP = .4, dI = 0.0, dD = 0.0; //Variables for distance PID
+	double  dIntegral = 0, dP = .4, dI = 0.0, dD = 0.0; 
+	//Variables for distance PID
 	double previousSpeedL,previousSpeedR ,distanceSetpoint, previousDistError;
 
 	public DriveBackwardPID(double dist, double speed, boolean resetG) {
@@ -40,8 +40,9 @@ public class DriveBackwardPID extends Command {
     	drivetrain = Robot.drivetrain;
     	previousSpeedL = robotSpeed;
     	previousSpeedR = robotSpeed;
-    	if(resetGyro)
-    	drivetrain.resetGyro();
+    	if(resetGyro) {
+    		drivetrain.resetGyro();
+    	}
     	drivetrain.resetEncoders();
     	setAngleSetpoint(0);
     	setDistanceSetpoint(distance);
@@ -52,40 +53,32 @@ public class DriveBackwardPID extends Command {
     protected void execute() {
     	drivetrain.drive(robotSpeed, -robotSpeed);
     	
-  //  	System.out.println(drivetrain.getRightDistance());
+    	//System.out.println(drivetrain.getRightDistance());
     	//System.out.println(drivetrain.getRightDistance());
     	double currentPID = straightPID();
     	double fromDist = distance - drivetrain.getLeftDistance();
     	//System.out.println("Execute:" + (distance - Math.abs(drivetrain.getLeftDistance())));
-    	if(fromDist <= 120)
-    	{
-    		if(currentPID < 0)
-    		{
+    	if(fromDist <= 120) {
+    		if(currentPID < 0) {
     			drivetrain.drive((robotSpeed*stopPID()), -((robotSpeed*(1-Math.abs(currentPID)))*stopPID() ));
     			previousSpeedL = previousSpeedL*stopPID();
     			previousSpeedR = previousSpeedR* stopPID();
     		}
-    		else
-    		{
+    		else {
     			drivetrain.drive((robotSpeed * (1-currentPID)) * stopPID(), -(robotSpeed * stopPID()));
     			previousSpeedL = previousSpeedL  * stopPID();
     			previousSpeedR = previousSpeedR * stopPID();
     		}
     	}
-    	else
-    	{
-    		if(currentPID < 0)
-    		{
+    	else {
+    		if(currentPID < 0) {
     			drivetrain.drive(robotSpeed, -(robotSpeed*(1-Math.abs(currentPID))));
     		}
-    		else
-    		{
+    		else {
     			drivetrain.drive(robotSpeed * (1-currentPID), -robotSpeed);
     		}
     	}
-    	}
-    	
-    
+    }    
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
@@ -93,15 +86,14 @@ public class DriveBackwardPID extends Command {
     	System.out.println("Distance to go: " + (distance - drivetrain.getLeftDistance()));
     	
     	//.System.out.println((distance - drivetrain.getLeftDistance()));
-    	if (-distance - Math.abs(drivetrain.getLeftDistance()) < 1)
-    	{
-    //		System.out.println(drivetrain.getLeftDistance());
-    //		System.out.println("I'm not finished!");
-
+    	if (-distance - Math.abs(drivetrain.getLeftDistance()) < 1) {
+    		//System.out.println(drivetrain.getLeftDistance());
+    		//System.out.println("I'm not finished!");
     		System.out.println("Finished driving");
     		return true;
-    	} else {
-    //		System.out.println("I'm actually finished!");
+    	} 
+    	else {
+    		//System.out.println("I'm actually finished!");
     		 return false;
     	}
     }
@@ -118,11 +110,8 @@ public class DriveBackwardPID extends Command {
     	//drivetrain.straightAdj.disable();
     	drivetrain.drive(0, 0);
     }
-	
-    double derivative;
     
-	public double stopPID()
-	{
+	public double stopPID() {
 		double currentDist = (drivetrain.getRightDistance() + Math.abs(drivetrain.getLeftDistance()))/2;		//average distance feedback from two encoders
 		//How far the Robot is from it's target distance
 		double distError = Math.abs(distanceSetpoint - currentDist);  //inverse of difference between current distance and target distance 
@@ -136,13 +125,11 @@ public class DriveBackwardPID extends Command {
 	}
 	
 	
-	public void setDistanceSetpoint(double target)
-	{
+	public void setDistanceSetpoint(double target) {
 		this.distanceSetpoint = target;
 	}
 	
-	public double straightPID() //Note to self, maybe change this to just straight up return the output and make it a double method
-	{
+	public double straightPID() {//Note to self, maybe change this to just straight up return the output and make it a double method
 		double error = drivetrain.getAngle() - angleSetpoint; //calculates devation from intended angle 			//Need to add absolute Vaule? -- Robbie
 		aIntegral += (error * .02); //Integral is the sum of all the errors while running (* the iteration time which is 20 ms)
 		double derivative = (error - previousAngleError)/ .02; //change in error * iteration time (20 ms)
@@ -151,12 +138,7 @@ public class DriveBackwardPID extends Command {
 		return output;
 	}
 	
-	public void setAngleSetpoint(int setpoint)
-	{
+	public void setAngleSetpoint(int setpoint) {
 		this.angleSetpoint = setpoint; //sets the target value (which is the orientation of the robot in degrees)
 	}
-	
-
-
-    
-}
+ }

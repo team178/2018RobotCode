@@ -57,7 +57,6 @@ public class Ramp extends Subsystem {
 	//Stuff to go for scale, do not delete
 	
 	public void punchCube() {
-
 		shootingPiston.set(DoubleSolenoid.Value.kReverse);
 	}
 	
@@ -72,9 +71,7 @@ public class Ramp extends Subsystem {
 	public void extendArm() {
 		extendingArm.set(DoubleSolenoid.Value.kReverse);
 	}
-	*/
-	
-	
+	*/	
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.

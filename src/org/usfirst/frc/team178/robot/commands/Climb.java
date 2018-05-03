@@ -13,7 +13,6 @@ public class Climb extends Command {
 	
 	public Climb() {
     	requires(Robot.climber);
-    	
     }
 
     // Called just before this Command runs the first time
@@ -24,8 +23,10 @@ public class Climb extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(oi.startButton.get() && oi.backButton.get())
+    	//Buttons are a safety so reverse isn't accidentally called
+    	if(oi.startButton.get() && oi.backButton.get()) {
     		climber.climb(-.5);
+    	}
     	else {
     		climber.climb(1);
     	}

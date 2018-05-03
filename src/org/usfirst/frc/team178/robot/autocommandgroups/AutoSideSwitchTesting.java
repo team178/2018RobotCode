@@ -16,6 +16,7 @@ public class AutoSideSwitchTesting extends CommandGroup {
  
 	boolean isSame;
 	
+	//As indicated, this is for testing, not actual competition
     public AutoSideSwitchTesting() {
     	isSame = false;
     	if(Robot.userChoice[3] == false) {

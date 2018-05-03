@@ -18,7 +18,6 @@ public class AutoTurnPID extends Command {
 	boolean resetGyro;
 	double currentAngle;
 	
-	
     public AutoTurnPID(double tAngle, double speed, boolean resetG) {
     requires(Robot.drivetrain);
     targetAngle = tAngle;
@@ -30,13 +29,15 @@ public class AutoTurnPID extends Command {
     protected void initialize() {
     	oi = Robot.oi;
     	drivetrain = Robot.drivetrain;
-    	if(resetGyro)
+    	if(resetGyro) {
     		drivetrain.resetGyro();
+    	}
     	counter = 0;
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	//Turn and slow down as the robot gets closer to the specified angle
     	counter++;
     	System.out.println("Counter:" + counter);
     	currentAngle = drivetrain.getAngle();
@@ -46,21 +47,20 @@ public class AutoTurnPID extends Command {
     	if (currentAngle < targetAngle) {
     		drivetrain.drive(robotSpeed*valuePID, robotSpeed*valuePID);
     	} //else {
-    	else if(currentAngle > targetAngle)
-    	{
+    	else if(currentAngle > targetAngle) {
     		drivetrain.drive(-(robotSpeed*valuePID), -(robotSpeed * valuePID));
     	}
     	
     }
     
-
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     	System.out.println("OVer HErE");
     	if ((Math.abs(drivetrain.getAngle() - targetAngle) < 1.5 && Math.abs(angleDerivative) < 0.03) || counter >= 80) {
     		System.out.println("stop turning");
     		return true;
-    	} else {
+    	}
+    	else {
     		return false;
     	}
     }
@@ -73,18 +73,19 @@ public class AutoTurnPID extends Command {
     	drivetrain.drive(0,0);
     }
     
-    public double turnPID(double currentAngle)
-	{
+    public double turnPID(double currentAngle) {
+    	//Calculates PID value to slow down accordingly
     	if(targetAngle > 0)
     	{
     		aP = .3;
     		aI= .01;
     		aD = .01;
     	}
-    	else
+    	else {
     		aP = .5;
     		aI= .02;
     		aD = .01;
+    	}
 		//How far the Robot is from it's target distance
 		double angleError = Math.abs(angleSetpoint - currentAngle);  //inverse of difference between current distance and target distance 
 		angleIntegral += (angleError * .02);
@@ -94,8 +95,7 @@ public class AutoTurnPID extends Command {
 		return output;
 	}
     
-    public void setAngleSetpoint(double target)
-	{
+    public void setAngleSetpoint(double target) {
 		this.angleSetpoint = target;
 	}
 }

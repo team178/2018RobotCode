@@ -23,7 +23,7 @@ public class CollectCube extends Command {
     	requires(Robot.cubeintake);
     	requires(Robot.ramp);
    // 	requires(Robot.lights);
-    	
+
     }
 
     //Called just before this Command runs for the first time
@@ -31,35 +31,30 @@ public class CollectCube extends Command {
     	oi = Robot.oi;
     	cubeintake = Robot.cubeintake;
     	ramp = Robot.ramp;
-   // 	lights = Robot.lights;
-    	
+   // 	lights = Robot.lights;  	
    // 	lights.sendMessage(SubsystemIndex.ALL, "c");
-    	
-    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    //	System.out.println("L  " + cubeintake.getLeftUltrasonic());
+    	//System.out.println("L  " + cubeintake.getLeftUltrasonic());
     	//System.out.println("R  " + cubeintake.getRightUltrasonic());
     	rightStickY = oi.getXboxRightY()*0.7;
     	leftStickY = oi.getXboxLeftY()*0.7;
-    	//if(cubeintake.getLeftUltrasonic() < 1.0 || cubeintake.getRightUltrasonic() < 1.0) {
-    		//cubeintake.collectCubeLeft(leftStickY);
-    	//} else {
-    		//cubeintake.collectCubeRight(rightStickY);
+    	/*if(cubeintake.getLeftUltrasonic() < 1.0 || cubeintake.getRightUltrasonic() < 1.0) {
+    		cubeintake.collectCubeLeft(leftStickY);
+    	} 
+    	else {
+    		cubeintake.collectCubeRight(rightStickY); */
     		cubeintake.collectCubeLeft(-leftStickY);
     		cubeintake.collectCubeRight(-rightStickY);
     		ramp.bringCubeIn(leftStickY);
-    	}
-//    }
+    	//}
+    }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-    	
-    
+    protected boolean isFinished() {    
     		return false;
-    	
     }
 
     // Called once after isFinished returns true

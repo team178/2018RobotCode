@@ -15,7 +15,8 @@ public class AutoMiddleSwitch extends CommandGroup {
 	char switchSide = Robot.fieldConfig[0];
 	
     public AutoMiddleSwitch() {
-    	System.out.println("Middle ");
+    	System.out.println("Middle");
+    	//L = left, R = right
     	if(switchSide == 'L') {
         	System.out.println("L");
     		addSequential(new DriveForwardPID(90, .5, true, false));
