@@ -57,7 +57,7 @@ public class AutoSideSwitch extends CommandGroup {
     			addSequential(new DriveForwardPID(20, .3, true, false)); //was 15
     			addSequential(new ShootSwitch(true));
     		}
-    		else {
+    		else if (goNoMatterWhat) {
 	    		System.out.println("Going all around town");
 	    		addSequential(new DriveForwardPID(200, .7, true, false)); //was 146
 				addSequential(new AutoTurnPID(90, .435, false));
@@ -66,9 +66,9 @@ public class AutoSideSwitch extends CommandGroup {
 				addSequential(new DriveForwardPID(29, .3, true, false)); //was 15
 				addSequential(new ShootSwitch(true));
     		}
-    	} else {
+    	 else {
     		System.out.println("On other side");
-    		addSequential(new DriveForwardPID(120, .5, true, false));
+    		addSequential(new DriveForwardPID(120, .5, true, false));}
     	}
     }
 }
