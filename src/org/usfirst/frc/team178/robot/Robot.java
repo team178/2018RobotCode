@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team178.robot.autocommandgroups.*;
 import org.usfirst.frc.team178.robot.commands.ControlRampIntake;
+import org.usfirst.frc.team178.robot.commands.FlagWaving;
 import org.usfirst.frc.team178.robot.subsystems.*;
 
 /**
@@ -219,7 +220,7 @@ public class Robot extends IterativeRobot {
 			System.out.println("Waiting for Game Data...");
 			if(getAutoSelections()) {
 				System.out.println("Game data acquired.");
-				autonomousCommand = new AutoDecisions(userChoice, fieldConfig);
+				autonomousCommand = new FlagWaving();
 				cubeintake.foldIntake();
 			
 				if (autonomousCommand != null) {

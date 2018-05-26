@@ -51,7 +51,7 @@ public class OI {
 		 button2.whenPressed(new FoldIntake());
 		 buttonA.whileHeld(new Climb());
 		 buttonY.whileHeld(new RotateArm());
-		 buttonB.whileHeld(new ReverseRotateArm());
+		 buttonB.whileHeld(new FlagWaving());
 		 
 		 
 		 
