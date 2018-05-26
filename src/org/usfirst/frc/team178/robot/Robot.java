@@ -221,7 +221,7 @@ public class Robot extends IterativeRobot {
 			if(getAutoSelections()) {
 				System.out.println("Game data acquired.");
 				autonomousCommand = new FlagWaving();
-				cubeintake.foldIntake();
+				//cubeintake.foldIntake();
 			
 				if (autonomousCommand != null) {
 					autonomousCommand.start();
